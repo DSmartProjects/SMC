@@ -1,0 +1,66 @@
+﻿<Page
+    x:Class="VideoKallSBCApplication.Views.DeviceListPage"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:VideoKallSBCApplication.Views"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+    xmlns:viewmodel="using:VideoKallSBCApplication"
+    mc:Ignorable="d"
+    Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
+    <Page.Resources>
+        <Style x:Name="Buttonstyle" TargetType="Button">
+            <Setter Property="Margin" Value="2,0,0,0"></Setter>
+            <Setter Property="HorizontalAlignment" Value="Stretch"></Setter>
+            <Setter Property="VerticalAlignment" Value="Stretch"></Setter>
+        </Style>
+        <DataTemplate x:Name= "BLEDeviceData" x:DataType="viewmodel:BLEDeviceInfo"  >
+            <Grid Margin="5" Background="LightGray">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="Auto"/>
+                    <ColumnDefinition Width="*" />
+                </Grid.ColumnDefinitions>
+                    <Image Source="{x:Bind GlyphBitmapImage, Mode=OneWay}" Stretch="UniformToFill" Grid.Column="0" Height="40" Width="40" Margin="5" VerticalAlignment="Top"/>
+                    <StackPanel Grid.Column="1" Margin="5">
+                        <TextBlock  TextWrapping="WrapWholeWords"> Name: <Run Text="{x:Bind Name, Mode=OneWay}" FontWeight="Bold"/>
+                        </TextBlock>
+                        <TextBlock> IsPaired: <Run Text="{x:Bind IsPaired, Mode=OneWay}"/>, IsConnected: <Run Text="{x:Bind IsConnected, Mode=OneWay}"/>, IsConnectable:<Run Text="{x:Bind IsConnectable, Mode=OneWay}"/>
+                        </TextBlock> 
+                    </StackPanel>
+                </Grid>
+        </DataTemplate>
+    </Page.Resources>
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*"></RowDefinition>
+            <RowDefinition Height="*"></RowDefinition>
+            <RowDefinition Height="*"></RowDefinition>
+            <RowDefinition Height="*"></RowDefinition>
+            <RowDefinition Height="*"></RowDefinition>
+            <RowDefinition Height="*"></RowDefinition>
+            <RowDefinition Height="50"></RowDefinition>
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*"></ColumnDefinition>
+            <ColumnDefinition Width="*"></ColumnDefinition>
+            <ColumnDefinition Width="*"></ColumnDefinition>
+            <ColumnDefinition Width="*"></ColumnDefinition>
+            <ColumnDefinition Width="*"></ColumnDefinition>
+            <ColumnDefinition Width="*"></ColumnDefinition>
+        </Grid.ColumnDefinitions>
+       
+        <!--BLE Device list-->
+        <ListView Name="BleList" ScrollViewer.VerticalScrollMode="Enabled" CanBeScrollAnchor="True"
+                  Grid.Row="0" Grid.RowSpan="6" Grid.Column="0" 
+                  Grid.ColumnSpan="3"
+                  ItemTemplate="{StaticResource BLEDeviceData}"
+ 
+                  SelectedItem="{Binding   SelectedDevice, Mode=TwoWay}" ItemClick="BleList_ItemClick"
+                  ></ListView>  
+        <!--command controls-->
+        <Button Grid.Row="6" Grid.Column="0" Command="{Binding DeviceDiscovery}" Content="{Binding DiscoveryBtnTxt}" IsEnabled="{Binding IsDeviceDiscoveryIsEnabled, UpdateSourceTrigger=PropertyChanged}" Style="{StaticResource Buttonstyle}"></Button>
+        <Button Grid.Row="6" Grid.Column="1" Content="Pair" Command="{Binding DevicePairCommand}" Style="{StaticResource Buttonstyle}"></Button>
+        <Button Grid.Row="6" Grid.Column="3" Content="Done" Command="{Binding DoneCommand}" Style="{StaticResource Buttonstyle}"></Button>
+        <TextBlock x:Name="TxtDeviceType"  Grid.Row="0" Grid.Column="3" Text="{Binding DeviceTypeSelected, UpdateSourceTrigger=PropertyChanged}"   ></TextBlock>
+    </Grid>
+</Page>

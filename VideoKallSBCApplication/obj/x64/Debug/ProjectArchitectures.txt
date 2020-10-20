@@ -1,0 +1,2 @@
+C:\Sujit\dsmart\smc\SMC PROJECT\Project\SBCDBModule\SBCDBModule\SBCDBModule.csproj;x64
+C:\Sujit\dsmart\smc\SMC PROJECT\Project\VideoKallSBCApplication\VideoKallSBCApplication\VideoKallSBCApplication.csproj;x64

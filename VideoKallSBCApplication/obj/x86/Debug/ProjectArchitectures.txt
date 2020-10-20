@@ -1,0 +1,2 @@
+C:\DSmart Projects\VideoKallSBCApplication\SBCDBModule\SBCDBModule\SBCDBModule\SBCDBModule.csproj;x86
+C:\DSmart Projects\VideoKallSBCApplication\VideoKallSBCApplication\VideoKallSMCApplication.csproj;x86

@@ -1,0 +1,2 @@
+MainPackage=C:\Sujit\dsmart\smc\SMC PROJECT\Project\VideoKallSBCApplication\VideoKallSBCApplication\bin\x86\Release\VideoKallSMCApplication_1.0.51.0_x86.msix
+SymbolPackage=C:\Sujit\dsmart\smc\SMC PROJECT\Project\build\VideoKallSMCApplication_1.0.51.0_Test\VideoKallSMCApplication_1.0.51.0_x86.appxsym
