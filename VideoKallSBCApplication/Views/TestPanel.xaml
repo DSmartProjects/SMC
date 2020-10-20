@@ -31,7 +31,7 @@
         <ComboBox Grid.Row="0" Grid.Column="1" Grid.ColumnSpan="2" SelectedIndex="0" Name="TestTypesList" SelectionChanged="TestTypesList_SelectionChanged"/>
         <Frame x:Name="TestResultDisplay" Grid.Row="1" Grid.RowSpan="4" Grid.Column="0" Grid.ColumnSpan="8"></Frame>
              
-        <!--Call operation-->
+        <!--Call operation -->
         <Grid Grid.Row="8" Grid.Column="0" Grid.ColumnSpan="8" >
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="*"></ColumnDefinition>
