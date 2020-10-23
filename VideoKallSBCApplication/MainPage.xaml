@@ -29,8 +29,8 @@
         <Frame x:FieldModifier="public" Background="White" Grid.Row="2" Grid.Column="0" Grid.ColumnSpan="2" x:Name="pagePlaceHolder"></Frame>
         <Frame Visibility="Collapsed" x:FieldModifier="public"  Background="WhiteSmoke" Grid.Row="2" Grid.RowSpan="3" Grid.Column="1" x:Name="RightPanelHolder"></Frame>
                 <!--status bar-->
-        <Border Background="WhiteSmoke" Grid.Row="3" Grid.Column="0" BorderBrush="Gray" BorderThickness="1"></Border>
-        <TextBlock x:FieldModifier="public" x:Name="StatusTxt" Text="{Binding Path=StatusText, Mode=OneWay}" Grid.Row="3">Status</TextBlock>
+        <!--<Border Background="WhiteSmoke" Grid.Row="3" Grid.Column="0" BorderBrush="Gray" BorderThickness="1"></Border>-->
+        <!--<TextBlock x:FieldModifier="public" x:Name="StatusTxt" Text="{Binding Path=StatusText, Mode=OneWay}" Grid.Row="3">Status</TextBlock>-->
         <!--Right pane Menus-->
         
         <!--Patient information: lastname,firstname,dob,gender-->

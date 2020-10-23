@@ -10,7 +10,7 @@
 
     <Page.Resources>
         <BitmapImage x:Name="ImgMainScreenLogo1" CreateOptions="IgnoreImageCache"   UriSource="../Assets/Application.png"/>
-        
+
     </Page.Resources>
     <Grid >
         <Grid.RowDefinitions>
@@ -19,8 +19,7 @@
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="*"></ColumnDefinition>
         </Grid.ColumnDefinitions>
-      <!--  <Image x:FieldModifier="public" x:Name="ImgMainScreenLogo" Grid.Row="0" Grid.Column="0" Stretch="Uniform" HorizontalAlignment="Center" VerticalAlignment="Center" Source="{StaticResource ImgMainScreenLogo1}"></Image>
--->
-        <Button Content="Initiate consultation" FontSize="30" HorizontalAlignment="Center" Background="LightBlue" VerticalAlignment="Center"></Button>
-     </Grid>
+        
+        <Button x:Name="InitConsultation" CornerRadius="5" Content="Initiate consultation" Click="InitConsultation_Click" FontSize="30" HorizontalAlignment="Center" Background="LightBlue" VerticalAlignment="Center"></Button>
+    </Grid>
 </Page>

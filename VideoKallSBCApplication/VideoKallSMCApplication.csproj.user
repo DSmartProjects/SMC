@@ -20,6 +20,7 @@
     <AppxPackageIsForStore>False</AppxPackageIsForStore>
     <RemoteMachine0>192.168.0.33</RemoteMachine0>
     <UseAuthentication0>False</UseAuthentication0>
+    <ProjectView>ShowAllFiles</ProjectView>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Release|x86'">
     <RemoteDebugMachine>192.168.0.33</RemoteDebugMachine>

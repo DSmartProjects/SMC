@@ -11,7 +11,7 @@
     <AssemblyName>VideoKallSBCApplication</AssemblyName>
     <DefaultLanguage>en-US</DefaultLanguage>
     <TargetPlatformIdentifier>UAP</TargetPlatformIdentifier>
-    <TargetPlatformVersion Condition=" '$(TargetPlatformVersion)' == '' ">10.0.18362.0</TargetPlatformVersion>
+    <TargetPlatformVersion Condition=" '$(TargetPlatformVersion)' == '' ">10.0.17763.0</TargetPlatformVersion>
     <TargetPlatformMinVersion>10.0.17763.0</TargetPlatformMinVersion>
     <MinimumVisualStudioVersion>14</MinimumVisualStudioVersion>
     <FileAlignment>512</FileAlignment>
@@ -137,6 +137,7 @@
     <Compile Include="BLEDevices\OxyMeter.cs" />
     <Compile Include="BLEDevices\Thermometer.cs" />
     <Compile Include="BLEDevices\Utilities.cs" />
+    <Compile Include="Communication\CaptureDevice.cs" />
     <Compile Include="Communication\CommunicationChannel.cs" />
     <Compile Include="Communication\CommunicationCommands.cs" />
     <Compile Include="Communication\DataacquistionappComm.cs" />
@@ -192,8 +193,14 @@
   <ItemGroup>
     <Content Include="Assets\Application.ico" />
     <Content Include="Assets\Application.png" />
-    <Content Include="Assets\lungs.png" />
+    <Content Include="Assets\end-call.png" />
+    <Content Include="Assets\microphone-mute.png" />
+    <Content Include="Assets\microphone-unmute.png" />
     <Content Include="Assets\sbcimg.PNG" />
+    <Content Include="Assets\SBC_Ring_Tone.mp4" />
+    <Content Include="Assets\video-icon.png" />
+    <Content Include="Assets\video-mute.png" />
+    <Content Include="Assets\VideoPlaceHolder.png" />
     <Content Include="Properties\Default.rd.xml" />
     <Content Include="Assets\LockScreenLogo.scale-200.png" />
     <Content Include="Assets\SplashScreen.scale-200.png" />
@@ -339,6 +346,11 @@
       <Project>{8124fe77-ea75-47c9-b7b6-0988d4f4167b}</Project>
       <Name>SBCDBModule</Name>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Reference Include="Microsoft.Samples.SimpleCommunication">
+      <HintPath>x64\Debug\Microsoft.Samples.SimpleCommunication\Microsoft.Samples.SimpleCommunication.winmd</HintPath>
+    </Reference>
   </ItemGroup>
   <PropertyGroup Condition=" '$(VisualStudioVersion)' == '' or '$(VisualStudioVersion)' &lt; '14.0' ">
     <VisualStudioVersion>14.0</VisualStudioVersion>

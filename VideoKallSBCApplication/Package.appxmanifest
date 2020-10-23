@@ -46,4 +46,12 @@
       </Device>
     </DeviceCapability>
   </Capabilities>
+  <Extensions>
+    <Extension Category="windows.activatableClass.inProcessServer">
+      <InProcessServer>
+        <Path>Microsoft.Samples.SimpleCommunication.dll</Path>
+        <ActivatableClass ActivatableClassId="Microsoft.Samples.SimpleCommunication.StspSchemeHandler" ThreadingModel="both"/>
+      </InProcessServer>
+    </Extension>
+  </Extensions>
 </Package>

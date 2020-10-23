@@ -41,7 +41,7 @@ namespace VideoKallSBCApplication.Views
         {
             await Dispatcher.RunAsync(CoreDispatcherPriority.Normal, () =>
             {
-                MainPage.mainPage.StatusTxt.Text = msg;
+                // MainPage.mainPage.StatusTxt.Text = msg;
             });
         }
 

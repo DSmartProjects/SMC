@@ -41,6 +41,15 @@ namespace VideoKallSBCApplication
     /// </summary>
     public sealed partial class MainPage : Page
     {
+        private static Windows.Media.MediaExtensionManager mediaExtensionMgr;
+        public void EnsureMediaExtensionManager()
+        {
+            if (mediaExtensionMgr == null)
+            {
+                mediaExtensionMgr = new Windows.Media.MediaExtensionManager();
+                mediaExtensionMgr.RegisterSchemeHandler("Microsoft.Samples.SimpleCommunication.StspSchemeHandler", "stsp:");
+            }
+        }
         public   static TestResultsModel _testResult = new TestResultsModel();
         public static TestResultsModel TestresultModel { get { return _testResult; } }
         public static MainPage mainPage = null;
@@ -64,7 +73,7 @@ namespace VideoKallSBCApplication
         {
             await Dispatcher.RunAsync(CoreDispatcherPriority.Normal, () =>
             {
-                StatusTxt.Text = s;
+                // StatusTxt.Text = s;
             });
         }
         
@@ -272,7 +281,7 @@ namespace VideoKallSBCApplication
             }
             catch(Exception ex)
             {
-
+                throw ex;
             }
            
         }
@@ -348,7 +357,7 @@ namespace VideoKallSBCApplication
             var dispatcher = CoreApplication.MainView.CoreWindow.Dispatcher;
             await dispatcher.RunAsync(CoreDispatcherPriority.Normal, () =>
             {
-                StatusTxt.Text = (string)sender;
+                // StatusTxt.Text = (string)sender;
  
             });
 

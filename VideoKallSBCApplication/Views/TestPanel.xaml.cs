@@ -49,7 +49,7 @@ namespace VideoKallSMC.Views
 
         void NotifyMessage(string msg, int errorOrStatus)
         {
-            MainPage.mainPage.StatusTxt.Text = msg;
+            // MainPage.mainPage.StatusTxt.Text = msg;
         }
 
       //  OxymeterResults ox = new OxymeterResults();

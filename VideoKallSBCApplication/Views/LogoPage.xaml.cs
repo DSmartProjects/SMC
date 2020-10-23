@@ -13,7 +13,6 @@ using Windows.UI.Xaml.Input;
 using Windows.UI.Xaml.Media;
 using Windows.UI.Xaml.Navigation;
 
-// The Blank Page item template is documented at https://go.microsoft.com/fwlink/?LinkId=234238
 
 namespace VideoKallSMC.Views
 {
@@ -25,6 +24,11 @@ namespace VideoKallSMC.Views
         public LogoPage()
         {
             this.InitializeComponent();
+        }
+
+        private void InitConsultation_Click(object sender, RoutedEventArgs e)
+        {
+            this.Frame.Navigate(typeof(Videocallpage));
         }
     }
 }
