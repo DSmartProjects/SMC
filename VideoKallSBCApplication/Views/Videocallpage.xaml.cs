@@ -57,7 +57,6 @@ namespace VideoKallSMC.Views
             }
             catch (Exception)
             {
-
                 throw;
             }
         }
