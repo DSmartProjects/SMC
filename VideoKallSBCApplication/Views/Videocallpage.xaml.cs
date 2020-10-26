@@ -95,7 +95,6 @@ namespace VideoKallSMC.Views
             try
             {
                 var cameraFound = await CaptureDevice.CheckForRecordingDeviceAsync();
-
                 if (cameraFound)
                 {
                     device = new CaptureDevice();
