@@ -193,9 +193,7 @@
   <ItemGroup>
     <Content Include="Assets\Application.ico" />
     <Content Include="Assets\Application.png" />
-    <Content Include="Assets\end-call.png" />
-    <Content Include="Assets\microphone-mute.png" />
-    <Content Include="Assets\microphone-unmute.png" />
+    <Content Include="Assets\lungs.png" />
     <Content Include="Assets\sbcimg.PNG" />
     <Content Include="Assets\SBC_Ring_Tone.mp4" />
     <Content Include="Assets\video-icon.png" />

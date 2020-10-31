@@ -41,7 +41,7 @@ namespace VideoKallSBCApplication.Stethosope
         IntPtr handle;
         CallbackDelegate NotificationHandle;
 
-        public void Initialize()
+        public void Initialize(bool islungs = false)
         {
             try
             {
@@ -55,7 +55,7 @@ namespace VideoKallSBCApplication.Stethosope
                 //GenerateRecordingDeviceFile();
                 ReadTXConfigurationFile();
 
-                StartStreaming(0, false);
+                StartStreaming(0, islungs);
             }catch(Exception ex)
             {
                 MainPage.mainPage.LogExceptions(ex.Message);

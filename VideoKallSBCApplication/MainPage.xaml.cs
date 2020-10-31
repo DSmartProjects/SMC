@@ -55,8 +55,9 @@ namespace VideoKallSBCApplication
         public static MainPage mainPage = null;
         public MainPageViewModel mainpagecontext = new MainPageViewModel();
         DispatcherTimer   Watchdog = null;
-        public delegate void StethoscopeEvents();
+        public delegate void StethoscopeEvents(bool islungs);
         StethoscopeEvents StartStethoscope;
+        bool isMCCConnectedFirstTime = true;
         public MainPage()
         {
             this.InitializeComponent();
@@ -146,6 +147,12 @@ namespace VideoKallSBCApplication
             {
                 case "<mccs>":
                 case "<smcc>":
+                    if(isMCCConnectedFirstTime)
+                    {
+                        commChannel.SendMessageToMCC(CommunicationCommands.SBCStart);
+                        isMCCConnectedFirstTime = false;
+                    }
+                    else
                     commChannel.SendMessageToMCC(CommunicationCommands.SBCConnectionResponseCmd);
                     break;
                 case "<p1d>":
@@ -213,7 +220,10 @@ namespace VideoKallSBCApplication
                     break;
                 case "<startstchecst>":
                   
-                    StartStethoscope?.Invoke();
+                    StartStethoscope?.Invoke(false);
+                    break;
+                case "<startstlungs>":
+                    StartStethoscope?.Invoke(true);
                     break;
                 case "<otosaveimage>":
                     {
@@ -285,13 +295,11 @@ namespace VideoKallSBCApplication
             }
            
         }
-
-
-       async void StartST()
+       async void StartST(bool islungs)
         {
             await Dispatcher.RunAsync(CoreDispatcherPriority.Normal, () =>
             {
-                TestresultModel.StethoscopeTx.Initialize();
+                TestresultModel.StethoscopeTx.Initialize(islungs);
             });
         }
 
@@ -380,6 +388,11 @@ namespace VideoKallSBCApplication
             { }
         }
         public CommunicationChannel commChannel { get; set; }
+
+        private void Page_Unloaded(object sender, RoutedEventArgs e)
+        {
+            commChannel.SendMessageToMCC(CommunicationCommands.SBCShutdown);
+        }
          
     } 
 }
