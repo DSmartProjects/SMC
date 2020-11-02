@@ -5,6 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using VideoKallSBCApplication.Model;
+using VideoKallSBCApplication.ViewModel;
 using VideoKallSMC.Communication;
 using Windows.Devices.Bluetooth;
 using Windows.Devices.Bluetooth.GenericAttributeProfile;
@@ -23,7 +24,8 @@ namespace VideoKallSBCApplication.BLEDevices
 
         private Dictionary<string, GattDeviceService> GTTServicelist = new Dictionary<string, GattDeviceService>();
         IReadOnlyList<GattCharacteristic> characteristics = null;
-        public async void Connect()
+
+        public async void Connect(TestPanelViewModel _testPanelVM)
         {
             DeviceType dv = MainPage.TestresultModel.GetDeviceType(3);
             BLEDeviceInfo device = null;
@@ -222,8 +224,9 @@ namespace VideoKallSBCApplication.BLEDevices
                     rawdata += data[i].ToString() + "-";
                 }
 
-                MainPage.TestresultModel.ThermometerData(f, data.Length>6? data[6]:0, data[2] == 193, rawdata);
-            }catch(Exception ex)
+                MainPage.TestresultModel.ThermometerData(f, data.Length>6? data[6]:0, data[2] == 193, rawdata);                
+            }
+            catch(Exception ex)
             {
                 MainPage.TestresultModel.NotifyStatusMessage?.Invoke("Exception: " +ex.Message, 2);
 

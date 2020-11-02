@@ -63,9 +63,9 @@ namespace VideoKallSMC.ViewModel
         {
             testPanel = new TestPanel();
             MainPage.mainPage.RightPanelHolder.Navigate(typeof(TestPanel), testPanel);
-            if (videcallPage == null)
-                videcallPage = new Videocallpage();
-            MainPage.mainPage.pagePlaceHolder.Navigate(typeof(Videocallpage), videcallPage);
+            //if (videcallPage == null)
+            //    videcallPage = new Videocallpage();
+            //MainPage.mainPage.pagePlaceHolder.Navigate(typeof(Videocallpage), videcallPage);
 
             SBCDB dbmodule = new SBCDB();
             User loggedinUser =  dbmodule.GetLoggedinUser(Userid.Trim().ToLower());
@@ -90,9 +90,9 @@ namespace VideoKallSMC.ViewModel
                 if (testPanel == null)
                     testPanel = new TestPanel();
                 MainPage.mainPage.RightPanelHolder.Navigate(typeof(TestPanel), testPanel);
-                if (videcallPage == null)
-                    videcallPage = new Videocallpage();
-                MainPage.mainPage.pagePlaceHolder.Navigate(typeof(Videocallpage), videcallPage);
+                //if (videcallPage == null)
+                //    videcallPage = new Videocallpage();
+                //MainPage.mainPage.pagePlaceHolder.Navigate(typeof(Videocallpage), videcallPage);
 
             }
             else

@@ -170,8 +170,10 @@
     <Compile Include="ViewModel\DeviceListPageViewModel.cs" />
     <Compile Include="ViewModel\loginPageViewModel.cs" />
     <Compile Include="ViewModel\MainPageViewModel.cs" />
+    <Compile Include="ViewModel\NotifyPropertyChanged.cs" />
     <Compile Include="ViewModel\SeetingsPageViewModel.cs" />
     <Compile Include="ViewModel\SthethoscopeTX.cs" />
+    <Compile Include="ViewModel\TestPanelViewModel.cs" />
     <Compile Include="Views\Accounts.xaml.cs" />
     <Compile Include="Views\DeviceListPage.xaml.cs">
       <DependentUpon>DeviceListPage.xaml</DependentUpon>

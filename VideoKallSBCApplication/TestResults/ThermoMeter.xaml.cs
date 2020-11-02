@@ -4,6 +4,8 @@ using System.IO;
 using System.Linq;
 using System.Runtime.InteropServices.WindowsRuntime;
 using VideoKallSBCApplication.Model;
+using VideoKallSBCApplication.ViewModel;
+using VideoKallSMC.ViewModel;
 using Windows.Foundation;
 using Windows.Foundation.Collections;
 using Windows.UI.Core;
@@ -24,20 +26,28 @@ namespace VideoKallSBCApplication.TestResults
     /// </summary>
     public sealed partial class ThermoMeter : Page
     {
+
+        private TestPanelViewModel _testPanelVM = null;
         public ThermoMeter()
         {
             this.InitializeComponent();
             MainPage.TestresultModel.ThermoResultcallback += ThermoResultCallback;
             MainPage.TestresultModel.DeviceConnectionTimeCallback += DeviceConnectionStatus;
         }
-
+        protected override void OnNavigatedTo(NavigationEventArgs e)
+        {
+            base.OnNavigatedTo(e);
+            _testPanelVM = (TestPanelViewModel)e.Parameter;
+            _testPanelVM.IsConnectedEnable = true;
+        }
+      
         private async void DeviceConnectionStatus(DeviceTypesenums type, string parm2, bool status)
         {
             await Dispatcher.RunAsync(CoreDispatcherPriority.Normal, () =>
             {
                 if (type == DeviceTypesenums.THERMOMETER)
                 {
-                    BtnTempConnect.IsEnabled = true;
+                    //BtnTempConnect.IsEnabled = true;
                     TxtConnectionTime.Text = parm2;
                 }
             });
@@ -70,8 +80,10 @@ namespace VideoKallSBCApplication.TestResults
 
         private void BtnTempConnect_Click(object sender, RoutedEventArgs e)
         {
-            BtnTempConnect.IsEnabled = false;
-            MainPage.TestresultModel.Thermo.Connect();
+            _testPanelVM.IsConnectedEnable = false;
+            //BtnTempConnect.IsEnabled = false;
+            _testPanelVM.IsMsgConnected = Visibility.Visible;
+            MainPage.TestresultModel.Thermo.Connect(_testPanelVM);
         }
          
 

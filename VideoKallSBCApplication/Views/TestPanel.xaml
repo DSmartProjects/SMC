@@ -8,42 +8,48 @@
     mc:Ignorable="d"
     Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
     <Grid>
-        <Grid.RowDefinitions>
-            <RowDefinition Height="*"></RowDefinition>
-            <RowDefinition Height="*"></RowDefinition>
-            <RowDefinition Height="*"></RowDefinition>
-            <RowDefinition Height="*"></RowDefinition>
-            <RowDefinition Height="*"></RowDefinition>
-            <RowDefinition Height="*"></RowDefinition>
-            <RowDefinition Height="*"></RowDefinition>
-            <RowDefinition Height="*"></RowDefinition>
-            <RowDefinition Height="*"></RowDefinition>
-             
-        </Grid.RowDefinitions>
-        <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="*"></ColumnDefinition>
-            <ColumnDefinition Width="*"></ColumnDefinition>
-            <ColumnDefinition Width="*"></ColumnDefinition>
-            <ColumnDefinition Width="*"></ColumnDefinition>
-        </Grid.ColumnDefinitions>
-        <TextBlock Text="Test Types"  FontSize="20" Grid.Row="0" Grid.Column="0" HorizontalAlignment="Stretch" VerticalAlignment="Stretch"></TextBlock>
+        <TextBlock Visibility="{Binding IsMsgConnected,Mode=TwoWay}" Grid.Row="0"  x:Name="msgConnect"  Text="Please select the dropdown,to re-connect"  HorizontalAlignment="Stretch" VerticalAlignment="Stretch" ></TextBlock>
+        <Grid>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="*"></RowDefinition>
+                <RowDefinition Height="*"></RowDefinition>
+                <RowDefinition Height="*"></RowDefinition>
+                <RowDefinition Height="*"></RowDefinition>
+                <RowDefinition Height="*"></RowDefinition>
+                <RowDefinition Height="*"></RowDefinition>
+                <RowDefinition Height="*"></RowDefinition>
+                <RowDefinition Height="*"></RowDefinition>
+                <RowDefinition Height="*"></RowDefinition>
 
-        <ComboBox Grid.Row="0" Grid.Column="1" Grid.ColumnSpan="2" SelectedIndex="0" Name="TestTypesList" SelectionChanged="TestTypesList_SelectionChanged"/>
-        <Frame x:Name="TestResultDisplay" Grid.Row="1" Grid.RowSpan="4" Grid.Column="0" Grid.ColumnSpan="8"></Frame>
-             
-        <!--Call operation -->
-        <Grid Grid.Row="8" Grid.Column="0" Grid.ColumnSpan="8" >
+            </Grid.RowDefinitions>
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="*"></ColumnDefinition>
                 <ColumnDefinition Width="*"></ColumnDefinition>
+                <ColumnDefinition Width="*"></ColumnDefinition>
+                <ColumnDefinition Width="*"></ColumnDefinition>
             </Grid.ColumnDefinitions>
-           
-            <Button Visibility="Collapsed" Content="Call"  Grid.Column="0" FontSize="20" Margin="2,0,0,0" HorizontalAlignment="Stretch" VerticalAlignment="Stretch"></Button>
-            <StackPanel Visibility="Collapsed" Orientation="Vertical"  Grid.Column="1">
-                <TextBlock Text="Call Duration:"  FontSize="20" Margin="2,0,0,0" HorizontalAlignment="Stretch" VerticalAlignment="Stretch"></TextBlock>
-                <TextBlock Text="hh:mm:ss"  FontSize="20" Margin="5,0,0,0" HorizontalAlignment="Stretch" VerticalAlignment="Stretch"></TextBlock>
-            </StackPanel>
             
+            <TextBlock Text="Test Types"  FontSize="20" Grid.Row="2" Grid.Column="0" HorizontalAlignment="Stretch" VerticalAlignment="Stretch"></TextBlock>
+
+            <ComboBox Grid.Row="2" Grid.Column="1" Grid.ColumnSpan="2" SelectedIndex="0" Name="TestTypesList" SelectionChanged="TestTypesList_SelectionChanged"/>
+
+            <Frame x:Name="TestResultDisplay" Grid.Row="3" Grid.RowSpan="4" Grid.Column="0" Grid.ColumnSpan="8"></Frame>
+
+            <!--Call operation -->
+            <Grid Grid.Row="8" Grid.Column="0" Grid.ColumnSpan="8" >
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*"></ColumnDefinition>
+                    <ColumnDefinition Width="*"></ColumnDefinition>
+                </Grid.ColumnDefinitions>
+
+                <Button Visibility="Collapsed" Content="Call"  Grid.Column="0" FontSize="20" Margin="2,0,0,0" HorizontalAlignment="Stretch" VerticalAlignment="Stretch"></Button>
+                <StackPanel Visibility="Collapsed" Orientation="Vertical"  Grid.Column="1">
+                    <TextBlock Text="Call Duration:"  FontSize="20" Margin="2,0,0,0" HorizontalAlignment="Stretch" VerticalAlignment="Stretch"></TextBlock>
+                    <TextBlock Text="hh:mm:ss"  FontSize="20" Margin="5,0,0,0" HorizontalAlignment="Stretch" VerticalAlignment="Stretch"></TextBlock>
+                </StackPanel>
+
+            </Grid>
         </Grid>
     </Grid>
+    
 </Page>

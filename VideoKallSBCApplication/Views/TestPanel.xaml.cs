@@ -7,7 +7,9 @@ using VideoKallSBCApplication;
 using VideoKallSBCApplication.BLEDevices;
  
 using VideoKallSBCApplication.TestResults;
+using VideoKallSBCApplication.ViewModel;
 using VideoKallSBCApplication.Views;
+using VideoKallSMC.ViewModel;
 using Windows.Foundation;
 using Windows.Foundation.Collections;
 using Windows.UI.Xaml;
@@ -26,12 +28,15 @@ namespace VideoKallSMC.Views
     /// An empty page that can be used on its own or navigated to within a Frame.
     /// </summary>
     public sealed partial class TestPanel : Page
-    {
-       
+    {     
+        public TestPanelViewModel _testPanelVM = null;
         List<string> TestTypes = new List<string>();
         public TestPanel()
         {
             this.InitializeComponent();
+            _testPanelVM = new TestPanelViewModel();
+            this.DataContext = _testPanelVM;
+            msgConnect.Visibility = Visibility.Collapsed;
             //bpcuff.NotifyStatusMessage += NotifyMessage;
             TestTypes.Add("Select a Test types");
             TestTypes.Add("Blood Pressure");
@@ -59,22 +64,28 @@ namespace VideoKallSMC.Views
             switch (e.AddedItems[0].ToString().ToLower())
             {
                 case "blood pressure":
-                   // BPCuffPage bp = new BPCuffPage();
-                    TestResultDisplay.Navigate(typeof(BPCuffPage) );
+                    _testPanelVM.IsMsgConnected = Visibility.Collapsed;
+                    // BPCuffPage bp = new BPCuffPage();
+                    TestResultDisplay.Navigate(typeof(BPCuffPage));
                     break;
                 case "thermometer":
-                    TestResultDisplay.Navigate(typeof(ThermoMeter));
+                    _testPanelVM.IsMsgConnected = Visibility.Collapsed;
+                    TestResultDisplay.Navigate(typeof(ThermoMeter),_testPanelVM);
                     break;
                 case "pulse oximeter":
+                    _testPanelVM.IsMsgConnected = Visibility.Collapsed;
                     TestResultDisplay.Navigate(typeof(OxymeterResults));
                     break;
                 case "glucose monitor":
+                    _testPanelVM.IsMsgConnected = Visibility.Collapsed;
                     TestResultDisplay.Navigate(typeof(Glucometer));
                     break;
                 case "stethoscope(chest)":
-                      TestResultDisplay.Navigate(typeof(StethoscopeChest));
+                    _testPanelVM.IsMsgConnected = Visibility.Collapsed;
+                    TestResultDisplay.Navigate(typeof(StethoscopeChest));
                     break;
                 case "dermascope":
+                    _testPanelVM.IsMsgConnected = Visibility.Collapsed;
                     TestResultDisplay.Navigate(typeof(DefaultTest));
                     break;
 

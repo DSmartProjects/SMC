@@ -31,6 +31,7 @@ using System.Threading;
 using VideoKallSBCApplication.Communication;
 using Windows.ApplicationModel.Core;
 using Windows.Storage;
+using VideoKallSBCApplication.ViewModel;
 
 // The Blank Page item template is documented at https://go.microsoft.com/fwlink/?LinkId=402352&clcid=0x409
 
@@ -50,6 +51,7 @@ namespace VideoKallSBCApplication
                 mediaExtensionMgr.RegisterSchemeHandler("Microsoft.Samples.SimpleCommunication.StspSchemeHandler", "stsp:");
             }
         }
+        private TestPanelViewModel _testPanelVM = null;
         public   static TestResultsModel _testResult = new TestResultsModel();
         public static TestResultsModel TestresultModel { get { return _testResult; } }
         public static MainPage mainPage = null;
@@ -68,7 +70,8 @@ namespace VideoKallSBCApplication
             TestresultModel.NotifyStatusMessage = UpdateNotification;
             TestresultModel.StethoscopeTx.TXevents += Tx_TXevents;
             StartStethoscope += StartST;
-        } 
+        }
+
 
         async void UpdateNotification(string s, int code)
         {
@@ -169,7 +172,7 @@ namespace VideoKallSBCApplication
                     GlucoCMDUtitlity.LatestTestResult();
                     break;
                 case "<thermocmd>": //< THERMOCMD >
-                    MainPage.TestresultModel.Thermo.Connect();
+                    MainPage.TestresultModel.Thermo.Connect(_testPanelVM);
                     break;
                 case "<bpcmd>": //BPCMD
                     TestresultModel.bpcuff?.Connect();
