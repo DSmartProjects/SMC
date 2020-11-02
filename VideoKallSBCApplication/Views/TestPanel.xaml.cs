@@ -43,7 +43,7 @@ namespace VideoKallSMC.Views
             TestTypes.Add("Thermometer");
             TestTypes.Add("Pulse Oximeter");
             TestTypes.Add("Spirometry");
-            TestTypes.Add("Glucose Monitor");
+            TestTypes.Add("Gluco Monitor");
             TestTypes.Add("Stethoscope(Chest)");
             TestTypes.Add("Stethoscope (Back)");
             TestTypes.Add("Otoscope");
@@ -76,9 +76,9 @@ namespace VideoKallSMC.Views
                     _testPanelVM.IsMsgConnected = Visibility.Collapsed;
                     TestResultDisplay.Navigate(typeof(OxymeterResults));
                     break;
-                case "glucose monitor":
+                case "gluco monitor":
                     _testPanelVM.IsMsgConnected = Visibility.Collapsed;
-                    TestResultDisplay.Navigate(typeof(Glucometer));
+                    TestResultDisplay.Navigate(typeof(Glucometer), _testPanelVM);
                     break;
                 case "stethoscope(chest)":
                     _testPanelVM.IsMsgConnected = Visibility.Collapsed;

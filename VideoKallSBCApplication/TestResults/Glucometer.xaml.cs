@@ -19,6 +19,7 @@ using VideoKallSBCApplication.BLEDevices;
 using System.ServiceModel.Channels;
 using Windows.UI.Popups;
 using Windows.UI.Core;
+using VideoKallSBCApplication.ViewModel;
 // The Blank Page item template is documented at https://go.microsoft.com/fwlink/?LinkId=234238
 
 namespace VideoKallSBCApplication.TestResults
@@ -39,8 +40,18 @@ namespace VideoKallSBCApplication.TestResults
          //   MainPage.TestresultModel.glucoMonitor.Execute += Execute;
             MainPage.TestresultModel.GlucometerDataReceiveCallback = GlucometerResultEvent;
             
-        } 
-         
+        }
+
+        private TestPanelViewModel _testPanelVM = null;
+       
+        protected override void OnNavigatedTo(NavigationEventArgs e)
+        {
+            base.OnNavigatedTo(e);
+            _testPanelVM = (TestPanelViewModel)e.Parameter;
+            _testPanelVM.IsConnectedEnable = true;
+        }
+
+
         private async void GlucometerResultEvent(GlucoResult glucoResult )
         {
             await Dispatcher.RunAsync(CoreDispatcherPriority.Normal, () =>
@@ -49,13 +60,23 @@ namespace VideoKallSBCApplication.TestResults
                 {
                     TxtDate.Text = glucoResult.TestDay +" "+ glucoResult.TestTime;
                     TxtResult.Text = glucoResult.TestValue;
-                     Txttype.Text = glucoResult.TestType;
-                    TxtMode.Text = glucoResult.Mode;  
+                    Txttype.Text = glucoResult.TestType;
+                    //TxtMode.Text = glucoResult.Mode;
+                    if (glucoResult.Mode != null)
+                    {
+                        TxtMode.Text = glucoResult.Mode;
+                    }
+                    else
+                    {
+                        TxtMode.Text = "";
+                    }
                 }
                 else
                 {
                     TxtTestDataByIndex.Text = glucoResult.RecordCount.ToString();
                 }
+                BtnTestData.IsEnabled = false;
+                _testPanelVM.IsMsgConnected = Visibility.Visible;
             });
                
         }

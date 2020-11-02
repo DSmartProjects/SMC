@@ -53,7 +53,8 @@
         <TextBlock x:Name="TxtMode"  Grid.Row="5" Grid.Column="1" FontSize="20" HorizontalAlignment="Stretch" VerticalAlignment="Center"></TextBlock>
         <TextBlock Text="Test Mode"  Grid.Row="5" Grid.Column="0" HorizontalAlignment="Stretch" VerticalAlignment="Center"></TextBlock>
 
-        <Button Name="BtnTestData" Grid.Row="6" Margin="0" Grid.Column="0" Content="Test Data" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Click="BtnTestData_Click"></Button>
+        <!--<Button Name="BtnTestData" Grid.Row="6" Margin="0" Grid.Column="0" Content="Test Data" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Click="BtnTestData_Click"></Button>-->
+        <Button x:Name="BtnTestData" Grid.Row="6" Margin="0" Grid.Column="0" Content="Test Data" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Click="BtnTestData_Click"></Button>
         <Button x:Name="BtnDeleteAll" Visibility="Visible" Grid.Row="6" Margin="5,0,0,0" Grid.Column="3" Content="Delete All" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Click="BtnDeleteAll_Click"></Button>
        
         <Button x:Name="BtnTestDataByIndex" Visibility="Collapsed" Grid.Row="7" Grid.Column="0" Content="By Index" Margin="5" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Click="BtnTestDataByIndex_Click"></Button>
