@@ -349,7 +349,7 @@
   </ItemGroup>
   <ItemGroup>
     <Reference Include="Microsoft.Samples.SimpleCommunication">
-      <HintPath>x64\Debug\Microsoft.Samples.SimpleCommunication\Microsoft.Samples.SimpleCommunication.winmd</HintPath>
+      <HintPath>..\Microsoft.Samples.SimpleCommunication\Microsoft.Samples.SimpleCommunication.winmd</HintPath>
     </Reference>
   </ItemGroup>
   <PropertyGroup Condition=" '$(VisualStudioVersion)' == '' or '$(VisualStudioVersion)' &lt; '14.0' ">
