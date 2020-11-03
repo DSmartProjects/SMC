@@ -5,6 +5,8 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using VideoKallSBCApplication.Helpers;
+using VideoKallSBCApplication.ViewModel;
 using VideoKallSMC.Communication;
 using Windows.Devices.Bluetooth;
 using Windows.Devices.Bluetooth.GenericAttributeProfile;
@@ -12,6 +14,7 @@ using Windows.Devices.Enumeration;
 using Windows.Security.Cryptography;
 using Windows.Storage;
 using Windows.Storage.Streams;
+using Windows.UI.Xaml;
 
 namespace VideoKallSBCApplication.BLEDevices
 {
@@ -23,12 +26,13 @@ namespace VideoKallSBCApplication.BLEDevices
         // Only one registered characteristic at a time.
         private GattCharacteristic oxymeterCharacteristic;
         private GattPresentationFormat presentationFormat;
-
+        public TestPanelViewModel _testPanelVM = null;
         private Dictionary<string, GattDeviceService> GTTServicelist = new Dictionary<string, GattDeviceService>();
         IReadOnlyList<GattCharacteristic> characteristics = null;
        
-     public   async void Connect()
+        public   async void Connect(TestPanelViewModel testPanelVM)
         {
+            _testPanelVM = testPanelVM;
             DeviceType dv = MainPage.TestresultModel.GetDeviceType(2);
             BLEDeviceInfo device = null;
             foreach (var dev in MainPage.TestresultModel.BLEDevices)
@@ -51,10 +55,25 @@ namespace VideoKallSBCApplication.BLEDevices
             GTTServicelist.Clear();
             if (device == null)
             {
-                MainPage.mainPage.commChannel.SendMessageToMCC(string.Format(CommunicationCommands.PUSLEOXIMETERCONNECTIONMSG,
-                        "No device found."));
-                MainPage.TestresultModel.NotifyStatusMessage?.Invoke("No device found.", 1);
-                return;
+                try
+                {
+                    MainPage.mainPage.commChannel.SendMessageToMCC(string.Format(CommunicationCommands.PUSLEOXIMETERCONNECTIONMSG,
+                     "No device found."));
+                    MainPage.TestresultModel.NotifyStatusMessage?.Invoke("No device found.", 1);
+                    return;
+                }
+                catch (Exception)
+                {
+                    if (_testPanelVM.IsFromSMC_Oxy)
+                    {
+                        _testPanelVM.Instruction_Note = Constants.GUIDE_NOTE;
+                        _testPanelVM.IsMsgConnected = Windows.UI.Xaml.Visibility.Visible;
+                        _testPanelVM.IsFromSMC_Oxy = false;
+                        return;
+                    }
+                   
+                }
+             
             }
 
             bluetoothLeDevice = await BluetoothLEDevice.FromIdAsync(device.DeviceInfo.Id);
@@ -71,6 +90,7 @@ namespace VideoKallSBCApplication.BLEDevices
             GattDeviceServicesResult result = await bluetoothLeDevice.GetGattServicesAsync(BluetoothCacheMode.Uncached);
             if (result.Status == GattCommunicationStatus.Success)
             {
+                _testPanelVM.IsConnected_Oxy = false;
                 var services = result.Services;
                 foreach (var svc in services)
                 {
@@ -80,8 +100,29 @@ namespace VideoKallSBCApplication.BLEDevices
             }
             else
             {
-                MainPage.mainPage.commChannel.SendMessageToMCC(string.Format(CommunicationCommands.PUSLEOXIMETERCONNECTIONMSG, "Failed to connect. " + result.Status.ToString()));
-                MainPage.TestresultModel.NotifyStatusMessage?.Invoke("Failed to connect. " + result.Status.ToString(), 1);
+                try
+                {
+                    MainPage.mainPage.commChannel.SendMessageToMCC(string.Format(CommunicationCommands.PUSLEOXIMETERCONNECTIONMSG, "Failed to connect. " + result.Status.ToString()));
+                    MainPage.TestresultModel.NotifyStatusMessage?.Invoke("Failed to connect. " + result.Status.ToString(), 1);
+                    if (_testPanelVM.IsFromSMC_Oxy)
+                    {
+                        _testPanelVM.Instruction_Note = Constants.GUIDE_NOTE;
+                        _testPanelVM.IsMsgConnected = Visibility.Visible;
+                        _testPanelVM.IsFromSMC_Oxy = false;
+                        return;
+                    }
+                }
+                catch (Exception)
+                {
+                    if (_testPanelVM.IsFromSMC_Oxy)
+                    {
+                        _testPanelVM.Instruction_Note = Constants.GUIDE_NOTE;
+                        _testPanelVM.IsMsgConnected =Visibility.Visible;
+                        _testPanelVM.IsFromSMC_Oxy = false;
+                        return;
+                    }
+                }
+
             }
         }
 
@@ -185,10 +226,30 @@ namespace VideoKallSBCApplication.BLEDevices
             status = await oxymeterCharacteristic.WriteClientCharacteristicConfigurationDescriptorAsync(cccdValue);
             if (status == GattCommunicationStatus.Success)
             {
-                //AddValueBPMeasureChangedHandler();
-                MainPage.mainPage.commChannel.SendMessageToMCC(string.Format(CommunicationCommands.PUSLEOXIMETERCONNECTIONMSG,
-                "Successfully subscribed"));
-                MainPage.TestresultModel.NotifyStatusMessage?.Invoke("Successfully subscribed for oximeter value  changes");
+
+
+                try
+                {
+                    if (_testPanelVM.IsFromSMC_Oxy)
+                    {
+                        //AddValueBPMeasureChangedHandler();
+                        MainPage.mainPage.commChannel.SendMessageToMCC(string.Format(CommunicationCommands.PUSLEOXIMETERCONNECTIONMSG,
+                        "Successfully subscribed"));
+                        MainPage.TestresultModel.NotifyStatusMessage?.Invoke("Successfully subscribed for oximeter value  changes");
+                    }
+
+                }
+                catch (Exception)
+                {
+                    if (_testPanelVM.IsFromSMC_Oxy)
+                    {
+                        _testPanelVM.Instruction_Note = Constants.GUIDE_NOTE;
+                        _testPanelVM.IsMsgConnected =Visibility.Visible;
+                        _testPanelVM.IsFromSMC_Oxy = false;
+                        return;
+                    }
+                }
+
             }
             else
             {
@@ -196,9 +257,9 @@ namespace VideoKallSBCApplication.BLEDevices
                $"Error registering for value changes: {status}"));
                 MainPage.TestresultModel.NotifyStatusMessage?.Invoke($"Error registering for value changes: {status}", 1);
             }
-
             oxymeterCharacteristic.ValueChanged += Characteristic_ValueChanged;
             MainPage.TestresultModel.DeviceConnectedTime(DeviceTypesenums.OXIMETER, DateTime.Now.ToString(), true);
+
 
         }
 

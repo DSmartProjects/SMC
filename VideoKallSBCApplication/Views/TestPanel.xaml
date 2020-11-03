@@ -8,7 +8,7 @@
     mc:Ignorable="d"
     Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
     <Grid>
-        <TextBlock Visibility="{Binding IsMsgConnected,Mode=TwoWay}" Grid.Row="0"  x:Name="msgConnect"  Text="Please select the dropdown,to re-connect"  HorizontalAlignment="Stretch" VerticalAlignment="Stretch" ></TextBlock>
+        <TextBlock Visibility="{Binding IsMsgConnected,Mode=TwoWay}" Grid.Row="0"  x:Name="msgConnect"  Text="{Binding Instruction_Note,Mode=TwoWay}"  HorizontalAlignment="Stretch" VerticalAlignment="Stretch" ></TextBlock>
         <Grid>
             <Grid.RowDefinitions>
                 <RowDefinition Height="*"></RowDefinition>

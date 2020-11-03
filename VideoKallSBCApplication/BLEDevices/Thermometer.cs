@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using VideoKallSBCApplication.Helpers;
 using VideoKallSBCApplication.Model;
 using VideoKallSBCApplication.ViewModel;
 using VideoKallSMC.Communication;
@@ -12,6 +13,7 @@ using Windows.Devices.Bluetooth.GenericAttributeProfile;
 using Windows.Devices.Enumeration;
 using Windows.Security.Cryptography;
 using Windows.Storage.Streams;
+using Windows.UI.Xaml;
 
 namespace VideoKallSBCApplication.BLEDevices
 {
@@ -47,11 +49,17 @@ namespace VideoKallSBCApplication.BLEDevices
 
             GTTServicelist.Clear();
             if (device == null)
-            {
+            {                
                 MainPage.mainPage.commChannel.SendMessageToMCC(
                    string.Format(CommunicationCommands.THERMORCONNECTIONSTATUS, "Device not found with id:"));
 
                 MainPage.TestresultModel.NotifyStatusMessage?.Invoke(" Device not found with id: "+ MainPage.TestresultModel.ThermoMeterId, 1);
+                if (_testPanelVM.IsFromSMC_THRM)
+                {
+                    _testPanelVM.IsConnected_THRM = true;
+                    _testPanelVM.Instruction_Note = Constants.GUIDE_NOTE;
+
+                }
                 return;
             }
              bluetoothLeDevice = await BluetoothLEDevice.FromIdAsync(device.DeviceInfo.Id);
@@ -66,6 +74,9 @@ namespace VideoKallSBCApplication.BLEDevices
             GattDeviceServicesResult result = await bluetoothLeDevice.GetGattServicesAsync(BluetoothCacheMode.Uncached);
             if (result.Status == GattCommunicationStatus.Success)
             {
+                _testPanelVM.Instruction_Note = Constants.GUIDE_NOTE;
+                _testPanelVM.IsConnected_THRM = false;
+                _testPanelVM.Take_Test_THRM = Visibility.Visible;
                 var services = result.Services;
                 foreach (var svc in services)
                 {
@@ -75,6 +86,8 @@ namespace VideoKallSBCApplication.BLEDevices
             }
             else
             {
+                _testPanelVM.Instruction_Note = Constants.GUIDE_NOTE;
+                _testPanelVM.IsConnected_THRM = true;
                 MainPage.mainPage.commChannel.SendMessageToMCC(
                      string.Format(CommunicationCommands.THERMORCONNECTIONSTATUS, "Failed to connect. " + result.Status.ToString()));
 

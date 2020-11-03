@@ -5,6 +5,7 @@ using System.IO;
 using System.Linq;
 using System.Runtime.InteropServices.WindowsRuntime;
 using VideoKallSBCApplication.Model;
+using VideoKallSBCApplication.ViewModel;
 using Windows.Foundation;
 using Windows.Foundation.Collections;
 using Windows.UI.Core;
@@ -25,12 +26,19 @@ namespace VideoKallSBCApplication.TestResults
     /// </summary>
     public sealed partial class OxymeterResults : Page  
     {
+        public TestPanelViewModel _testPanelVM = null;
         public OxymeterResults()
         {
             this.InitializeComponent();
   
             MainPage.TestresultModel.oxymeterDataReceiveCallback += OnDataReceive;
             MainPage.TestresultModel.DeviceConnectionTimeCallback += DeviceConnectionStatus;
+        }
+        protected override void OnNavigatedTo(NavigationEventArgs e)
+        {
+            base.OnNavigatedTo(e);
+            _testPanelVM = (TestPanelViewModel)e.Parameter;
+            _testPanelVM.IsConnected_Oxy = true;
         }
 
         private async void DeviceConnectionStatus(DeviceTypesenums type, string parm2, bool status)
@@ -61,7 +69,8 @@ namespace VideoKallSBCApplication.TestResults
 
         private void BtnConnect_Click(object sender, RoutedEventArgs e)
         {
-            MainPage.TestresultModel.oxymeter.Connect();
+            _testPanelVM.IsFromSMC_Oxy = true;
+            MainPage.TestresultModel.oxymeter.Connect(_testPanelVM);
         }
 
         private void Page_Loaded(object sender, RoutedEventArgs e)

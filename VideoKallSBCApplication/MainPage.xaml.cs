@@ -51,7 +51,7 @@ namespace VideoKallSBCApplication
                 mediaExtensionMgr.RegisterSchemeHandler("Microsoft.Samples.SimpleCommunication.StspSchemeHandler", "stsp:");
             }
         }
-        private TestPanelViewModel _testPanelVM = null;
+        public static TestPanelViewModel _testPanelVM = null;
         public   static TestResultsModel _testResult = new TestResultsModel();
         public static TestResultsModel TestresultModel { get { return _testResult; } }
         public static MainPage mainPage = null;
@@ -64,6 +64,7 @@ namespace VideoKallSBCApplication
         {
             this.InitializeComponent();
             mainPage = this;
+            _testPanelVM = new TestPanelViewModel();
             this.DataContext = mainpagecontext;
             RightPanelHolder.Navigate(typeof(LoginPage));
              pagePlaceHolder.Navigate(typeof(LogoPage));
@@ -165,7 +166,7 @@ namespace VideoKallSBCApplication
                  //   StopTimer();
                     break;
                 case "<pulsestart>":
-                    MainPage.TestresultModel.oxymeter.Connect();
+                    MainPage.TestresultModel.oxymeter.Connect(_testPanelVM);
                     break;
                 case "<glucmd>":
                     //   TestresultModel.GlucoCMDUtitlity.LatestTestResult();

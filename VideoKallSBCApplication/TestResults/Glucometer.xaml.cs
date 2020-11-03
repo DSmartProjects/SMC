@@ -48,7 +48,7 @@ namespace VideoKallSBCApplication.TestResults
         {
             base.OnNavigatedTo(e);
             _testPanelVM = (TestPanelViewModel)e.Parameter;
-            _testPanelVM.IsConnectedEnable = true;
+            _testPanelVM.IsConnected_THRM = true;
         }
 
 

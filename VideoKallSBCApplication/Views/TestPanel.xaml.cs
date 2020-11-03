@@ -34,7 +34,7 @@ namespace VideoKallSMC.Views
         public TestPanel()
         {
             this.InitializeComponent();
-            _testPanelVM = new TestPanelViewModel();
+            _testPanelVM = MainPage._testPanelVM;
             this.DataContext = _testPanelVM;
             msgConnect.Visibility = Visibility.Collapsed;
             //bpcuff.NotifyStatusMessage += NotifyMessage;
@@ -74,7 +74,7 @@ namespace VideoKallSMC.Views
                     break;
                 case "pulse oximeter":
                     _testPanelVM.IsMsgConnected = Visibility.Collapsed;
-                    TestResultDisplay.Navigate(typeof(OxymeterResults));
+                    TestResultDisplay.Navigate(typeof(OxymeterResults),_testPanelVM);
                     break;
                 case "gluco monitor":
                     _testPanelVM.IsMsgConnected = Visibility.Collapsed;

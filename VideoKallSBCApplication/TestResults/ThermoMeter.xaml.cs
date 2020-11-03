@@ -38,7 +38,9 @@ namespace VideoKallSBCApplication.TestResults
         {
             base.OnNavigatedTo(e);
             _testPanelVM = (TestPanelViewModel)e.Parameter;
-            _testPanelVM.IsConnectedEnable = true;
+            _testPanelVM.IsConnected_THRM = true;
+            _testPanelVM.Take_Test_THRM = Visibility.Collapsed;
+            
         }
       
         private async void DeviceConnectionStatus(DeviceTypesenums type, string parm2, bool status)
@@ -80,9 +82,10 @@ namespace VideoKallSBCApplication.TestResults
 
         private void BtnTempConnect_Click(object sender, RoutedEventArgs e)
         {
-            _testPanelVM.IsConnectedEnable = false;
+            _testPanelVM.IsConnected_THRM = false;
             //BtnTempConnect.IsEnabled = false;
             _testPanelVM.IsMsgConnected = Visibility.Visible;
+            _testPanelVM.IsFromSMC_THRM = true;
             MainPage.TestresultModel.Thermo.Connect(_testPanelVM);
         }
          
@@ -111,6 +114,13 @@ namespace VideoKallSBCApplication.TestResults
         private void TxtTmpUnitbtn_Tapped(object sender, TappedRoutedEventArgs e)
         {
             
+        }
+
+        private void TakeTest_Click(object sender, RoutedEventArgs e)
+        {
+            TxtTemprature.Text = string.Empty;
+            TxtTestMode.Text = string.Empty;
+            TxtTestTime.Text = string.Empty;
         }
     }
 }
