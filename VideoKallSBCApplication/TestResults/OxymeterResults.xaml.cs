@@ -4,6 +4,7 @@ using System.ComponentModel;
 using System.IO;
 using System.Linq;
 using System.Runtime.InteropServices.WindowsRuntime;
+using VideoKallSBCApplication.Helpers;
 using VideoKallSBCApplication.Model;
 using VideoKallSBCApplication.ViewModel;
 using Windows.Foundation;
@@ -33,6 +34,7 @@ namespace VideoKallSBCApplication.TestResults
   
             MainPage.TestresultModel.oxymeterDataReceiveCallback += OnDataReceive;
             MainPage.TestresultModel.DeviceConnectionTimeCallback += DeviceConnectionStatus;
+            MainPage.TestPanelVM.InstuctionNoteCallBackCompleted += InstuctionNoteCallBackCompleted;
         }
         protected override void OnNavigatedTo(NavigationEventArgs e)
         {
@@ -48,6 +50,18 @@ namespace VideoKallSBCApplication.TestResults
                 if (type == DeviceTypesenums.OXIMETER)
                 {
                     TxtConnectionTime.Text = parm2;
+                }
+            });
+        }
+        private async void InstuctionNoteCallBackCompleted(DeviceTypesenums type, string parm2)
+        {
+            await Dispatcher.RunAsync(CoreDispatcherPriority.Normal, () =>
+            {
+                if (type == DeviceTypesenums.OXIMETER)
+                {
+                    _testPanelVM.Instruction_Note = Constants.GUIDE_NOTE;
+                    _testPanelVM.IsMsgConnected = Visibility.Visible;
+                    _testPanelVM.IsFromSMC_Oxy = false;
                 }
             });
         }
@@ -70,7 +84,7 @@ namespace VideoKallSBCApplication.TestResults
         private void BtnConnect_Click(object sender, RoutedEventArgs e)
         {
             _testPanelVM.IsFromSMC_Oxy = true;
-            MainPage.TestresultModel.oxymeter.Connect(_testPanelVM);
+            MainPage.TestresultModel.oxymeter.Connect();
         }
 
         private void Page_Loaded(object sender, RoutedEventArgs e)

@@ -34,7 +34,7 @@ namespace VideoKallSMC.Views
         public TestPanel()
         {
             this.InitializeComponent();
-            _testPanelVM = MainPage._testPanelVM;
+            _testPanelVM = MainPage.TestPanelVM;
             this.DataContext = _testPanelVM;
             msgConnect.Visibility = Visibility.Collapsed;
             //bpcuff.NotifyStatusMessage += NotifyMessage;

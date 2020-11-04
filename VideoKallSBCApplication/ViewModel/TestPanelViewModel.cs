@@ -27,5 +27,8 @@ namespace VideoKallSBCApplication.ViewModel
 
 
         #endregion
+
+        public delegate void InstuctionNoteCallBack(DeviceTypesenums parm, string parm2 = "");      
+        public InstuctionNoteCallBack InstuctionNoteCallBackCompleted;
     }
 }

@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Runtime.InteropServices.WindowsRuntime;
+using VideoKallSBCApplication.Helpers;
 using VideoKallSBCApplication.Model;
 using VideoKallSBCApplication.ViewModel;
 using VideoKallSMC.ViewModel;
@@ -33,7 +34,21 @@ namespace VideoKallSBCApplication.TestResults
             this.InitializeComponent();
             MainPage.TestresultModel.ThermoResultcallback += ThermoResultCallback;
             MainPage.TestresultModel.DeviceConnectionTimeCallback += DeviceConnectionStatus;
+            MainPage.TestPanelVM.InstuctionNoteCallBackCompleted += InstuctionNoteCallBackCompleted;
         }
+
+        private async void InstuctionNoteCallBackCompleted(DeviceTypesenums type, string parm2)
+        {
+            await Dispatcher.RunAsync(CoreDispatcherPriority.Normal, () =>
+            {
+                if (type == DeviceTypesenums.THERMOMETER)
+                {
+                    _testPanelVM.Instruction_Note = Constants.GUIDE_NOTE;
+                    _testPanelVM.IsConnected_THRM = false;
+                }
+            });
+        }
+
         protected override void OnNavigatedTo(NavigationEventArgs e)
         {
             base.OnNavigatedTo(e);
@@ -52,7 +67,8 @@ namespace VideoKallSBCApplication.TestResults
                     TxtConnectionTime.Text = parm2;
                 }
             });
-        }
+        }        
+
 
         string tempformat = "{0}°{1}";
         private async  void ThermoResultCallback(ThermometerResult res)
@@ -85,7 +101,7 @@ namespace VideoKallSBCApplication.TestResults
             //BtnTempConnect.IsEnabled = false;
             _testPanelVM.IsMsgConnected = Visibility.Visible;
             _testPanelVM.IsFromSMC_THRM = true;
-            MainPage.TestresultModel.Thermo.Connect(_testPanelVM);
+            MainPage.TestresultModel.Thermo.Connect();
         }
          
 

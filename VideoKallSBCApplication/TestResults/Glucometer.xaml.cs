@@ -76,7 +76,7 @@ namespace VideoKallSBCApplication.TestResults
                     TxtTestDataByIndex.Text = glucoResult.RecordCount.ToString();
                 }
                 BtnTestData.IsEnabled = false;
-                _testPanelVM.IsMsgConnected = Visibility.Visible;
+                //_testPanelVM.IsMsgConnected = Visibility.Visible;
             });
                
         }

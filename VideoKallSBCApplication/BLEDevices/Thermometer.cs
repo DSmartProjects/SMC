@@ -13,6 +13,7 @@ using Windows.Devices.Bluetooth.GenericAttributeProfile;
 using Windows.Devices.Enumeration;
 using Windows.Security.Cryptography;
 using Windows.Storage.Streams;
+using Windows.UI.Core;
 using Windows.UI.Xaml;
 
 namespace VideoKallSBCApplication.BLEDevices
@@ -27,7 +28,7 @@ namespace VideoKallSBCApplication.BLEDevices
         private Dictionary<string, GattDeviceService> GTTServicelist = new Dictionary<string, GattDeviceService>();
         IReadOnlyList<GattCharacteristic> characteristics = null;
 
-        public async void Connect(TestPanelViewModel _testPanelVM)
+        public async void Connect()
         {
             DeviceType dv = MainPage.TestresultModel.GetDeviceType(3);
             BLEDeviceInfo device = null;
@@ -54,12 +55,7 @@ namespace VideoKallSBCApplication.BLEDevices
                    string.Format(CommunicationCommands.THERMORCONNECTIONSTATUS, "Device not found with id:"));
 
                 MainPage.TestresultModel.NotifyStatusMessage?.Invoke(" Device not found with id: "+ MainPage.TestresultModel.ThermoMeterId, 1);
-                if (_testPanelVM.IsFromSMC_THRM)
-                {
-                    _testPanelVM.IsConnected_THRM = true;
-                    _testPanelVM.Instruction_Note = Constants.GUIDE_NOTE;
-
-                }
+                MainPage.TestPanelVM.InstuctionNoteCallBackCompleted?.Invoke(DeviceTypesenums.THERMOMETER, "");
                 return;
             }
              bluetoothLeDevice = await BluetoothLEDevice.FromIdAsync(device.DeviceInfo.Id);
@@ -70,12 +66,11 @@ namespace VideoKallSBCApplication.BLEDevices
                 MainPage.TestresultModel.NotifyStatusMessage?.Invoke(" Device Unreachable.", 1);
                 return;
             }
-
+ 
             GattDeviceServicesResult result = await bluetoothLeDevice.GetGattServicesAsync(BluetoothCacheMode.Uncached);
             if (result.Status == GattCommunicationStatus.Success)
             {
-                _testPanelVM.Instruction_Note = Constants.GUIDE_NOTE;
-                _testPanelVM.IsConnected_THRM = false;
+                MainPage.TestPanelVM.InstuctionNoteCallBackCompleted?.Invoke(DeviceTypesenums.THERMOMETER,"");
                 var services = result.Services;
                 foreach (var svc in services)
                 {
@@ -85,8 +80,7 @@ namespace VideoKallSBCApplication.BLEDevices
             }
             else
             {
-                _testPanelVM.Instruction_Note = Constants.GUIDE_NOTE;
-                _testPanelVM.IsConnected_THRM = true;
+                MainPage.TestPanelVM.InstuctionNoteCallBackCompleted?.Invoke(DeviceTypesenums.THERMOMETER, "");
                 MainPage.mainPage.commChannel.SendMessageToMCC(
                      string.Format(CommunicationCommands.THERMORCONNECTIONSTATUS, "Failed to connect. " + result.Status.ToString()));
 

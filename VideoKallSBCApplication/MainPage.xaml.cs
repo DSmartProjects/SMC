@@ -51,7 +51,7 @@ namespace VideoKallSBCApplication
                 mediaExtensionMgr.RegisterSchemeHandler("Microsoft.Samples.SimpleCommunication.StspSchemeHandler", "stsp:");
             }
         }
-        public static TestPanelViewModel _testPanelVM = null;
+        public static TestPanelViewModel TestPanelVM = null;
         public   static TestResultsModel _testResult = new TestResultsModel();
         public static TestResultsModel TestresultModel { get { return _testResult; } }
         public static MainPage mainPage = null;
@@ -64,7 +64,7 @@ namespace VideoKallSBCApplication
         {
             this.InitializeComponent();
             mainPage = this;
-            _testPanelVM = new TestPanelViewModel();
+            TestPanelVM = new TestPanelViewModel();
             this.DataContext = mainpagecontext;
             RightPanelHolder.Navigate(typeof(LoginPage));
              pagePlaceHolder.Navigate(typeof(LogoPage));
@@ -166,14 +166,14 @@ namespace VideoKallSBCApplication
                  //   StopTimer();
                     break;
                 case "<pulsestart>":
-                    MainPage.TestresultModel.oxymeter.Connect(_testPanelVM);
+                    MainPage.TestresultModel.oxymeter.Connect();
                     break;
                 case "<glucmd>":
                     //   TestresultModel.GlucoCMDUtitlity.LatestTestResult();
                     GlucoCMDUtitlity.LatestTestResult();
                     break;
                 case "<thermocmd>": //< THERMOCMD >
-                    MainPage.TestresultModel.Thermo.Connect(_testPanelVM);
+                    MainPage.TestresultModel.Thermo.Connect();
                     break;
                 case "<bpcmd>": //BPCMD
                     TestresultModel.bpcuff?.Connect();
@@ -181,7 +181,7 @@ namespace VideoKallSBCApplication
                     break;
                 case "<bpconcmd>": //<BPCONCMD>
                     string res = string.Format(CommunicationCommands.BPCONNECTIONTIME, TestresultModel.IsBpConnected.ToString(), TestresultModel.BpCuffConnectionTime);
-                    commChannel.SendMessageToMCC( res);
+                    commChannel.SendMessageToMCC(res);
                     break;
                 case "<appc>":
                    // DataacqAppComm.SendMessageToDataacquistionapp(CommunicationCommands.DATAACQSTATUS);
