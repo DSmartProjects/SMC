@@ -9,11 +9,7 @@ namespace VideoKallSBCApplication.ViewModel
         #region properties
         private Visibility _isMsgConnected = Visibility.Collapsed;
         public Visibility IsMsgConnected { get { return _isMsgConnected; } set { _isMsgConnected = value; OnPropertyChanged("IsMsgConnected"); } }
-
         
-        private Visibility _take_Test_THRM = Visibility.Collapsed;
-        public Visibility Take_Test_THRM { get { return _take_Test_THRM; } set { _take_Test_THRM = value; OnPropertyChanged("Take_Test_THRM"); } }
-
         private bool _isConnected_THRM = false;
         public bool IsConnected_THRM { get { return _isConnected_THRM; } set { _isConnected_THRM = value; OnPropertyChanged("IsConnected_THRM"); } }
 

@@ -76,7 +76,6 @@ namespace VideoKallSBCApplication.BLEDevices
             {
                 _testPanelVM.Instruction_Note = Constants.GUIDE_NOTE;
                 _testPanelVM.IsConnected_THRM = false;
-                _testPanelVM.Take_Test_THRM = Visibility.Visible;
                 var services = result.Services;
                 foreach (var svc in services)
                 {

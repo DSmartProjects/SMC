@@ -39,7 +39,6 @@ namespace VideoKallSBCApplication.TestResults
             base.OnNavigatedTo(e);
             _testPanelVM = (TestPanelViewModel)e.Parameter;
             _testPanelVM.IsConnected_THRM = true;
-            _testPanelVM.Take_Test_THRM = Visibility.Collapsed;
             
         }
       

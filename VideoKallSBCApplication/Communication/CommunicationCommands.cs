@@ -17,10 +17,11 @@ namespace VideoKallSMC.Communication
         public static readonly string SMCUSAGEDONE = "<P{0}DS>";
         public static readonly string SMCPULSEOXIMETERSTART = "<PULSESTART>";
         public static readonly string PUSLEOXIMETERRESULT = "PULSERES>SP:{0}>PR:{1}>DT>{2}>";
-        public static readonly string PUSLEOXIMETERCONNECTIONMSG = "PULSESTATUS>{0}";
+        public static readonly string PUSLEOXIMETERCONNECTIONMSG = "PULSESTATUS>{0}>{1}>";
+
         public static readonly string GLUCORESULTCMD = "<GLUCMD>";
-        public static readonly string GLUCORESULTRES = "GLUCMDRES>V:{0}>U:{1}>T:{2}>M:{3}>D:{4}>T>{5}";
-        public static readonly string GLUCORESULTRESSTATUS = "GLUCMDRESSTATUS>M:{0}";
+        public static readonly string GLUCORESULTRES = "GLUCMDRES>V:{0}>U:{1}>T:{2}>M:{3}>D:{4}>T>{5}>";
+        public static readonly string GLUCORESULTRESSTATUS = "GLUCMDRESSTATUS>M:{0}>{1}>";
         public static readonly string THERMORESULT = "THERMORES>R:{0}>M:{1}>S:{2}>{3}>";
         public static readonly string THERMORESULTRESSTATUS = "THERMOCON>{0}";
         public static readonly string THERMORESULTCMD = "<THERMOCMD>";
@@ -39,9 +40,9 @@ namespace VideoKallSMC.Communication
         public static readonly string DATAACQUISTIONAPPCONNECTION = "<APPC>"; //dataacquistion Connection
         public static readonly string DATAACQSTATUS = "<APPS>"; //dataacquistion Status
         public static readonly string DERMASACOPE = "DER>SH:{0}>H:{1}>W:{2}>X:{3}>Y:{4}>";
-       
+
         public static readonly string OTOSCOPE = "OTO>SH:{0}>H:{1}>W:{2}>X:{3}>Y:{4}>";
-      
+
         public static readonly string TAKEPIC = "<PIC>";
         public static readonly string STARTDERMO = "<startdermo>";
         public static readonly string STOPDERMO = "<stopdermo>";
@@ -54,7 +55,7 @@ namespace VideoKallSMC.Communication
         public static readonly string STPIC = "STPIC>{0}>";
         public static readonly string DERPIC = "DRPIC>{0}>";
         public static readonly string MIROSCOPEPIC = "MRPIC>{0}>";
-        public static readonly string OTOSAVEIMAGE ="<otosaveimage>";
+        public static readonly string OTOSAVEIMAGE = "<otosaveimage>";
         public static readonly string DERSAVEIMAGE = "<dersaveimage>";
         public static readonly string NotifySAVEDIMAGE = "<imagesaved>";
 

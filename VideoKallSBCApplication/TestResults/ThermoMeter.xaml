@@ -34,8 +34,7 @@
         <TextBlock  Text="Temprature" Grid.Row="4" Grid.Column="0" FontSize="20" HorizontalAlignment="Stretch" VerticalAlignment="Center"></TextBlock>
         <TextBox IsReadOnly="True" IsEnabled="False"  x:Name="TxtTemprature" Grid.Row="4" Grid.Column="1" FontSize="30" HorizontalAlignment="Stretch" VerticalAlignment="Center"></TextBox>
         <ToggleSwitch x:Name="TxtTmpUnitbtn" OffContent="C" OnContent="F"   Margin="0,2,0,0"  Grid.Row="4" Grid.Column="2" FontSize="30" HorizontalAlignment="Stretch" VerticalAlignment="Center" Toggled="TxtTmpUnitbtn_Toggled" Tapped="TxtTmpUnitbtn_Tapped"></ToggleSwitch>
-        <Button x:Name="BtnTempConnect" IsEnabled="{Binding IsConnected_THRM,Mode=TwoWay}" Grid.Row="6" Grid.Column="1" Margin="0,2,0,0" Content="Connect" Click="BtnTempConnect_Click"></Button>
-        <Button x:Name="TakeTest" Visibility="{Binding Take_Test_THRM,Mode=TwoWay}" Grid.Row="6" Grid.Column="2" Margin="10,2,0,0" Content="TakeTest" Click="TakeTest_Click"></Button>
+        <Button x:Name="BtnTempConnect" IsEnabled="{Binding IsConnected_THRM,Mode=TwoWay}" Grid.Row="6" Grid.Column="1" Margin="0,2,0,0" Content="Connect" Click="BtnTempConnect_Click"></Button>        
         <TextBlock Text="Connection Time: " Grid.Row="8" Grid.Column="0" HorizontalAlignment="Stretch" VerticalAlignment="Center"></TextBlock>
         <TextBlock x:Name="TxtConnectionTime" Grid.Row="8" Grid.Column="1" Margin="10,0,0,0" VerticalAlignment="Center"></TextBlock>
     </Grid>
