@@ -21,7 +21,7 @@ namespace VideoKallSMC.Communication
 
         public static readonly string GLUCORESULTCMD = "<GLUCMD>";
         public static readonly string GLUCORESULTRES = "GLUCMDRES>V:{0}>U:{1}>T:{2}>M:{3}>D:{4}>T>{5}>";
-        public static readonly string GLUCORESULTRESSTATUS = "GLUCMDRESSTATUS>M:{0}";
+        public static readonly string GLUCORESULTRESSTATUS = "GLUCMDRESSTATUS>M:{0}>{1}>";
         public static readonly string THERMORESULT = "THERMORES>R:{0}>M:{1}>S:{2}>{3}>";
         public static readonly string THERMORESULTRESSTATUS = "THERMOCON>{0}";
         public static readonly string THERMORESULTCMD = "<THERMOCMD>";
@@ -31,7 +31,7 @@ namespace VideoKallSMC.Communication
 
         public static readonly string BPCMD = "<BPCMD>";
         public static readonly string BPCONCMD = "<BPCONCMD>";
-        public static readonly string BPCONSTATUS = "BPCONN>M:{0}";
+        public static readonly string BPCONSTATUS = "BPCONN>M:{0}>{1}>";
         public static readonly string BPCONNECTIONTIME = "BPCONECTED>M:{0}>T:{1}";
         public static readonly string BPRESULT = "BPRES>D:{0}>S:{1}>P:{2}>DT:{3}>T:{4}>";
 
