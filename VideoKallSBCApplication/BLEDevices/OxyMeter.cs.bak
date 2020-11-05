@@ -72,7 +72,7 @@ namespace VideoKallSBCApplication.BLEDevices
             if (bluetoothLeDevice == null)
             {
                 MainPage.mainPage.commChannel.SendMessageToMCC(string.Format(CommunicationCommands.PUSLEOXIMETERCONNECTIONMSG,
-                       " Device Unreachable.", "Error"));
+                       " Device Unreachable."));
                 MainPage.TestresultModel.NotifyStatusMessage?.Invoke(" Device Unreachable.", 1);
             }
 
@@ -94,7 +94,7 @@ namespace VideoKallSBCApplication.BLEDevices
             {
                 try
                 {
-                    MainPage.mainPage.commChannel.SendMessageToMCC(string.Format(CommunicationCommands.PUSLEOXIMETERCONNECTIONMSG, "Failed to connect. " + result.Status.ToString(),"Error"));
+                    MainPage.mainPage.commChannel.SendMessageToMCC(string.Format(CommunicationCommands.PUSLEOXIMETERCONNECTIONMSG, "Failed to connect. " + result.Status.ToString()));
                     MainPage.TestresultModel.NotifyStatusMessage?.Invoke("Failed to connect. " + result.Status.ToString(), 1);
                     MainPage.TestPanelVM.InstuctionNoteCallBackCompleted?.Invoke(DeviceTypesenums.OXIMETER, "");
                 }
@@ -123,7 +123,7 @@ namespace VideoKallSBCApplication.BLEDevices
                     else
                     {
                         MainPage.mainPage.commChannel.SendMessageToMCC(string.Format(CommunicationCommands.PUSLEOXIMETERCONNECTIONMSG,
-                      "Error accessing service " + result.Status.ToString(), "Error"));
+                      "Error accessing service " + result.Status.ToString()));
                         MainPage.TestresultModel.NotifyStatusMessage?.Invoke("Error accessing service " + result.Status.ToString(), 1);
                         return;
                     }
@@ -131,7 +131,7 @@ namespace VideoKallSBCApplication.BLEDevices
                 else
                 {
                     MainPage.mainPage.commChannel.SendMessageToMCC(string.Format(CommunicationCommands.PUSLEOXIMETERCONNECTIONMSG,
-                    "Error accessing service " + accessStatus.ToString(), "Error"));
+                    "Error accessing service " + accessStatus.ToString()));
                     MainPage.TestresultModel.NotifyStatusMessage?.Invoke("Error accessing service " + accessStatus.ToString(), 1);
                     return;
                 }
@@ -139,7 +139,7 @@ namespace VideoKallSBCApplication.BLEDevices
             catch(Exception ex)
             {
                 MainPage.mainPage.commChannel.SendMessageToMCC(string.Format(CommunicationCommands.PUSLEOXIMETERCONNECTIONMSG,
-                  "Exception " + ex.Message, "Error"));
+                  "Exception " + ex.Message));
                 MainPage.TestresultModel.NotifyStatusMessage?.Invoke("Exception " + ex.Message, 2);
                 return;
             }
@@ -157,7 +157,7 @@ namespace VideoKallSBCApplication.BLEDevices
             if (oxymeterCharacteristic == null)
             {
                 MainPage.mainPage.commChannel.SendMessageToMCC(string.Format(CommunicationCommands.PUSLEOXIMETERCONNECTIONMSG,
-                 "OxyMeter Characteristic not found.", "Error"));
+                 "OxyMeter Characteristic not found."));
                 MainPage.TestresultModel.NotifyStatusMessage?.Invoke("OxyMeter Characteristic not found.", 1);
                 return;
             }
@@ -166,7 +166,7 @@ namespace VideoKallSBCApplication.BLEDevices
             if (resultch.Status != GattCommunicationStatus.Success)
             {
                 MainPage.mainPage.commChannel.SendMessageToMCC(string.Format(CommunicationCommands.PUSLEOXIMETERCONNECTIONMSG,
-        "Descriptor read failure: " + resultch.Status.ToString(), "Error"));
+        "Descriptor read failure: " + resultch.Status.ToString()));
                 MainPage.TestresultModel.NotifyStatusMessage?.Invoke("Descriptor read failure: " + resultch.Status.ToString(), 1);
                 return;
             }
@@ -211,7 +211,7 @@ namespace VideoKallSBCApplication.BLEDevices
                     
                         //AddValueBPMeasureChangedHandler();
                         MainPage.mainPage.commChannel.SendMessageToMCC(string.Format(CommunicationCommands.PUSLEOXIMETERCONNECTIONMSG,
-                        "Successfully subscribed","success"));
+                        "Successfully subscribed"));
                         MainPage.TestresultModel.NotifyStatusMessage?.Invoke("Successfully subscribed for oximeter value  changes");                    
 
                 }
@@ -224,7 +224,7 @@ namespace VideoKallSBCApplication.BLEDevices
             else
             {
                 MainPage.mainPage.commChannel.SendMessageToMCC(string.Format(CommunicationCommands.PUSLEOXIMETERCONNECTIONMSG,
-               $"Error registering for value changes: {status}", "Error"));
+               $"Error registering for value changes: {status}"));
                 MainPage.TestresultModel.NotifyStatusMessage?.Invoke($"Error registering for value changes: {status}", 1);
             }
             oxymeterCharacteristic.ValueChanged += Characteristic_ValueChanged;
@@ -276,7 +276,7 @@ namespace VideoKallSBCApplication.BLEDevices
             catch(Exception ex)
             {
                 MainPage.mainPage.commChannel.SendMessageToMCC(string.Format(CommunicationCommands.PUSLEOXIMETERCONNECTIONMSG,
-              $"Error from OXymeter data reading : {ex.Message}", "Error"));
+              $"Error from OXymeter data reading : {ex.Message}"));
                 MainPage.TestresultModel.NotifyStatusMessage?.Invoke($"Error from OXymeter data reading : {ex.Message}", 2);
             }
         }

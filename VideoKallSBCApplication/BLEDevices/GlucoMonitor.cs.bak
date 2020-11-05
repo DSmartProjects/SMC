@@ -45,7 +45,7 @@ namespace VideoKallSBCApplication.BLEDevices
                 {
                     MainPage.TestresultModel.NotifyStatusMessage?.Invoke("Device is not paired.", 1);
                     MainPage.mainPage.commChannel.SendMessageToMCC(string.Format(CommunicationCommands.GLUCORESULTRESSTATUS,
-               "Device is not paired.", "error"));
+               "Device is not paired."));
 
                     return;
                 }
@@ -56,7 +56,7 @@ namespace VideoKallSBCApplication.BLEDevices
             {
                 MainPage.TestresultModel.NotifyStatusMessage?.Invoke("No device found.", 1);
                 MainPage.mainPage.commChannel.SendMessageToMCC(string.Format(CommunicationCommands.GLUCORESULTRESSTATUS,
-                "Successfully subscribed", "error"));
+                "Successfully subscribed"));
                 return;
             }
 
@@ -64,7 +64,7 @@ namespace VideoKallSBCApplication.BLEDevices
             if (bluetoothLeDevice == null)
             {
                 MainPage.mainPage.commChannel.SendMessageToMCC(string.Format(CommunicationCommands.GLUCORESULTRESSTATUS,
-             " Device Unreachable.", "error"));
+             " Device Unreachable."));
                 MainPage.TestresultModel.NotifyStatusMessage?.Invoke(" Device Unreachable.", 1);
                 return;
             }
@@ -85,7 +85,7 @@ namespace VideoKallSBCApplication.BLEDevices
             else
             {
                 MainPage.mainPage.commChannel.SendMessageToMCC(string.Format(CommunicationCommands.GLUCORESULTRESSTATUS,
-            "Failed to connect. " + result.Status.ToString(), "error"));
+            "Failed to connect. " + result.Status.ToString()));
                 MainPage.TestresultModel.NotifyStatusMessage?.Invoke("Failed to connect. " + result.Status.ToString(), 1);
             }
         }
@@ -107,7 +107,7 @@ namespace VideoKallSBCApplication.BLEDevices
                     else
                     {
                         MainPage.mainPage.commChannel.SendMessageToMCC(string.Format(CommunicationCommands.GLUCORESULTRESSTATUS,
-           "Error accessing service " + result.Status.ToString(), "error"));
+           "Error accessing service " + result.Status.ToString()));
                         MainPage.TestresultModel.NotifyStatusMessage?.Invoke("Error accessing service " + result.Status.ToString(), 1);
                         return;
                     }
@@ -115,7 +115,7 @@ namespace VideoKallSBCApplication.BLEDevices
                 else
                 {
                     MainPage.mainPage.commChannel.SendMessageToMCC(string.Format(CommunicationCommands.GLUCORESULTRESSTATUS,
-           "Error accessing service " + accessStatus.ToString(), "error"));
+           "Error accessing service " + accessStatus.ToString()));
                     MainPage.TestresultModel.NotifyStatusMessage?.Invoke("Error accessing service " + accessStatus.ToString(), 1);
                     return;
                 }
@@ -123,7 +123,7 @@ namespace VideoKallSBCApplication.BLEDevices
             catch (Exception ex)
             {
                 MainPage.mainPage.commChannel.SendMessageToMCC(string.Format(CommunicationCommands.GLUCORESULTRESSTATUS,
-         "Exception " + ex.Message, "error"));
+         "Exception " + ex.Message));
                 MainPage.TestresultModel.NotifyStatusMessage?.Invoke("Exception " + ex.Message, 2);
                 return;
             }
@@ -141,7 +141,7 @@ namespace VideoKallSBCApplication.BLEDevices
             if (GlucometerCharacteristic == null)
             {
                 MainPage.mainPage.commChannel.SendMessageToMCC(string.Format(CommunicationCommands.GLUCORESULTRESSTATUS,
-         "Gluco monitor Characteristic not found.", "error"));
+         "Gluco monitor Characteristic not found."));
                 MainPage.TestresultModel.NotifyStatusMessage?.Invoke("Gluco monitor Characteristic not found.", 1);
                 return;
             }
@@ -149,7 +149,7 @@ namespace VideoKallSBCApplication.BLEDevices
             var resultch = await GlucometerCharacteristic.GetDescriptorsAsync(BluetoothCacheMode.Uncached);
             if (resultch.Status != GattCommunicationStatus.Success)
             {
-                MainPage.mainPage.commChannel.SendMessageToMCC(string.Format(CommunicationCommands.GLUCORESULTRESSTATUS, "Descriptor read failure: " + resultch.Status.ToString(), "error"));
+                MainPage.mainPage.commChannel.SendMessageToMCC(string.Format(CommunicationCommands.GLUCORESULTRESSTATUS, "Descriptor read failure: " + resultch.Status.ToString()));
                 MainPage.TestresultModel.NotifyStatusMessage?.Invoke("Descriptor read failure: " + resultch.Status.ToString(), 1);
                 return;
             }
@@ -189,7 +189,7 @@ namespace VideoKallSBCApplication.BLEDevices
             if (status == GattCommunicationStatus.Success)
             {
                 MainPage.mainPage.commChannel.SendMessageToMCC(string.Format(CommunicationCommands.GLUCORESULTRESSTATUS,
-        "Successfully subscribed.",""));
+        "Successfully subscribed."));
                 //AddValueBPMeasureChangedHandler();
                 MainPage.TestresultModel.NotifyStatusMessage?.Invoke("Successfully subscribed  value  changes");
             }
@@ -390,8 +390,6 @@ namespace VideoKallSBCApplication.BLEDevices
             catch(Exception ex)
             {
                 string s = ex.Message;
-                MainPage.mainPage.commChannel.SendMessageToMCC(string.Format(CommunicationCommands.GLUCORESULTRESSTATUS,
-      ex.Message, "error"));
             }
             
         }

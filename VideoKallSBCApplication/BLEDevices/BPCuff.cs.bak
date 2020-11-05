@@ -28,7 +28,7 @@ namespace VideoKallSBCApplication.BLEDevices
         public delegate void Notify(string msg, int errorOrStatus = 0);
         public Notify NotifyStatusMessage = null;
 
-        void SendConnectionStatusmessageToMCC(string msg, string status = "" )
+        void SendConnectionStatusmessageToMCC(string msg)
         {
             MainPage.mainPage.commChannel.SendMessageToMCC(string.Format(CommunicationCommands.BPCONSTATUS,
             msg, status));
@@ -45,7 +45,7 @@ namespace VideoKallSBCApplication.BLEDevices
                     break;
                 }else if(dev.DeviceType == DeviceTypesenums.BPMONITOR && !dev.IsPaired)
                 {
-                    SendConnectionStatusmessageToMCC("BP Monitor is not Paired.","error");
+                    SendConnectionStatusmessageToMCC("BP Monitor is not Paired.");
                     NotifyStatusMessage?.Invoke("BP Monitor is not Paired.", 3);
                     return;
                 }
@@ -56,7 +56,7 @@ namespace VideoKallSBCApplication.BLEDevices
             GTTServicelist.Clear();
             if(device == null)
             {
-                SendConnectionStatusmessageToMCC("BP Monitor is not found.", "error");
+                SendConnectionStatusmessageToMCC("BP Monitor is not foud.");
                 NotifyStatusMessage?.Invoke("BP Monitor is not foud.", 3);
                 return;
             }
@@ -64,7 +64,7 @@ namespace VideoKallSBCApplication.BLEDevices
             bluetoothLeDevice = await BluetoothLEDevice.FromIdAsync(device.DeviceInfo.Id);
             if(bluetoothLeDevice == null)
             {
-                SendConnectionStatusmessageToMCC("Device Unreachable.", "error");
+                SendConnectionStatusmessageToMCC("Device Unreachable.");
                 NotifyStatusMessage?.Invoke("Device Unreachable.",1);
                 return;
             }
@@ -84,7 +84,7 @@ namespace VideoKallSBCApplication.BLEDevices
             }
             else
             {
-                SendConnectionStatusmessageToMCC("Failed to connect. " + result.Status.ToString(), "error");
+                SendConnectionStatusmessageToMCC("Failed to connect. " + result.Status.ToString());
                 NotifyStatusMessage?.Invoke("Failed to connect. "+ result.Status.ToString(),1);
             }
 
@@ -106,21 +106,21 @@ namespace VideoKallSBCApplication.BLEDevices
                     }
                     else
                     {
-                        SendConnectionStatusmessageToMCC("Error accessing service " + result.Status.ToString(), "error");
+                        SendConnectionStatusmessageToMCC("Error accessing service " + result.Status.ToString());
                         NotifyStatusMessage?.Invoke("Error accessing service "+ result.Status.ToString(),1);
                         return;
                     }
                 }
                 else
                 {
-                    SendConnectionStatusmessageToMCC("Error accessing service " + accessStatus.ToString(), "error");
+                    SendConnectionStatusmessageToMCC("Error accessing service " + accessStatus.ToString());
                     NotifyStatusMessage?.Invoke("Error accessing service "+ accessStatus.ToString(),1);
                     return;
                 }
             }
             catch(Exception ex)
             {
-                SendConnectionStatusmessageToMCC("Exception " + ex.Message, "error");
+                SendConnectionStatusmessageToMCC("Exception " + ex.Message);
                 NotifyStatusMessage?.Invoke("Exception " + ex.Message,2);
                 return;
             }
@@ -138,7 +138,7 @@ namespace VideoKallSBCApplication.BLEDevices
 
             if(BloodPressureMeasurementCharacteristic == null)
             {
-                SendConnectionStatusmessageToMCC("BloodPressureMeasurement Characteristic not found.", "error");
+                SendConnectionStatusmessageToMCC("BloodPressureMeasurement Characteristic not found.");
                 NotifyStatusMessage?.Invoke("BloodPressureMeasurement Characteristic not found.",1);
                 return;
             }
@@ -146,7 +146,7 @@ namespace VideoKallSBCApplication.BLEDevices
             var resultch = await BloodPressureMeasurementCharacteristic.GetDescriptorsAsync(BluetoothCacheMode.Uncached);
             if (resultch.Status != GattCommunicationStatus.Success)
             {
-                SendConnectionStatusmessageToMCC("Descriptor read failure: " + resultch.Status.ToString(), "error");
+                SendConnectionStatusmessageToMCC("Descriptor read failure: " + resultch.Status.ToString());
                 NotifyStatusMessage?.Invoke("Descriptor read failure: " + resultch.Status.ToString(),1);
                 return;
             }
@@ -193,7 +193,7 @@ namespace VideoKallSBCApplication.BLEDevices
             }
             else
             {
-                SendConnectionStatusmessageToMCC($"Error registering for value changes: {status}", "error");
+                SendConnectionStatusmessageToMCC($"Error registering for value changes: {status}");
                 NotifyStatusMessage?.Invoke($"Error registering for value changes: {status}",1);
             }
             //BateryLevel
@@ -240,7 +240,7 @@ namespace VideoKallSBCApplication.BLEDevices
             }
             catch(Exception ex)
             {
-                SendConnectionStatusmessageToMCC($"Error : {ex.Message}", "error");
+                SendConnectionStatusmessageToMCC($"Error : {ex.Message}");
                 NotifyStatusMessage?.Invoke($"Error : {ex.Message}",2);
             }
         }
@@ -260,7 +260,7 @@ namespace VideoKallSBCApplication.BLEDevices
 
             if (BateryLevelCharacteristic == null)
             {
-                SendConnectionStatusmessageToMCC("BloodPressureMeasurement Characteristic not found.", "error");
+                SendConnectionStatusmessageToMCC("BloodPressureMeasurement Characteristic not found.");
                 NotifyStatusMessage?.Invoke("BloodPressureMeasurement Characteristic not found.", 1);
                 return;
             }
@@ -268,7 +268,7 @@ namespace VideoKallSBCApplication.BLEDevices
             var resultch = await BateryLevelCharacteristic.GetDescriptorsAsync(BluetoothCacheMode.Uncached);
             if (resultch.Status != GattCommunicationStatus.Success)
             {
-                SendConnectionStatusmessageToMCC("Descriptor read failure: " + resultch.Status.ToString(), "error");
+                SendConnectionStatusmessageToMCC("Descriptor read failure: " + resultch.Status.ToString());
                 NotifyStatusMessage?.Invoke("Descriptor read failure: " + resultch.Status.ToString(), 1);
                 return;
             }
@@ -315,7 +315,7 @@ namespace VideoKallSBCApplication.BLEDevices
             }
             else
             {
-                SendConnectionStatusmessageToMCC($"Error registering for value changes: {status}", "error");
+                SendConnectionStatusmessageToMCC($"Error registering for value changes: {status}");
                 NotifyStatusMessage?.Invoke($"Error registering for value changes: {status}", 1);
             }
         }
