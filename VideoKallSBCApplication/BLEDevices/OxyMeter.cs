@@ -1,20 +1,12 @@
-﻿using Microsoft.VisualBasic.CompilerServices;
-using SBCDBModule.DB;
+﻿using SBCDBModule.DB;
 using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using VideoKallSBCApplication.Helpers;
-using VideoKallSBCApplication.ViewModel;
 using VideoKallSMC.Communication;
 using Windows.Devices.Bluetooth;
 using Windows.Devices.Bluetooth.GenericAttributeProfile;
 using Windows.Devices.Enumeration;
 using Windows.Security.Cryptography;
-using Windows.Storage;
 using Windows.Storage.Streams;
-using Windows.UI.Xaml;
 
 namespace VideoKallSBCApplication.BLEDevices
 {
