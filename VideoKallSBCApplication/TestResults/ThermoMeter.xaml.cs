@@ -98,6 +98,7 @@ namespace VideoKallSBCApplication.TestResults
         private void BtnTempConnect_Click(object sender, RoutedEventArgs e)
         {
             _testPanelVM.IsConnected_THRM = false;
+            _testPanelVM.Instruction_Note = Constants.RE_CONNECT;
             //BtnTempConnect.IsEnabled = false;
             _testPanelVM.IsMsgConnected = Visibility.Visible;
             _testPanelVM.IsFromSMC_THRM = true;
@@ -130,12 +131,6 @@ namespace VideoKallSBCApplication.TestResults
         {
             
         }
-
-        private void TakeTest_Click(object sender, RoutedEventArgs e)
-        {
-            TxtTemprature.Text = string.Empty;
-            TxtTestMode.Text = string.Empty;
-            TxtTestTime.Text = string.Empty;
-        }
+                
     }
 }

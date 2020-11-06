@@ -59,8 +59,15 @@ namespace VideoKallSBCApplication.BLEDevices
                 }
              
             }
-
-            bluetoothLeDevice = await BluetoothLEDevice.FromIdAsync(device.DeviceInfo.Id);
+            try
+            {
+                bluetoothLeDevice = await BluetoothLEDevice.FromIdAsync(device.DeviceInfo.Id);
+            }
+            catch (Exception)
+            {
+                MainPage.TestPanelVM.InstuctionNoteCallBackCompleted?.Invoke(DeviceTypesenums.THERMOMETER, "");
+                return;
+            }          
             if (bluetoothLeDevice == null)
             {
                 MainPage.mainPage.commChannel.SendMessageToMCC(string.Format(CommunicationCommands.PUSLEOXIMETERCONNECTIONMSG,

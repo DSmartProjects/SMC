@@ -30,8 +30,7 @@ namespace VideoKallSBCApplication.TestResults
         public TestPanelViewModel _testPanelVM = null;
         public OxymeterResults()
         {
-            this.InitializeComponent();
-  
+            this.InitializeComponent();  
             MainPage.TestresultModel.oxymeterDataReceiveCallback += OnDataReceive;
             MainPage.TestresultModel.DeviceConnectionTimeCallback += DeviceConnectionStatus;
             MainPage.TestPanelVM.InstuctionNoteCallBackCompleted += InstuctionNoteCallBackCompleted;
@@ -61,7 +60,7 @@ namespace VideoKallSBCApplication.TestResults
                 {
                     _testPanelVM.Instruction_Note = Constants.GUIDE_NOTE;
                     _testPanelVM.IsMsgConnected = Visibility.Visible;
-                    _testPanelVM.IsFromSMC_Oxy = false;
+                    _testPanelVM.IsConnected_Oxy = false;
                 }
             });
         }
@@ -83,7 +82,9 @@ namespace VideoKallSBCApplication.TestResults
 
         private void BtnConnect_Click(object sender, RoutedEventArgs e)
         {
-            _testPanelVM.IsFromSMC_Oxy = true;
+            _testPanelVM.Instruction_Note = Constants.RE_CONNECT;
+            _testPanelVM.IsMsgConnected = Visibility.Visible;
+            _testPanelVM.IsConnected_Oxy = false;
             MainPage.TestresultModel.oxymeter.Connect();
         }
 
