@@ -35,15 +35,18 @@ namespace VideoKallSBCApplication.TestResults
         }
 
 
-        void DeviceConnectionStatus(DeviceTypesenums type,string datetime,bool status)
+        async void DeviceConnectionStatus(DeviceTypesenums type, string datetime, bool status)
         {
-            if (type == DeviceTypesenums.BPMONITOR && status)
+            await Dispatcher.RunAsync(CoreDispatcherPriority.Normal, () =>
             {
-                isConnected = status;
-                ConnectionTime = datetime;
-                OnPropertyChanged("ConnectionTime");
-                OnPropertyChanged("isConnected");
-            }
+                if (type == DeviceTypesenums.BPMONITOR && status)
+                {
+                    isConnected = status;
+                    ConnectionTime = datetime;
+                    OnPropertyChanged("ConnectionTime");
+                    OnPropertyChanged("isConnected");
+                }
+            });
         }
         public event PropertyChangedEventHandler PropertyChanged;
         public void OnPropertyChanged(string name)
