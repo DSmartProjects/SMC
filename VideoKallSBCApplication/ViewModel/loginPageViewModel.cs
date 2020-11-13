@@ -22,59 +22,70 @@ namespace VideoKallSMC.ViewModel
             PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
         }
         private ICommand _submitCommand = null;
-        public ICommand SubmitCommand {
-            get {
-                 if(_submitCommand == null)
+        public ICommand SubmitCommand
+        {
+            get
+            {
+                if (_submitCommand == null)
                     _submitCommand = new RelayCommand(ExecuteSubmitCommand);
                 return _submitCommand;
-            } 
+            }
         }
 
-        string _userid="admin";
-        public string Userid { 
-            get{ return _userid; }
-            set { 
+        string _userid = "admin";
+        public string Userid
+        {
+            get { return _userid; }
+            set
+            {
                 _userid = value;
                 OnPropertyChanged("EnableSubmitButton");
             }
         }
 
-        string _password="admin";
-        public string PasswordTxt {
-            get {return _password; }
-            set { _password = value;
+        string _password = "admin";
+        public string PasswordTxt
+        {
+            get { return _password; }
+            set
+            {
+                _password = value;
                 OnPropertyChanged("EnableSubmitButton");
-            }  }
+            }
+        }
 
-        public bool EnableSubmitButton { 
+        public bool EnableSubmitButton
+        {
             get
-            {    if (string.IsNullOrEmpty(PasswordTxt) || string.IsNullOrEmpty(Userid))
+            {
+                if (string.IsNullOrEmpty(PasswordTxt) || string.IsNullOrEmpty(Userid))
                 {
                     return false;
                 }
-               return true;
-            } }
-       public bool LoginFailedMsg1Visible {get; set;}
-        public bool LoginFailedMsg2Visible {get; set;}
-        public bool LoginFailedMsg3Visible {get; set;}
+                return true;
+            }
+        }
+        public bool LoginFailedMsg1Visible { get; set; }
+        public bool LoginFailedMsg2Visible { get; set; }
+        public bool LoginFailedMsg3Visible { get; set; }
         public string LoginErrorMessage { get; set; }
         public string LoginErrorMessage2 { get; set; }
-        public void ExecuteSubmitCommand( )
+        public void ExecuteSubmitCommand()
         {
             testPanel = new TestPanel();
             MainPage.mainPage.RightPanelHolder.Navigate(typeof(TestPanel), testPanel);
-            //if (videcallPage == null)
-            //    videcallPage = new Videocallpage();
-            //MainPage.mainPage.pagePlaceHolder.Navigate(typeof(Videocallpage), videcallPage);
+            if (videocallPage == null)
+                videocallPage = new Videocallpage();
+            MainPage.mainPage.pagePlaceHolder.Navigate(typeof(Settings), videocallPage);
 
             SBCDB dbmodule = new SBCDB();
-            User loggedinUser =  dbmodule.GetLoggedinUser(Userid.Trim().ToLower());
+            User loggedinUser = dbmodule.GetLoggedinUser(Userid.Trim().ToLower());
             if (loggedinUser == null)
             {
                 LoginFailedMsg1Visible = true;
                 LoginFailedMsg2Visible = true;
                 LoginFailedMsg3Visible = true;
-               
+
                 LoginErrorMessage = "User name: " + Userid + " not found.";
                 LoginErrorMessage2 = "Please enter valid user id or contact admin.";
                 OnPropertyChanged("LoginFailedMsg1Visible");
@@ -90,10 +101,9 @@ namespace VideoKallSMC.ViewModel
                 if (testPanel == null)
                     testPanel = new TestPanel();
                 MainPage.mainPage.RightPanelHolder.Navigate(typeof(TestPanel), testPanel);
-                //if (videcallPage == null)
-                //    videcallPage = new Videocallpage();
-                //MainPage.mainPage.pagePlaceHolder.Navigate(typeof(Videocallpage), videcallPage);
-
+                if (videocallPage == null)
+                    videocallPage = new Videocallpage();
+                MainPage.mainPage.pagePlaceHolder.Navigate(typeof(Settings), videocallPage);
             }
             else
             {
@@ -109,9 +119,9 @@ namespace VideoKallSMC.ViewModel
                 OnPropertyChanged("LoginErrorMessage");
                 OnPropertyChanged("LoginErrorMessage2");
             }
-            
+
         }
-        Videocallpage videcallPage = null;
+        Videocallpage videocallPage = null;
         TestPanel testPanel = null;
-    }//class
+    } //class
 }

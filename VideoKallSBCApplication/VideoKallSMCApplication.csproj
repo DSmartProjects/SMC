@@ -170,23 +170,31 @@
     </Compile>
     <Compile Include="ViewModel\DeviceListPageViewModel.cs" />
     <Compile Include="ViewModel\loginPageViewModel.cs" />
+    <Compile Include="ViewModel\LogoPageViewModel.cs" />
     <Compile Include="ViewModel\MainPageViewModel.cs" />
     <Compile Include="ViewModel\NotifyPropertyChanged.cs" />
     <Compile Include="ViewModel\SeetingsPageViewModel.cs" />
     <Compile Include="ViewModel\SthethoscopeTX.cs" />
     <Compile Include="ViewModel\TestPanelViewModel.cs" />
     <Compile Include="Views\Accounts.xaml.cs" />
+    <Compile Include="Views\CallSummary.xaml.cs">
+      <DependentUpon>CallSummary.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Views\DeviceListPage.xaml.cs">
       <DependentUpon>DeviceListPage.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\LoginPage.xaml.cs" />
-    <Compile Include="Views\LogoPage.xaml.cs" />
+    <Compile Include="Views\LogoPage.xaml.cs">
+      <DependentUpon>LogoPage.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Views\Settings.xaml.cs" />
     <Compile Include="Views\StethoscopeChest.xaml.cs">
       <DependentUpon>StethoscopeChest.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\TestPanel.xaml.cs" />
-    <Compile Include="Views\Videocallpage.xaml.cs" />
+    <Compile Include="Views\Videocallpage.xaml.cs">
+      <DependentUpon>Videocallpage.xaml</DependentUpon>
+    </Compile>
   </ItemGroup>
   <ItemGroup>
     <AppxManifest Include="Package.appxmanifest">
@@ -196,13 +204,27 @@
   <ItemGroup>
     <Content Include="Assets\Application.ico" />
     <Content Include="Assets\Application.png" />
+    <Content Include="Assets\Call-Connecting-bg.png" />
+    <Content Include="Assets\call-end.png" />
+    <Content Include="Assets\clinic-shop-dark.png" />
+    <Content Include="Assets\clinic-stop-small-logo.png" />
+    <Content Include="Assets\ClinicStop-Logowhite.png" />
+    <Content Include="Assets\doctor-1.png" />
+    <Content Include="Assets\doctor.png" />
     <Content Include="Assets\end-call.png" />
+    <Content Include="Assets\logo-icon.png" />
     <Content Include="Assets\lungs.png" />
+    <Content Include="Assets\microphone-mute.png" />
+    <Content Include="Assets\microphone-unmute.png" />
+    <Content Include="Assets\patient.png" />
     <Content Include="Assets\sbcimg.PNG" />
     <Content Include="Assets\SBC_Ring_Tone.mp4" />
+    <Content Include="Assets\tap.png" />
+    <Content Include="Assets\Top-logo.png" />
     <Content Include="Assets\video-icon.png" />
     <Content Include="Assets\video-mute.png" />
     <Content Include="Assets\VideoPlaceHolder.png" />
+    <Content Include="Assets\VideoPlaceHolder_Image.png" />
     <Content Include="Properties\Default.rd.xml" />
     <Content Include="Assets\LockScreenLogo.scale-200.png" />
     <Content Include="Assets\SplashScreen.scale-200.png" />
@@ -266,6 +288,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Views\Accounts.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Views\CallSummary.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
