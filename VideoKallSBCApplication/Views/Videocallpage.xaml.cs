@@ -12,6 +12,7 @@ using Windows.UI.Xaml.Controls;
 using Windows.UI.Xaml.Navigation;
 using Windows.UI.Popups;
 using System.Runtime.InteropServices;
+using VideoKallSBCApplication.Views;
 
 namespace VideoKallSMC.Views
 {
@@ -41,9 +42,10 @@ namespace VideoKallSMC.Views
         {
             HostNameTextbox.Visibility = Visibility.Visible;
             btnInitConsult.Visibility = Visibility.Visible;
-            PreviewVideo.Visibility = Visibility.Visible;
+            PreviewVideo.Visibility = Visibility.Collapsed;
             RemoteVideo.Visibility = Visibility.Visible;
-            OutgoingCall.Visibility = Visibility.Collapsed;
+            CallingScreen.Visibility = Visibility.Collapsed;
+            //OutgoingCall.Visibility = Visibility.Collapsed;
             btnEndConsult.Visibility = Visibility.Collapsed;
             HostNameTextbox.Visibility = Visibility.Visible;
         }
@@ -66,19 +68,22 @@ namespace VideoKallSMC.Views
             ipAddress = (string)e.Parameter;
             InitializePreviewVideo();
         }
+
         private async void InitiateConsultation()
         {
             try
             {
                 if (HostNameTextbox.Text != "")
                 {
-                    var address = HostNameTextbox.Text;//VideoVM!=null&&!string.IsNullOrEmpty(VideoVM.IpAddress)?VideoVM.IpAddress:string.Empty;
+                    var address = HostNameTextbox.Text; //VideoVM!=null&&!string.IsNullOrEmpty(VideoVM.IpAddress)?VideoVM.IpAddress:string.Empty;
                     roleIsActive = true;
                     RemoteVideo.Source = new Uri("stsp://" + address);
+                    PreviewVideo.Visibility = Visibility.Visible;
                     HostNameTextbox.IsEnabled = btnInitConsult.IsEnabled = false;
                     RemoteVideo.Visibility = Visibility.Collapsed;
-                    OutgoingCall.Visibility = Visibility.Visible;
-                    OutgoingCall.Play();
+                    CallingScreen.Visibility = Visibility.Visible;
+                    //OutgoingCall.Visibility = Visibility.Visible;
+                    //OutgoingCall.Play();
                     btnEndConsult.Visibility = Visibility.Visible;
                     btnInitConsult.Visibility = Visibility.Collapsed;
                     HostNameTextbox.Visibility = Visibility.Collapsed;
@@ -95,6 +100,7 @@ namespace VideoKallSMC.Views
             try
             {
                 var cameraFound = await CaptureDevice.CheckForRecordingDeviceAsync();
+
                 if (cameraFound)
                 {
                     device = new CaptureDevice();
@@ -166,8 +172,9 @@ namespace VideoKallSMC.Views
             e.Accept();
             await Dispatcher.RunAsync(CoreDispatcherPriority.Normal, (() =>
             {
-                OutgoingCall.Visibility = Visibility.Collapsed;
-                OutgoingCall.Stop();
+                CallingScreen.Visibility = Visibility.Collapsed;
+                //OutgoingCall.Visibility = Visibility.Collapsed;
+                //OutgoingCall.Stop();
                 RemoteVideo.Visibility = Visibility.Visible;
             }));
 
@@ -257,5 +264,6 @@ namespace VideoKallSMC.Views
             await InitializeAsync();
             this.Frame.Navigate(typeof(LogoPage));
         }
+
     }
 }

@@ -11,6 +11,7 @@
     <Page.Resources>
         <BitmapImage x:Name="Menuicon1" CreateOptions="IgnoreImageCache"   UriSource="Assets/Application.ico"/>
     </Page.Resources>
+
     <Grid>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="2*"></ColumnDefinition>
@@ -18,37 +19,41 @@
         </Grid.ColumnDefinitions>
         <Grid.RowDefinitions>
             <RowDefinition Height="auto"></RowDefinition>
-            <RowDefinition Height="auto"></RowDefinition>
+
+            <!-- For CommandBar -->
+            <!--<RowDefinition Height="50"></RowDefinition>-->
+
             <RowDefinition Height="*"></RowDefinition>
+
+            <!-- For Bottom -->
             <!--<RowDefinition Height="30"></RowDefinition>-->
         </Grid.RowDefinitions>
         <!--Border-->
-          <Border Grid.Column="0" Grid.Row="2"   BorderThickness="1" BorderBrush="Gray"></Border>
-        
+        <Border Grid.Column="0" Grid.Row="2"   BorderThickness="1" BorderBrush="Gray"></Border>
+
         <!--Page Container-->
         <Frame x:FieldModifier="public" Background="White" Grid.Row="2" Grid.Column="0" Grid.ColumnSpan="2" x:Name="pagePlaceHolder"></Frame>
-        <Frame Visibility="Collapsed" x:FieldModifier="public"  Background="WhiteSmoke" Grid.Row="2" Grid.RowSpan="3" Grid.Column="1" x:Name="RightPanelHolder"></Frame>
-                <!--status bar-->
+        <Frame x:Name="RightPanelHolder" Visibility="Collapsed" x:FieldModifier="public"  Background="WhiteSmoke" Grid.Row="2" Grid.RowSpan="3" Grid.Column="1"></Frame>
+        <!--status bar-->
         <!--<Border Background="WhiteSmoke" Grid.Row="3" Grid.Column="0" BorderBrush="Gray" BorderThickness="1"></Border>-->
         <!--<TextBlock x:FieldModifier="public" x:Name="StatusTxt" Text="{Binding Path=StatusText, Mode=OneWay}" Grid.Row="3">Status</TextBlock>-->
         <!--Right pane Menus-->
-        
-        <!--Patient information: lastname,firstname,dob,gender-->
-      
 
-        <!--`Menu bar-->
-        <CommandBar Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="3" Background="LightGray" IsOpen="False" DefaultLabelPosition="Right">
-          
-            <AppBarButton   Label="Device List" Command="{Binding DeviceListCommand}"></AppBarButton>
+        <!--Patient information: lastname,firstname,dob,gender-->
+
+        <!--Menu bar-->
+        <CommandBar   Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="3" Background="LightGray" IsOpen="False" DefaultLabelPosition="Right">
+            <AppBarButton Label="Device List" Command="{Binding DeviceListCommand}"></AppBarButton>
             <AppBarSeparator/>
             <AppBarButton Icon="Setting" Label="Settings" Command="{Binding SettingsCommand}"></AppBarButton>
             <AppBarSeparator/>
-            
-            <CommandBar.Content>
-                <TextBlock Text=" " Margin="12,14"/>
 
+            <CommandBar.Content>
+                <TextBlock Text="" Margin="12,14"/>
             </CommandBar.Content>
         </CommandBar>
-
+        <!--/Menu bar-->
+        <!--<AppBarButton x:Name="AppBarHome" Label="Home" Click="AppBarHome_Click"></AppBarButton>
+        <AppBarSeparator/>-->
     </Grid>
 </Page>
