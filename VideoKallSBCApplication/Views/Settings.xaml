@@ -6,10 +6,16 @@
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     mc:Ignorable="d"
-    Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
+    Background="{ThemeResource ApplicationPageBackgroundThemeBrush}" Loaded="Page_Loaded">
 
     <Grid>
         <Grid.RowDefinitions>
+            <RowDefinition Height="auto"></RowDefinition>
+            <RowDefinition Height="auto"></RowDefinition>
+            <RowDefinition Height="auto"></RowDefinition>
+            <RowDefinition Height="auto"></RowDefinition>
+            <RowDefinition Height="auto"></RowDefinition>
+            <RowDefinition Height="auto"></RowDefinition>
             <RowDefinition Height="auto"></RowDefinition>
             <RowDefinition Height="auto"></RowDefinition>
             <RowDefinition Height="auto"></RowDefinition>
@@ -39,12 +45,40 @@
         <ComboBox x:Name="serialPortCmb" Grid.Row="4" Grid.Column="1" SelectedIndex="0" SelectionChanged="SerialPortCmb_SelectionChanged"></ComboBox>
         <TextBlock Text="Serial Port" Grid.Row="4" Grid.Column="0"></TextBlock>
         <Button x:Name="BtnRefreshcomport" Content="Refresh" Grid.Column="2" Grid.Row="4" Click="BtnRefreshcomport_Click"></Button>
-        <Button Command="{Binding Done}" Grid.Column="0" Grid.Row="9" Content="Done"></Button>
+        <Button Command="{Binding Done}" Grid.Column="0" Grid.Row="19" Content="Done"></Button>
 
         <TextBlock Text="DataAcquisitionApp" Grid.Row="5" Grid.Column="0"></TextBlock>
         <TextBlock x:Name="TxtDataacq" Grid.Row="5" Grid.Column="1"></TextBlock>
         <CheckBox x:Name="Chkdiagnostic" Grid.Row="7" Grid.Column="0" Content="Diagnostic mode" Checked="Chkdiagnostic_Checked"></CheckBox>
         <TextBlock  Grid.Row="7" Grid.Column="3" Margin="5" Text="10-12-20"    ></TextBlock>
         <TextBlock   Grid.Row="7" Grid.Column="2" Text="Release date"    ></TextBlock>
+        <Button Grid.Row="8" Grid.Column="0" Content="Recording devices" x:Name="BtnRec" Click="BtnRec_Click"></Button>
+        <ComboBox SelectedIndex="0" HorizontalAlignment="Stretch" Grid.Row="8" Grid.Column="1" Grid.ColumnSpan="4" x:Name="CmbRecordingDevices"  ></ComboBox>
+        
+        <TextBlock Grid.Row="9" Grid.Column="0" Text="Frequency Heart"></TextBlock>
+        <TextBlock Grid.Row="9"  Grid.Column="2" Text="Frequency Lungs"></TextBlock>
+        <TextBlock Grid.Row="10" Grid.Column="0" Text="Filter Heart" ></TextBlock>
+        <TextBlock Grid.Row="10" Grid.Column="2" Text="Filter lungs"></TextBlock>
+        <StackPanel Margin="2" Orientation="Horizontal" Grid.Row="9" Grid.Column="1">
+            <TextBox x:Name="TxtFrequencyHeart"  TextChanged="TxtFrequencyHeart_TextChanged"></TextBox>
+            <TextBlock Text="Hz"></TextBlock>
+        </StackPanel>
+        <StackPanel Margin="2" Orientation="Horizontal" Grid.Row="9" Grid.Column="3">
+            <TextBox x:Name="TxtFrequencylungs"  TextChanged="TxtFrequencylungs_TextChanged"></TextBox>
+            <TextBlock Text="Hz"></TextBlock>
+        </StackPanel>
+        <StackPanel Orientation="Horizontal" Margin="2" Grid.Row="10" Grid.Column="1">
+            <TextBox x:Name="TxtFilterHeart"  TextChanged="TxtFilterHeart_TextChanged"></TextBox>
+            <TextBlock Text="Hz"></TextBlock>
+        </StackPanel>
+        <StackPanel Orientation="Horizontal" Margin="2" Grid.Row="10" Grid.Column="3">
+            <TextBox x:Name="TxtFilterlungs"  TextChanged="TxtFilterlungs_TextChanged"></TextBox>
+            <TextBlock Text="Hz"></TextBlock>
+        </StackPanel>
+        <StackPanel Margin="0,0,2,0" Grid.Row="11" Grid.Column="0"  Orientation="Horizontal">
+            <TextBlock Text="DeviceID"></TextBlock>
+            <TextBox IsReadOnly="True" x:Name="RecdevID"></TextBox>
+        </StackPanel>
+        <Button x:Name="BtnSave" Grid.Row="11" Grid.Column="1" Content="Save" Click="BtnSave_Click"></Button>
     </Grid>
 </Page>

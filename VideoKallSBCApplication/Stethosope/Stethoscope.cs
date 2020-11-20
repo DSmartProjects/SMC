@@ -91,6 +91,17 @@ namespace VideoKallSBCApplication.Stethosope
           
         }
 
+        public void GenerateRecordingDevices()
+        {
+            NotificationHandle = new CallbackDelegate(CallBackTX);
+            handle = Marshal.GetFunctionPointerForDelegate(NotificationHandle);
+            RegisterCallback(handle);
+            var localFolder = Windows.Storage.ApplicationData.Current.LocalFolder;
+            RXLogfile = localFolder.Path;
+            SetTXLogFolder(RXLogfile);
+
+            GenerateRecordingDeviceFile();
+        }
         void CallBackTX(string message)
         {
             TXevents?.Invoke(message, null);
