@@ -196,6 +196,7 @@
   <ItemGroup>
     <Content Include="Assets\Application.ico" />
     <Content Include="Assets\Application.png" />
+    <Content Include="Assets\end-call.png" />
     <Content Include="Assets\lungs.png" />
     <Content Include="Assets\sbcimg.PNG" />
     <Content Include="Assets\SBC_Ring_Tone.mp4" />

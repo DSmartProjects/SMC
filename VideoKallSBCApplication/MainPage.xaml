@@ -18,9 +18,9 @@
         </Grid.ColumnDefinitions>
         <Grid.RowDefinitions>
             <RowDefinition Height="auto"></RowDefinition>
-            <RowDefinition Height="50"></RowDefinition>
+            <RowDefinition Height="auto"></RowDefinition>
             <RowDefinition Height="*"></RowDefinition>
-            <RowDefinition Height="30"></RowDefinition>
+            <!--<RowDefinition Height="30"></RowDefinition>-->
         </Grid.RowDefinitions>
         <!--Border-->
           <Border Grid.Column="0" Grid.Row="2"   BorderThickness="1" BorderBrush="Gray"></Border>
@@ -37,12 +37,8 @@
       
 
         <!--`Menu bar-->
-        <CommandBar   Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="3" Background="LightGray" IsOpen="False" DefaultLabelPosition="Right">
-           
-             
-        
-             
-             
+        <CommandBar Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="3" Background="LightGray" IsOpen="False" DefaultLabelPosition="Right">
+          
             <AppBarButton   Label="Device List" Command="{Binding DeviceListCommand}"></AppBarButton>
             <AppBarSeparator/>
             <AppBarButton Icon="Setting" Label="Settings" Command="{Binding SettingsCommand}"></AppBarButton>
