@@ -20,7 +20,14 @@
     <AppxPackageIsForStore>False</AppxPackageIsForStore>
     <RemoteMachine0>192.168.0.33</RemoteMachine0>
     <UseAuthentication0>False</UseAuthentication0>
-    <ProjectView>ProjectFiles</ProjectView>
+    <ProjectView>ShowAllFiles</ProjectView>
+    <Source>C:\Users\DSLAP-43\Downloads\VK_Splash.png</Source>
+    <SplashScreenSource>C:\Users\DSLAP-43\Downloads\VK_Splash.png</SplashScreenSource>
+    <SmallTileSource>C:\Users\DSLAP-43\Downloads\VK_Logo.png</SmallTileSource>
+    <AppIconSource>C:\Users\DSLAP-43\Downloads\VK_Logo.png</AppIconSource>
+    <BadgeLogoSource>C:\Users\DSLAP-43\Downloads\VK_Logo.png</BadgeLogoSource>
+    <PackageLogoSource>C:\Users\DSLAP-43\Downloads\VK_Logo.png</PackageLogoSource>
+    <MediumTileSource>C:\Users\DSLAP-43\Downloads\VK_Logo.png</MediumTileSource>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Release|x86'">
     <RemoteDebugMachine>192.168.0.33</RemoteDebugMachine>
