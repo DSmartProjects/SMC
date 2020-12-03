@@ -83,42 +83,43 @@ namespace VideoKallSMC.ViewModel
             User loggedinUser = dbmodule.GetLoggedinUser(Userid.Trim().ToLower());
             if (loggedinUser == null)
             {
-                LoginFailedMsg1Visible = true;
-                LoginFailedMsg2Visible = true;
-                LoginFailedMsg3Visible = true;
+                //LoginFailedMsg1Visible = true;
+                //LoginFailedMsg2Visible = true;
+                //LoginFailedMsg3Visible = true;
 
-                LoginErrorMessage = "User name: " + Userid + " not found.";
-                LoginErrorMessage2 = "Please enter valid user id or contact admin.";
-                OnPropertyChanged("LoginFailedMsg1Visible");
-                OnPropertyChanged("LoginFailedMsg2Visible");
-                OnPropertyChanged("LoginFailedMsg3Visible");
-                OnPropertyChanged("LoginErrorMessage");
-                OnPropertyChanged("LoginErrorMessage2");
+                //LoginErrorMessage = "User name: " + Userid + " not found.";
+                //LoginErrorMessage2 = "Please enter valid user id or contact admin.";
+                //OnPropertyChanged("LoginFailedMsg1Visible");
+                //OnPropertyChanged("LoginFailedMsg2Visible");
+                //OnPropertyChanged("LoginFailedMsg3Visible");
+                //OnPropertyChanged("LoginErrorMessage");
+                //OnPropertyChanged("LoginErrorMessage2");
                 return;
             }
 
             if (string.Compare(PasswordTxt, loggedinUser.Password) == 0)
             {
                 if (testPanel == null)
-                    testPanel = new TestPanel();
-                MainPage.mainPage.RightPanelHolder.Navigate(typeof(TestPanel), testPanel);
+                    testPanel = new TestPanel();               
+                //MainPage.mainPage.RightPanelHolder.Navigate(typeof(TestPanel), testPanel);
                 if (videocallPage == null)
                     videocallPage = new Videocallpage();
-                MainPage.mainPage.pagePlaceHolder.Navigate(typeof(Settings), videocallPage);
+                // MainPage.mainPage.pagePlaceHolder.Navigate(typeof(Settings), videocallPage);
+                MainPage.mainPage.pagePlaceHolder.Navigate(typeof(TestPanel), testPanel);
             }
             else
             {
-                LoginFailedMsg1Visible = true;
-                LoginFailedMsg2Visible = true;
-                LoginFailedMsg3Visible = true;
-                LoginErrorMessage = "Password not matched.";
-                LoginErrorMessage2 = "Please enter valid password or contact admin.";
+                //LoginFailedMsg1Visible = true;
+                //LoginFailedMsg2Visible = true;
+                //LoginFailedMsg3Visible = true;
+                //LoginErrorMessage = "Password not matched.";
+                //LoginErrorMessage2 = "Please enter valid password or contact admin.";
 
-                OnPropertyChanged("LoginFailedMsg1Visible");
-                OnPropertyChanged("LoginFailedMsg2Visible");
-                OnPropertyChanged("LoginFailedMsg3Visible");
-                OnPropertyChanged("LoginErrorMessage");
-                OnPropertyChanged("LoginErrorMessage2");
+                //OnPropertyChanged("LoginFailedMsg1Visible");
+                //OnPropertyChanged("LoginFailedMsg2Visible");
+                //OnPropertyChanged("LoginFailedMsg3Visible");
+                //OnPropertyChanged("LoginErrorMessage");
+                //OnPropertyChanged("LoginErrorMessage2");
             }
 
         }

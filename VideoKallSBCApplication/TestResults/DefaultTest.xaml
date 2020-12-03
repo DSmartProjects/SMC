@@ -9,6 +9,6 @@
     Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
 
     <Grid >
-        <!--<Button Margin="20,20,0,0" Content="Dermascope" FontSize="12" FontWeight="SemiBold" CornerRadius="5,5,5,5" Foreground="#FFF" Background="#26639B"  x:Name="BtnDermascope" Click="BtnDermascope_Click" HorizontalAlignment="Center" VerticalAlignment="Center"></Button>-->
+        <Button Margin="20,20,0,0" Content="Dermascope" FontSize="12" FontWeight="SemiBold" CornerRadius="5,5,5,5" Foreground="#FFF" Background="#26639B"  x:Name="BtnDermascope" Click="BtnDermascope_Click" HorizontalAlignment="Center" VerticalAlignment="Center" Visibility="Collapsed"></Button>
     </Grid>
 </Page>
