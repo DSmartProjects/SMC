@@ -13,9 +13,9 @@
             <Setter Property="TextWrapping" Value="Wrap"/>
         </Style>
     </Page.Resources>
-    <Grid>
+    <Grid VerticalAlignment="Center" Width="400" HorizontalAlignment="Left" BorderBrush="#ECECEC" BorderThickness="0,1,0,0" >
         <Grid.RowDefinitions>
-            <RowDefinition Height="auto"></RowDefinition>
+            <RowDefinition Height="20"></RowDefinition>
             <RowDefinition Height="auto"></RowDefinition>
             <RowDefinition Height="auto"></RowDefinition>
             <RowDefinition Height="auto"></RowDefinition>
@@ -24,6 +24,7 @@
             <RowDefinition Height="auto"></RowDefinition>
         </Grid.RowDefinitions>
         <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="10"></ColumnDefinition>
             <ColumnDefinition Width="auto"></ColumnDefinition>
             <ColumnDefinition Width="auto"></ColumnDefinition>
             <ColumnDefinition Width="auto"></ColumnDefinition>
@@ -44,22 +45,21 @@
             </ctrl:DataGrid.Columns>
         </ctrl:DataGrid>
         -->
-        <TextBlock Text="Test Date" Grid.Row="1" Grid.Column="0" FontSize="15" HorizontalAlignment="Stretch" VerticalAlignment="Center" ></TextBlock>
-        <TextBlock x:Name="TxtDate"  Grid.Row="1" Grid.Column="1" FontSize="20" HorizontalAlignment="Stretch" VerticalAlignment="Center" ></TextBlock>
-        <TextBlock Text="Result:" Grid.Row="3" Grid.Column="0" FontSize="15" HorizontalAlignment="Stretch" VerticalAlignment="Center" ></TextBlock>
-        <TextBlock x:Name="TxtResult" Grid.Row="3" Grid.Column="1" FontSize="20" HorizontalAlignment="Stretch" VerticalAlignment="Center" ></TextBlock>
-        <TextBlock  x:Name="Txttype" Grid.Row="4" Grid.Column="1" FontSize="20" HorizontalAlignment="Stretch" VerticalAlignment="Center" ></TextBlock>
-        <TextBlock Text="Test Type" Grid.Row="4" Grid.Column="0" FontSize="15" HorizontalAlignment="Stretch" VerticalAlignment="Center" ></TextBlock>
-        <TextBlock x:Name="TxtMode"  Grid.Row="5" Grid.Column="1" FontSize="20" HorizontalAlignment="Stretch" VerticalAlignment="Center"></TextBlock>
-        <TextBlock Text="Test Mode"  Grid.Row="5" Grid.Column="0" HorizontalAlignment="Stretch" VerticalAlignment="Center"></TextBlock>
+        <TextBlock Text="Test Date    :" Grid.Row="1" Grid.Column="1" Padding="5,5,5,5" Margin="5,5,5,5" FontFamily="Open Sans"  FontSize="12" FontWeight="SemiBold" Foreground="#26639B" HorizontalAlignment="Center" VerticalAlignment="Center" ></TextBlock>
+        <TextBlock x:Name="TxtDate"  Grid.Row="1" Grid.Column="2" Padding="5,5,5,5" Margin="5,5,5,5" FontFamily="Open Sans"  FontSize="12" FontWeight="SemiBold" Foreground="#26639B" HorizontalAlignment="Left" VerticalAlignment="Center" ></TextBlock>
+        <TextBlock Text="Result          :" Grid.Row="3" Grid.Column="1" Padding="5,5,5,5" Margin="5,5,5,5" FontFamily="Open Sans"  FontSize="12" FontWeight="SemiBold" Foreground="#26639B" HorizontalAlignment="Center" VerticalAlignment="Center" ></TextBlock>
+        <TextBlock x:Name="TxtResult" Grid.Row="3" Grid.Column="2" Padding="5,5,5,5" Margin="5,5,5,5" FontFamily="Open Sans"  FontSize="12" FontWeight="SemiBold" Foreground="#26639B"  HorizontalAlignment="Left" VerticalAlignment="Center" ></TextBlock>
+        <TextBlock  x:Name="Txttype" Grid.Row="4" Grid.Column="2" Padding="5,5,5,5" Margin="5,5,5,5" FontFamily="Open Sans"  FontSize="12" FontWeight="SemiBold" Foreground="#26639B" HorizontalAlignment="Left" VerticalAlignment="Center" ></TextBlock>
+        <TextBlock Text="Test Type     :" Grid.Row="4" Grid.Column="1" Padding="5,5,5,5" Margin="5,5,5,5" FontFamily="Open Sans"  FontSize="12" FontWeight="SemiBold" Foreground="#26639B" HorizontalAlignment="Center" VerticalAlignment="Center" ></TextBlock>
+        <TextBlock x:Name="TxtMode"  Grid.Row="5" Grid.Column="2" Padding="5,5,5,5" Margin="5,5,5,5" FontFamily="Open Sans"  FontSize="12" FontWeight="SemiBold" Foreground="#26639B" HorizontalAlignment="Left" VerticalAlignment="Center"></TextBlock>
+        <TextBlock Text="Test Mode    :"  Grid.Row="5" Grid.Column="1" Padding="5,5,5,5" Margin="5,5,5,5" FontFamily="Open Sans"  FontSize="12" FontWeight="SemiBold" Foreground="#26639B" HorizontalAlignment="Center" VerticalAlignment="Center"></TextBlock>
 
         <!--<Button Name="BtnTestData" Grid.Row="6" Margin="0" Grid.Column="0" Content="Test Data" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Click="BtnTestData_Click"></Button>-->
-        <Button x:Name="BtnTestData" Grid.Row="6" Margin="0" Grid.Column="0" Content="Test Data" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Click="BtnTestData_Click"></Button>
-        <Button x:Name="BtnDeleteAll" Visibility="Visible" Grid.Row="6" Margin="5,0,0,0" Grid.Column="3" Content="Delete All" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Click="BtnDeleteAll_Click"></Button>
-       
-        <Button x:Name="BtnTestDataByIndex" Visibility="Collapsed" Grid.Row="7" Grid.Column="0" Content="By Index" Margin="5" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Click="BtnTestDataByIndex_Click"></Button>
-        <TextBox x:Name="TxtTestDataByIndex" Visibility="Collapsed" Grid.Row="7" Grid.Column="1"    Margin="5" HorizontalAlignment="Stretch" VerticalAlignment="Stretch"></TextBox>
-        <Button x:Name="BtnTestNumberOfRecords" Visibility="Collapsed" Grid.Row="8" Grid.Column="0" Content="Records Count" Margin="5" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Click="BtnTestNumberOfRecords_Click"></Button>
+        <Button x:Name="BtnTestData" Width="100" Grid.Row="6" FontFamily="Open Sans"  Grid.Column="1" Padding="5,5,5,5" Margin="15,5,5,5" Content="Test Data"  FontSize="12" FontWeight="SemiBold" CornerRadius="5,5,5,5" Foreground="#FFF" HorizontalAlignment="Center" VerticalAlignment="Center" Click="BtnTestData_Click" Background="#25649E"></Button>
+        <Button x:Name="BtnDeleteAll" Width="100" FontFamily="Open Sans" Visibility="Visible" Grid.Row="6" Padding="5,5,5,5" Margin="5,5,5,5" Grid.Column="2" Content="Delete All" HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="12" FontWeight="SemiBold" CornerRadius="5,5,5,5" Foreground="#FFF" Click="BtnDeleteAll_Click" Background="#ED604A"></Button>
 
+        <Button x:Name="BtnTestDataByIndex" Visibility="Collapsed" Grid.Row="7" FontFamily="Open Sans" Grid.Column="0" Content="By Index" Padding="5,5,5,5" Margin="5,5,5,5" HorizontalAlignment="Center" VerticalAlignment="Center" Click="BtnTestDataByIndex_Click"></Button>
+        <TextBox x:Name="TxtTestDataByIndex" FontFamily="Open Sans"  FontSize="12" FontWeight="SemiBold" Foreground="#26639B" Visibility="Collapsed" Grid.Row="7" Grid.Column="1"    Padding="5,5,5,5" Margin="5,5,5,5" HorizontalAlignment="Center" VerticalAlignment="Center"></TextBox>
+        <Button x:Name="BtnTestNumberOfRecords" Visibility="Collapsed" FontSize="12" FontFamily="Open Sans"  FontWeight="SemiBold" CornerRadius="5,5,5,5" Foreground="#FFF" Background="#26639B" Grid.Row="8" Grid.Column="0" Content="Records Count" Padding="5,5,5,5" Margin="5,5,5,5" HorizontalAlignment="Center" VerticalAlignment="Center" Click="BtnTestNumberOfRecords_Click"/>
     </Grid>
 </Page>

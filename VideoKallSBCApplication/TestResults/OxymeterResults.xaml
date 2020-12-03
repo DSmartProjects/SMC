@@ -7,10 +7,9 @@
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     mc:Ignorable="d"
     Background="{ThemeResource ApplicationPageBackgroundThemeBrush}" Loaded="Page_Loaded">
-
-    <Grid x:Name="datagridtest">
+    <Grid x:Name="datagridtest" Width="400" VerticalAlignment="Center" HorizontalAlignment="Left" BorderBrush="#ECECEC" BorderThickness="0,1,0,0" >
         <Grid.RowDefinitions>
-            <RowDefinition Height="auto"></RowDefinition>
+            <RowDefinition Height="20"></RowDefinition>
             <RowDefinition Height="auto"></RowDefinition>
             <RowDefinition Height="auto"></RowDefinition>
             <RowDefinition Height="auto"></RowDefinition>
@@ -19,21 +18,52 @@
             <RowDefinition Height="auto"></RowDefinition>
         </Grid.RowDefinitions>
         <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="auto"></ColumnDefinition>
+            <ColumnDefinition Width="10"></ColumnDefinition>
             <ColumnDefinition Width="auto"></ColumnDefinition>
             <ColumnDefinition Width="auto"></ColumnDefinition>
             <ColumnDefinition Width="auto"></ColumnDefinition>
         </Grid.ColumnDefinitions>
-          <TextBlock Grid.Row="1" Grid.Column="0" Text="SpO2%     " FontSize="25" HorizontalAlignment="Stretch" VerticalAlignment="Center"  ></TextBlock>
-         <TextBox IsEnabled="False" Grid.Row="1"   Grid.Column="1" Margin="0,0,0,0"   FontSize="50"  x:Name="TextSPO2" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" ></TextBox>
-        <TextBlock Grid.Row="2" Grid.Column="0" FontSize="25"  Text="Pulse Rate" HorizontalAlignment="Stretch" VerticalAlignment="Center"  ></TextBlock>
-        <TextBox IsEnabled="False" Margin="0,5,0,0"  Grid.Row="2" Grid.Column="1"  FontSize="50" x:Name="PRData" HorizontalAlignment="Stretch" VerticalAlignment="Stretch"  ></TextBox>
-        <TextBlock FontSize="20" Text="Test Time: " Grid.Row="0" Grid.Column="0" HorizontalAlignment="Stretch" VerticalAlignment="Center"></TextBlock>
-        <TextBlock FontSize="20" x:Name="TestDatetime"  Grid.Row="0" Grid.Column="1" Grid.ColumnSpan="3" HorizontalAlignment="Stretch" VerticalAlignment="Center"></TextBlock>
+        <TextBlock Grid.Row="2" Grid.Column="1" Text="SpO2%                   :" Padding="5,5,5,5"  FontFamily="Open Sans"  FontSize="12" Margin="5,5,5,5" FontWeight="SemiBold" Foreground="#26639B" HorizontalAlignment="Center" VerticalAlignment="Center"  ></TextBlock>
+        <TextBox IsReadOnly="True" Width="100" BorderThickness="1,1,1,1" CornerRadius="5,5,5,5" FontFamily="Open Sans" FontSize="12" FontWeight="SemiBold" Grid.Row="2"   Grid.Column="2"  Padding="5,5,5,5"    x:Name="TextSPO2" HorizontalAlignment="Center" Margin="5,5,5,5" VerticalAlignment="Center" ></TextBox>
+        <TextBlock Grid.Row="3" Grid.Column="1" FontFamily="Open Sans"  FontSize="12" FontWeight="SemiBold" Foreground="#26639B" Padding="5,5,5,5" Margin="5,5,5,5" Text="Pulse Rate              :" HorizontalAlignment="Center" VerticalAlignment="Center"  ></TextBlock>
+        <TextBox IsReadOnly="True" Width="100" BorderThickness="1,1,1,1" CornerRadius="5,5,5,5" FontFamily="Open Sans" FontSize="12" FontWeight="SemiBold" Padding="5,5,5,5" Grid.Row="3" Grid.Column="2"   x:Name="PRData" HorizontalAlignment="Center" Margin="5,5,5,5" VerticalAlignment="Center"  ></TextBox>
+        <TextBlock FontFamily="Open Sans"  FontSize="12" FontWeight="SemiBold" Foreground="#26639B"  Text="Test Time               :" Padding="5,5,5,5" Margin="5,5,5,5" Grid.Row="1" Grid.Column="1" HorizontalAlignment="Center" VerticalAlignment="Center"></TextBlock>
+        <TextBlock FontFamily="Open Sans"  FontSize="12" FontWeight="SemiBold" Foreground="#26639B"  x:Name="TestDatetime" Padding="5,5,5,5" Margin="5,5,5,5"  Grid.Row="1" Grid.Column="2" Grid.ColumnSpan="3" HorizontalAlignment="Center" VerticalAlignment="Center"></TextBlock>
 
-        <Button x:Name="BtnConnect" IsEnabled="{Binding IsConnected_Oxy,Mode=TwoWay}" Grid.Row="5" Grid.Column="1" Margin="0,10,0,0" Content="Connect" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Click="BtnConnect_Click"/>
-        <TextBlock Text="Connection Time: " Grid.Column="2" Grid.Row="5" HorizontalAlignment="Stretch" VerticalAlignment="Center"></TextBlock>
-        <TextBlock x:Name="TxtConnectionTime" Grid.Column="3" Grid.ColumnSpan="2" Grid.Row="5" HorizontalAlignment="Stretch" VerticalAlignment="Center" FontSize="15"></TextBlock>
+        <Button x:Name="BtnConnect" Width="100" Padding="5,5,5,5" FontSize="12" FontFamily="Open Sans" FontWeight="SemiBold" CornerRadius="5,5,5,5" Foreground="#FFF" Background="#26639B" IsEnabled="{Binding IsConnected_Oxy,Mode=TwoWay}" Grid.Row="5" Grid.Column="2" Margin="0,10,0,0" Content="Connect" HorizontalAlignment="Center" VerticalAlignment="Stretch" Click="BtnConnect_Click"/>
+        <TextBlock Text="Connection Time     : " Padding="5,5,5,5" Grid.Column="1" Grid.Row="4"  FontFamily="Open Sans"  FontSize="12" FontWeight="SemiBold" Foreground="#26639B" HorizontalAlignment="Center" VerticalAlignment="Center"></TextBlock>
+        <TextBlock x:Name="TxtConnectionTime"  Padding="5,5,5,5" Grid.Column="2" Grid.ColumnSpan="2" FontFamily="Open Sans"  FontSize="12" FontWeight="SemiBold" Foreground="#26639B" Grid.Row="4" HorizontalAlignment="Center" VerticalAlignment="Center" ></TextBlock>
 
     </Grid>
+
 </Page>
+
+
+<!--<Grid x:Name="datagridtest">
+    <Grid.RowDefinitions>
+        <RowDefinition Height="auto"></RowDefinition>
+        <RowDefinition Height="auto"></RowDefinition>
+        <RowDefinition Height="auto"></RowDefinition>
+        <RowDefinition Height="auto"></RowDefinition>
+        <RowDefinition Height="auto"></RowDefinition>
+        <RowDefinition Height="auto"></RowDefinition>
+        <RowDefinition Height="auto"></RowDefinition>
+    </Grid.RowDefinitions>
+    <Grid.ColumnDefinitions>
+        <ColumnDefinition Width="auto"></ColumnDefinition>
+        <ColumnDefinition Width="auto"></ColumnDefinition>
+        <ColumnDefinition Width="auto"></ColumnDefinition>
+        <ColumnDefinition Width="auto"></ColumnDefinition>
+    </Grid.ColumnDefinitions>
+    <TextBlock Grid.Row="1" Grid.Column="0" Text="SpO2%     " FontSize="25" HorizontalAlignment="Stretch" VerticalAlignment="Center"  ></TextBlock>
+    <TextBox IsEnabled="False" Grid.Row="1"   Grid.Column="1" Margin="0,0,0,0"   FontSize="50"  x:Name="TextSPO2" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" ></TextBox>
+    <TextBlock Grid.Row="2" Grid.Column="0" FontSize="25"  Text="Pulse Rate" HorizontalAlignment="Stretch" VerticalAlignment="Center"  ></TextBlock>
+    <TextBox IsEnabled="False" Margin="0,5,0,0"  Grid.Row="2" Grid.Column="1"  FontSize="50" x:Name="PRData" HorizontalAlignment="Stretch" VerticalAlignment="Stretch"  ></TextBox>
+    <TextBlock FontSize="20" Text="Test Time: " Grid.Row="0" Grid.Column="0" HorizontalAlignment="Stretch" VerticalAlignment="Center"></TextBlock>
+    <TextBlock FontSize="20" x:Name="TestDatetime"  Grid.Row="0" Grid.Column="1" Grid.ColumnSpan="3" HorizontalAlignment="Stretch" VerticalAlignment="Center"></TextBlock>
+
+    <Button x:Name="BtnConnect" IsEnabled="{Binding IsConnected_Oxy,Mode=TwoWay}" Grid.Row="5" Grid.Column="1" Margin="0,10,0,0" Content="Connect" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Click="BtnConnect_Click"/>
+    <TextBlock Text="Connection Time: " Grid.Column="2" Grid.Row="5" HorizontalAlignment="Stretch" VerticalAlignment="Center"></TextBlock>
+    <TextBlock x:Name="TxtConnectionTime" Grid.Column="3" Grid.ColumnSpan="2" Grid.Row="5" HorizontalAlignment="Stretch" VerticalAlignment="Center" FontSize="15"></TextBlock>
+
+</Grid>-->

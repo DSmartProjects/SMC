@@ -192,6 +192,9 @@
       <DependentUpon>StethoscopeChest.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\TestPanel.xaml.cs" />
+    <Compile Include="Views\UIDeviceListPage.xaml.cs">
+      <DependentUpon>UIDeviceListPage.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Views\Videocallpage.xaml.cs">
       <DependentUpon>Videocallpage.xaml</DependentUpon>
     </Compile>
@@ -318,6 +321,10 @@
     <Page Include="Views\TestPanel.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Views\UIDeviceListPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Views\Videocallpage.xaml">
       <Generator>MSBuild:Compile</Generator>

@@ -43,11 +43,12 @@
 
         <!--Menu bar-->
         <CommandBar   Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="3" Background="LightGray" IsOpen="False" DefaultLabelPosition="Right">
-            <AppBarButton Label="Device List" Command="{Binding DeviceListCommand}"></AppBarButton>
+            <AppBarButton Icon="CellPhone"  ToolTipService.ToolTip="Devices List" Command="{Binding DeviceListCommand}"></AppBarButton>
             <AppBarSeparator/>
-            <AppBarButton Icon="Setting" Label="Settings" Command="{Binding SettingsCommand}"></AppBarButton>
+            <!--<AppBarButton Icon="Setting" Label="Settings" Command="{Binding SettingsCommand}"></AppBarButton>
+            <AppBarSeparator/>-->
+            <AppBarButton Icon="Setting" ToolTipService.ToolTip="Settings" Command="{Binding SettingsCommand}"></AppBarButton>
             <AppBarSeparator/>
-
             <CommandBar.Content>
                 <TextBlock Text="" Margin="12,14"/>
             </CommandBar.Content>

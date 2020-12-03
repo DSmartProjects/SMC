@@ -189,9 +189,9 @@ namespace VideoKallSMC.Views
         private void Chkdiagnostic_Checked(object sender, RoutedEventArgs e)
         {
             CheckBox c = (CheckBox)e.OriginalSource;
-         
 
-            MainPage.mainPage.RightPanelHolder.Visibility = (bool)c.IsChecked ? Visibility : Visibility.Collapsed;
+            //MainPage.mainPage.RightPanelHolder.Visibility = (bool)c.IsChecked ? Visibility : Visibility.Collapsed;
+            MainPage.mainPage.pagePlaceHolder.Navigate(typeof(LoginPage));
         }
 
         private void BtnRec_Click(object sender, RoutedEventArgs e)
@@ -264,6 +264,7 @@ namespace VideoKallSMC.Views
         private void BtnSave_Click(object sender, RoutedEventArgs e)
         {
             WriteConfigFile();
+            MainPage.mainPage.pagePlaceHolder.Navigate(typeof(LogoPage));
         }
 
         private void Page_Loaded(object sender, RoutedEventArgs e)

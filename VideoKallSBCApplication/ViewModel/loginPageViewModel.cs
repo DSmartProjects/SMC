@@ -73,10 +73,11 @@ namespace VideoKallSMC.ViewModel
         public void ExecuteSubmitCommand()
         {
             testPanel = new TestPanel();
-            MainPage.mainPage.RightPanelHolder.Navigate(typeof(TestPanel), testPanel);
+            // MainPage.mainPage.RightPanelHolder.Navigate(typeof(TestPanel), testPanel);
+            MainPage.mainPage.pagePlaceHolder.Navigate(typeof(TestPanel), testPanel);
             if (videocallPage == null)
                 videocallPage = new Videocallpage();
-            MainPage.mainPage.pagePlaceHolder.Navigate(typeof(Settings), videocallPage);
+           // MainPage.mainPage.pagePlaceHolder.Navigate(typeof(Settings), videocallPage);
 
             SBCDB dbmodule = new SBCDB();
             User loggedinUser = dbmodule.GetLoggedinUser(Userid.Trim().ToLower());
