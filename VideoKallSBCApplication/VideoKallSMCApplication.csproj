@@ -18,7 +18,7 @@
     <ProjectTypeGuids>{A5A43C5B-DE2A-4C0C-9213-0A381AF9435A};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
     <WindowsXamlEnableOverview>true</WindowsXamlEnableOverview>
     <AppxPackageSigningEnabled>True</AppxPackageSigningEnabled>
-    <GenerateAppInstallerFile>False</GenerateAppInstallerFile>
+    <GenerateAppInstallerFile>True</GenerateAppInstallerFile>
     <PackageCertificateThumbprint>A08B11E0DA69C012849AEAEEB9A0B5707111C1DC</PackageCertificateThumbprint>
     <AppxPackageSigningTimestampDigestAlgorithm>SHA512</AppxPackageSigningTimestampDigestAlgorithm>
     <AppxAutoIncrementPackageRevision>True</AppxAutoIncrementPackageRevision>
@@ -28,9 +28,10 @@
     <HoursBetweenUpdateChecks>9600</HoursBetweenUpdateChecks>
     <AppxPackageSigningTimestampServerUrl>http://videokall.com</AppxPackageSigningTimestampServerUrl>
     <PackageCertificateKeyFile>VideoKallSBCApplication_TemporaryKey.pfx</PackageCertificateKeyFile>
-    <AppxPackageDir>C:\Sujit\dsmart\smc\SMC PROJECT\Project\build\</AppxPackageDir>
+    <AppxPackageDir>C:\Rama\Release\04-12-2020\SMC</AppxPackageDir>
     <AppInstallerUpdateFrequency>400</AppInstallerUpdateFrequency>
     <AppInstallerCheckForUpdateFrequency>Daily</AppInstallerCheckForUpdateFrequency>
+    <AppInstallerUri>C:\Rama\Release\04-12-2020\SMC</AppInstallerUri>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Debug|x86'">
     <DebugSymbols>true</DebugSymbols>
@@ -257,6 +258,7 @@
     <Content Include="Assets\patient.png" />
     <Content Include="Assets\sbcimg.PNG" />
     <Content Include="Assets\SBC_Ring_Tone.mp4" />
+    <Content Include="Assets\SMC_Outgoing_Call.mp4" />
     <Content Include="Assets\tap.png" />
     <Content Include="Assets\Top-logo.png" />
     <Content Include="Assets\video-icon.png" />
@@ -415,7 +417,7 @@
   </ItemGroup>
   <ItemGroup>
     <Reference Include="Microsoft.Samples.SimpleCommunication">
-      <HintPath>..\Microsoft.Samples.SimpleCommunication\Microsoft.Samples.SimpleCommunication.winmd</HintPath>
+      <HintPath>..\VideoCallSDK\X86\Debug\Microsoft.Samples.SimpleCommunication\Microsoft.Samples.SimpleCommunication.winmd</HintPath>
     </Reference>
   </ItemGroup>
   <PropertyGroup Condition=" '$(VisualStudioVersion)' == '' or '$(VisualStudioVersion)' &lt; '14.0' ">

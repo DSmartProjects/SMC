@@ -22,7 +22,7 @@
 
         <MediaElement x:Name="RemoteVideo" Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="2" Grid.RowSpan="3" Stretch="UniformToFill" HorizontalAlignment="Stretch" VerticalAlignment="Stretch"  AudioCategory="Communications" PosterSource="..\Assets\VideoPlaceHolder_Image.png" />
 
-        <MediaElement x:Name="CallingScreen" Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="2" Grid.RowSpan="3" Stretch="UniformToFill" AudioCategory="Communications" PosterSource="..\Assets\Call-Connecting-bg.png" />
+        <MediaElement x:Name="CallingScreen" AutoPlay="False" Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="2" Grid.RowSpan="3" Stretch="UniformToFill" AudioCategory="Communications" Source="..\Assets\SMC_Outgoing_Call.mp4" PosterSource="..\Assets\Call-Connecting-bg.png" />
 
 
         <Grid Grid.Row="0" HorizontalAlignment="Left" Margin="30, 10, 0, 70">
@@ -41,15 +41,13 @@
 
                 <Button Grid.Row="2" x:Name="btnInitConsult" CornerRadius="5"  HorizontalAlignment="Center" Background="LightSeaGreen" Foreground="White"  Margin="8,0,0,0"  Height="40" Content="Initiate Consultation"  Click="CallButton_Click"/>
             </StackPanel>
-
-
         </StackPanel>
+        
+        <StackPanel Grid.Column="0" Grid.Row="2" Orientation="Vertical" HorizontalAlignment="Center" VerticalAlignment="Top" Margin="300,0,0,0" >
 
-        <StackPanel Grid.Column="0" Grid.Row="2" Orientation="Vertical" HorizontalAlignment="Center" VerticalAlignment="Top" Margin="300,0,30,20" >
+            <Button Grid.Row="2" x:Name="btnEndConsult" Height="50" Width="50" CornerRadius="35" Background="Transparent" Margin="0,0,30,0" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Padding="0" BorderThickness="0" Click="EndCallButton_Click">
 
-            <Button Grid.Row="2" x:Name="btnEndConsult" CornerRadius="35" Background="Transparent" Margin="0,50,0,0" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Padding="0" BorderThickness="0" Click="EndCallButton_Click">
-
-                <Image Source="..\Assets\end-call.png" Height="50" Width="50" />
+                <Image Source="..\Assets\end-call.png" Height="50" Width="50" RenderTransformOrigin="0.5,0.502" />
 
             </Button>
         </StackPanel>

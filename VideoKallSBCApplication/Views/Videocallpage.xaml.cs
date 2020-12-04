@@ -81,6 +81,7 @@ namespace VideoKallSMC.Views
                     PreviewVideo.Visibility = Visibility.Visible;
                     HostNameTextbox.IsEnabled = btnInitConsult.IsEnabled = false;
                     RemoteVideo.Visibility = Visibility.Collapsed;
+                    CallingScreen.Play();                  
                     CallingScreen.Visibility = Visibility.Visible;
                     //OutgoingCall.Visibility = Visibility.Visible;
                     //OutgoingCall.Play();
@@ -94,7 +95,7 @@ namespace VideoKallSMC.Views
                 throw;
             }
         }
-
+               
         public async void InitializePreviewVideo()
         {
             try
@@ -143,7 +144,7 @@ namespace VideoKallSMC.Views
                 await StartRecordToCustomSink();
 
                 HostNameTextbox.IsEnabled = btnInitConsult.IsEnabled = true;
-                btnEndConsult.IsEnabled = false;
+                btnEndConsult.IsEnabled = true;
                 RemoteVideo.Source = null;
 
                 // Each client starts out as passive
@@ -172,6 +173,7 @@ namespace VideoKallSMC.Views
             e.Accept();
             await Dispatcher.RunAsync(CoreDispatcherPriority.Normal, (() =>
             {
+                CallingScreen.Stop();
                 CallingScreen.Visibility = Visibility.Collapsed;
                 //OutgoingCall.Visibility = Visibility.Collapsed;
                 //OutgoingCall.Stop();
@@ -206,7 +208,7 @@ namespace VideoKallSMC.Views
                 if (Interlocked.CompareExchange(ref isTerminator, 1, 0) == 0)
                 {
                     await EndCallAsync();
-                    this.Frame.Navigate(typeof(LogoPage));
+                  //  this.Frame.Navigate(typeof(LogoPage));
                 }
             }
             catch (Exception ex)
