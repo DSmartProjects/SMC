@@ -39,16 +39,16 @@ namespace VideoKallSMC.Views
             msgConnect.Visibility = Visibility.Collapsed;
             //bpcuff.NotifyStatusMessage += NotifyMessage;
             TestTypes.Add("Select a Test types");
-            TestTypes.Add("Blood Pressure");
-            TestTypes.Add("Thermometer");
+            TestTypes.Add("Blood Pressure Cuff");
             TestTypes.Add("Pulse Oximeter");
-            TestTypes.Add("Spirometry");
-            TestTypes.Add("Gluco Monitor");
-            TestTypes.Add("Stethoscope(Chest)");
-            TestTypes.Add("Stethoscope (Back)");
+            TestTypes.Add("Thermometer");
+            TestTypes.Add("Dermatoscope");
             TestTypes.Add("Otoscope");
-            TestTypes.Add("Dermascope");
-            TestTypes.Add("EKG");
+            TestTypes.Add("Spirometer");
+            TestTypes.Add("Glucose Monitor");
+            TestTypes.Add("Chest Stethoscope");
+            TestTypes.Add("Seat Back Stethoscope");  
+           // TestTypes.Add("EKG");
             TestTypesList.ItemsSource = TestTypes;
         }
 
@@ -63,35 +63,43 @@ namespace VideoKallSMC.Views
             var colorName = e.AddedItems[0] ;
             switch (e.AddedItems[0].ToString().ToLower())
             {
-                case "blood pressure":
+                case "blood pressure cuff":
                     _testPanelVM.IsMsgConnected = Visibility.Collapsed;
                     // BPCuffPage bp = new BPCuffPage();
                     TestResultDisplay.Navigate(typeof(BPCuffPage));
+                    break;
+                case "pulse oximeter":
+                    _testPanelVM.IsMsgConnected = Visibility.Collapsed;
+                    TestResultDisplay.Navigate(typeof(OxymeterResults), _testPanelVM);
                     break;
                 case "thermometer":
                     _testPanelVM.IsMsgConnected = Visibility.Collapsed;
                     TestResultDisplay.Navigate(typeof(ThermoMeter),_testPanelVM);
                     break;
-                case "pulse oximeter":
+                case "dermatoscope":
                     _testPanelVM.IsMsgConnected = Visibility.Collapsed;
-                    TestResultDisplay.Navigate(typeof(OxymeterResults),_testPanelVM);
+                    TestResultDisplay.Navigate(typeof(DefaultTest));
                     break;
-                case "gluco monitor":
+                case "Otoscope":
+                    _testPanelVM.IsMsgConnected = Visibility.Collapsed;
+                    TestResultDisplay.Navigate(typeof(DefaultTest));
+                    break;
+                case "spirometer":
+                    _testPanelVM.IsMsgConnected = Visibility.Collapsed;
+                    TestResultDisplay.Navigate(typeof(DefaultTest));
+                    break;
+                case "glucose monitor":
                     _testPanelVM.IsMsgConnected = Visibility.Collapsed;
                     TestResultDisplay.Navigate(typeof(Glucometer), _testPanelVM);
                     break;
-                case "stethoscope(chest)":
+                case "chest stethoscope":
                     _testPanelVM.IsMsgConnected = Visibility.Collapsed;
                     TestResultDisplay.Navigate(typeof(StethoscopeChest));
                     break;
-                case "dermascope":
+                case "seat back stethoscope":
                     _testPanelVM.IsMsgConnected = Visibility.Collapsed;
-                    TestResultDisplay.Navigate(typeof(DefaultTest));
-                    break;
-
-                default:
-                    TestResultDisplay.Navigate(typeof(DefaultTest));
-                    break;
+                    TestResultDisplay.Navigate(typeof(StethoscopeChest));
+                    break;                
             }
         }
     }

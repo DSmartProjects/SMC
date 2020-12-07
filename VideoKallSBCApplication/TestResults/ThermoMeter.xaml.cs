@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Globalization;
 using System.IO;
 using System.Linq;
 using System.Runtime.InteropServices.WindowsRuntime;
@@ -64,7 +65,8 @@ namespace VideoKallSBCApplication.TestResults
                 if (type == DeviceTypesenums.THERMOMETER)
                 {
                     //BtnTempConnect.IsEnabled = true;
-                    TxtConnectionTime.Text = parm2;
+                    // TxtConnectionTime.Text = parm2;
+                    TxtConnectionTime.Text= Convert.ToDateTime(parm2).ToString( CultureInfo.CreateSpecificCulture(Constants.US_DATE_FORMATE));
                 }
             });
         }        
@@ -90,8 +92,9 @@ namespace VideoKallSBCApplication.TestResults
                     TxtTemprature.Text = "Error: Lo";
 
                 TxtTestMode.Text = res.Mode;
-                TxtTestTime.Text = res.DateTimeOfTest.ToString();
-                
+                // TxtTestTime.Text = res.DateTimeOfTest.ToString();
+                TxtTestTime.Text= Convert.ToDateTime(res.DateTimeOfTest).ToString(CultureInfo.CreateSpecificCulture(Constants.US_DATE_FORMATE));
+
             });
         }
 
@@ -109,7 +112,13 @@ namespace VideoKallSBCApplication.TestResults
         
         private void Page_Loaded(object sender, RoutedEventArgs e)
         {
-            TxtConnectionTime.Text= MainPage.TestresultModel.ThermoResult.ConnectionTime;
+            
+            if (MainPage.TestresultModel != null && !string.IsNullOrEmpty(MainPage.TestresultModel.ThermoResult.ConnectionTime))
+            {
+                string bpCuffConnTime = Convert.ToDateTime(MainPage.TestresultModel.ThermoResult.ConnectionTime).ToString( CultureInfo.CreateSpecificCulture(Constants.US_DATE_FORMATE)); 
+                TxtConnectionTime.Text = Convert.ToDateTime(MainPage.TestresultModel.ThermoResult.ConnectionTime).ToString( CultureInfo.CreateSpecificCulture(Constants.US_DATE_FORMATE));
+            }
+            //TxtConnectionTime.Text= MainPage.TestresultModel.ThermoResult.ConnectionTime;
         }
 
         private void TxtTmpUnitbtn_Toggled(object sender, RoutedEventArgs e)

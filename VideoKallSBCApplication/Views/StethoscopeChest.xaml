@@ -20,7 +20,7 @@
             <ColumnDefinition Width="auto"></ColumnDefinition>
             <ColumnDefinition Width="auto"></ColumnDefinition>
         </Grid.ColumnDefinitions>
-        <Button  Grid.Row="1" Grid.Column="3" Width="150" Margin="20,10,10,10" Background="#25649E" FontSize="12" FontWeight="SemiBold" CornerRadius="5,5,5,5" Foreground="#FFF" Command="{Binding StartTXCommand}" IsEnabled="{Binding IsStreaming, UpdateSourceTrigger=PropertyChanged}"  Content="Start Tx" HorizontalAlignment="Right" VerticalAlignment="Center"></Button>
+        <Button  Grid.Row="2"  Grid.Column="1" Width="150" Margin="20,10,10,10" Background="#25649E" FontSize="12" FontWeight="SemiBold" CornerRadius="5,5,5,5" Foreground="#FFF" Command="{Binding StartTXCommand}" IsEnabled="{Binding IsStreaming, UpdateSourceTrigger=PropertyChanged}"  Content="Start Tx" HorizontalAlignment="Right" VerticalAlignment="Center"></Button>
         <Button Visibility="Collapsed" Margin="5,0,0,0"  Grid.Row="0" Grid.Column="1" Command="{Binding RecordTXCommand}" Content="Record" HorizontalAlignment="Stretch"></Button>
 
         <TextBlock Text="{Binding TxNotification, Mode=OneWay, UpdateSourceTrigger=PropertyChanged}" Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="2"></TextBlock>

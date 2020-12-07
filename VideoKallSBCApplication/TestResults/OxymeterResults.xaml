@@ -5,8 +5,12 @@
     xmlns:local="using:VideoKallSBCApplication.TestResults"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:conv="using:VideoKallSBCApplication.Helpers"
     mc:Ignorable="d"
     Background="{ThemeResource ApplicationPageBackgroundThemeBrush}" Loaded="Page_Loaded">
+    <Page.Resources>
+        <conv:DateFormatConverter x:Name="DateToStringFormatConverter"/>
+    </Page.Resources>
     <Grid x:Name="datagridtest" Width="400" VerticalAlignment="Center" HorizontalAlignment="Left" BorderBrush="#ECECEC" BorderThickness="0,1,0,0" >
         <Grid.RowDefinitions>
             <RowDefinition Height="20"></RowDefinition>

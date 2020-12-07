@@ -144,6 +144,7 @@
     <Compile Include="Communication\DataacquistionappComm.cs" />
     <Compile Include="Communication\socketComm.cs" />
     <Compile Include="Helpers\Contstants.cs" />
+    <Compile Include="Helpers\DateFormatConverter.cs" />
     <Compile Include="MainPage.xaml.cs">
       <DependentUpon>MainPage.xaml</DependentUpon>
     </Compile>

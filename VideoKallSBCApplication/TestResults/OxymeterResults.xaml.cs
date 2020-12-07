@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel;
+using System.Globalization;
 using System.IO;
 using System.Linq;
 using System.Runtime.InteropServices.WindowsRuntime;
@@ -48,7 +49,8 @@ namespace VideoKallSBCApplication.TestResults
             {
                 if (type == DeviceTypesenums.OXIMETER)
                 {
-                    TxtConnectionTime.Text = parm2;
+                    //TxtConnectionTime.Text = parm2;
+                    TxtConnectionTime.Text= Convert.ToDateTime(parm2).ToString(CultureInfo.CreateSpecificCulture(Constants.US_DATE_FORMATE));
                 }
             });
         }
@@ -76,8 +78,9 @@ namespace VideoKallSBCApplication.TestResults
              {
                  TextSPO2.Text = data.spo2;
                  PRData.Text = data.PR;
-                 TestDatetime.Text = data.DateTimeOfTest.ToString();
-            });
+                 //TestDatetime.Text = data.DateTimeOfTest.ToString();
+                 TestDatetime.Text= Convert.ToDateTime(data.DateTimeOfTest).ToString(CultureInfo.CreateSpecificCulture(Constants.US_DATE_FORMATE));
+             });
         }
 
         private void BtnConnect_Click(object sender, RoutedEventArgs e)

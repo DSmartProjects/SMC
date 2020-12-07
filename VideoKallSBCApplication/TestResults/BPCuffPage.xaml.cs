@@ -1,10 +1,12 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel;
+using System.Globalization;
 using System.IO;
 using System.Linq;
 using System.Runtime.InteropServices.WindowsRuntime;
 using VideoKallSBCApplication;
+using VideoKallSBCApplication.Helpers;
 using VideoKallSMC.Views;
 using Windows.Foundation;
 using Windows.Foundation.Collections;
@@ -42,7 +44,8 @@ namespace VideoKallSBCApplication.TestResults
                 if (type == DeviceTypesenums.BPMONITOR && status)
                 {
                     isConnected = status;
-                    ConnectionTime = datetime;
+                   // ConnectionTime = datetime;
+                   ConnectionTime= Convert.ToDateTime(datetime).ToString(CultureInfo.CreateSpecificCulture(Constants.US_DATE_FORMATE));
                     OnPropertyChanged("ConnectionTime");
                     OnPropertyChanged("isConnected");
                 }
@@ -57,7 +60,8 @@ namespace VideoKallSBCApplication.TestResults
         {
             await Dispatcher.RunAsync(CoreDispatcherPriority.Normal, () =>
             {
-                TestDateTime = res.DateTimeOfTest.ToString();
+                //TestDateTime = res.DateTimeOfTest.ToString();
+                TestDateTime= Convert.ToDateTime(res.DateTimeOfTest).ToString(CultureInfo.CreateSpecificCulture(Constants.US_DATE_FORMATE));
                 ResultSys = res.SYS.ToString();
                 ResultDia = res.DIA.ToString();
                 ResultPulse = res.Pulse.ToString();
@@ -83,7 +87,13 @@ namespace VideoKallSBCApplication.TestResults
         private void Page_Loaded(object sender, RoutedEventArgs e)
         {
             isConnected = MainPage.TestresultModel.IsBpConnected;
-            ConnectionTime = MainPage.TestresultModel.BpCuffConnectionTime;
+            if (MainPage.TestresultModel!=null && !string.IsNullOrEmpty(MainPage.TestresultModel.BpCuffConnectionTime))
+            {
+                //  DateTime bpCuffConnTime = Convert.ToDateTime(MainPage.TestresultModel.BpCuffConnectionTime);
+                string bpCuffConnTime=Convert.ToDateTime(MainPage.TestresultModel.ThermoResult.ConnectionTime).ToString(CultureInfo.CreateSpecificCulture(Constants.US_DATE_FORMATE));
+                ConnectionTime = Convert.ToDateTime(MainPage.TestresultModel.BpCuffConnectionTime).ToString( CultureInfo.CreateSpecificCulture(Constants.US_DATE_FORMATE)); ;
+            }
+           
             OnPropertyChanged("isConnected");
             OnPropertyChanged("ConnectionTime");
         }
