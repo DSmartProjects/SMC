@@ -37,7 +37,7 @@
 
             <StackPanel  Orientation="Horizontal" Grid.Row="2" HorizontalAlignment="Center" VerticalAlignment="Bottom" Margin="0,0,30,20">
 
-                <TextBox x:Name="HostNameTextbox" HorizontalAlignment="Center" CornerRadius="5" Padding="10,9,10,10" TextAlignment="Left" PlaceholderText="Enter an IP Address..." Height="40" Width="155" VerticalAlignment="Stretch"/>
+                <!--<TextBox x:Name="HostNameTextbox" HorizontalAlignment="Center" CornerRadius="5" Padding="10,9,10,10" TextAlignment="Left" PlaceholderText="Enter an IP Address..." Height="40" Width="155" VerticalAlignment="Stretch"/>-->
 
                 <Button Grid.Row="2" x:Name="btnInitConsult" CornerRadius="5"  HorizontalAlignment="Center" Background="LightSeaGreen" Foreground="White"  Margin="8,0,0,0"  Height="40" Content="Initiate Consultation"  Click="CallButton_Click"/>
             </StackPanel>

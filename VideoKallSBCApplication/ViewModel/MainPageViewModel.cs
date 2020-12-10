@@ -125,6 +125,11 @@ namespace VideoKallSMC.ViewModel
         public string TxtPortNumber { get; set; }
         public string TxtIPAddress { get; set; }
 
+        private string _npt_IPAddress = null;
+        public string NPT_IPAddress { get { return _npt_IPAddress; } set { _npt_IPAddress = value; OnPropertyChanged("NPT_IPAddress"); } }
+
+
+
         public void UpdateIPaddress (string ip,string port)
         {
             TxtPortNumber = port;

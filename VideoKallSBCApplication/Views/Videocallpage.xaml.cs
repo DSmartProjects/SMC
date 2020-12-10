@@ -40,14 +40,14 @@ namespace VideoKallSMC.Views
         }
         public void DefaultVisibilities()
         {
-            HostNameTextbox.Visibility = Visibility.Visible;
+            //HostNameTextbox.Visibility = Visibility.Visible;
             btnInitConsult.Visibility = Visibility.Visible;
             PreviewVideo.Visibility = Visibility.Collapsed;
             RemoteVideo.Visibility = Visibility.Visible;
             CallingScreen.Visibility = Visibility.Collapsed;
             //OutgoingCall.Visibility = Visibility.Collapsed;
             btnEndConsult.Visibility = Visibility.Collapsed;
-            HostNameTextbox.Visibility = Visibility.Visible;
+           // HostNameTextbox.Visibility = Visibility.Visible;
         }
 
         private async void CallDevice(CaptureDevice device)
@@ -73,13 +73,13 @@ namespace VideoKallSMC.Views
         {
             try
             {
-                if (HostNameTextbox.Text != "")
+                if (MainPage.mainPage.mainpagecontext.NPT_IPAddress!= "")
                 {
-                    var address = HostNameTextbox.Text; //VideoVM!=null&&!string.IsNullOrEmpty(VideoVM.IpAddress)?VideoVM.IpAddress:string.Empty;
+                    var address = MainPage.mainPage.mainpagecontext.NPT_IPAddress; //VideoVM!=null&&!string.IsNullOrEmpty(VideoVM.IpAddress)?VideoVM.IpAddress:string.Empty;
                     roleIsActive = true;
                     RemoteVideo.Source = new Uri("stsp://" + address);
                     PreviewVideo.Visibility = Visibility.Visible;
-                    HostNameTextbox.IsEnabled = btnInitConsult.IsEnabled = false;
+                  //  HostNameTextbox.IsEnabled = btnInitConsult.IsEnabled = false;
                     RemoteVideo.Visibility = Visibility.Collapsed;
                     CallingScreen.Play();                  
                     CallingScreen.Visibility = Visibility.Visible;
@@ -87,7 +87,7 @@ namespace VideoKallSMC.Views
                     //OutgoingCall.Play();
                     btnEndConsult.Visibility = Visibility.Visible;
                     btnInitConsult.Visibility = Visibility.Collapsed;
-                    HostNameTextbox.Visibility = Visibility.Collapsed;
+                   // HostNameTextbox.Visibility = Visibility.Collapsed;
                 }
             }
             catch (Exception)
@@ -143,7 +143,7 @@ namespace VideoKallSMC.Views
                 await device.InitializeAsync();
                 await StartRecordToCustomSink();
 
-                HostNameTextbox.IsEnabled = btnInitConsult.IsEnabled = true;
+                //HostNameTextbox.IsEnabled = btnInitConsult.IsEnabled = true;
                 btnEndConsult.IsEnabled = true;
                 RemoteVideo.Source = null;
 
@@ -194,7 +194,7 @@ namespace VideoKallSMC.Views
                     // Passive client
                     RemoteVideo.Source = new Uri(remoteAddress);
                     device = new CaptureDevice();
-                    HostNameTextbox.IsEnabled = btnInitConsult.IsEnabled = false;
+                   // HostNameTextbox.IsEnabled = btnInitConsult.IsEnabled = false;
                 }
 
                 remoteAddress = remoteAddress.Replace("stsp://", "");

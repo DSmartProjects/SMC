@@ -46,6 +46,7 @@ namespace VideoKallSMC.Views
             Dfaultsettings.GAIN = "0";
             Dfaultsettings.CODEC = "";
             Dfaultsettings.RECORDING_DEVICE_ID = "7";
+            Dfaultsettings.NPT_IPAddress = MainPage.mainPage.mainpagecontext.NPT_IPAddress;
             //RECORDING-DEVICE-ID:11
 
             StSettings.IP = MainPage.mainPage.commChannel.IPAddress;
@@ -59,6 +60,7 @@ namespace VideoKallSMC.Views
             StSettings.GAIN = "0";
             StSettings.CODEC = "";
             StSettings.RECORDING_DEVICE_ID = "7";
+            StSettings.NPT_IPAddress = MainPage.mainPage.mainpagecontext.NPT_IPAddress;
             ReadRecordingDevices();
             // IP: 192.168.0.33
             //PORT: 8445
@@ -118,6 +120,9 @@ namespace VideoKallSMC.Views
                         case "RECORDING-DEVICE-ID":
                             StSettings.RECORDING_DEVICE_ID = data[1];
                             break;
+                        case "NPT-IP-Address":
+                            MainPage.mainPage.mainpagecontext.NPT_IPAddress = data[1];
+                            break;
 
                     }
                 }
@@ -160,7 +165,9 @@ namespace VideoKallSMC.Views
                              "FREQUENCYLUNGS" + ":" + StSettings.FREQUENCYLUNGS + Environment.NewLine +
                              "GAIN" + ":" + StSettings.GAIN + Environment.NewLine +
                              "CODEC" + ":" + StSettings.CODEC + Environment.NewLine +
-                             "RECORDING-DEVICE-ID" + ":" + StSettings.RECORDING_DEVICE_ID + Environment.NewLine;
+                             "RECORDING-DEVICE-ID" + ":" + StSettings.RECORDING_DEVICE_ID + Environment.NewLine +
+                             "NPT-IP-Address" + ":" + MainPage.mainPage.mainpagecontext.NPT_IPAddress +
+                             Environment.NewLine;
 
                 var localFolder = Windows.Storage.ApplicationData.Current.LocalFolder;
                 Windows.Storage.StorageFile pinfofile = await localFolder.CreateFileAsync(StConfigFile, CreationCollisionOption.OpenIfExists);
@@ -288,5 +295,7 @@ namespace VideoKallSMC.Views
       public  string GAIN;//:0
       public  string CODEC;//:""
       public  string RECORDING_DEVICE_ID;//:11
+      public string  NPT_IPAddress;//:11
+        
     }
 }
