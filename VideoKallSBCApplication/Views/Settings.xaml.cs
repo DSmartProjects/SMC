@@ -148,12 +148,13 @@ namespace VideoKallSMC.Views
         {
             try
             {
-               string RecDevice = (string)CmbRecordingDevices.SelectedValue;
+                string RecDevice = (string)CmbRecordingDevices.SelectedValue;
                 StSettings.RECORDING_DEVICE_ID = RecDevice.Split(':')[0];
                 StSettings.CUTOFFFILTER = TxtFilterHeart.Text;
                 StSettings.CUTOFFFILTERLUNGS = TxtFilterlungs.Text;
                 StSettings.FREQUENCYHEART = TxtFrequencyHeart.Text;
                 StSettings.FREQUENCYLUNGS = TxtFrequencylungs.Text;
+                StSettings.IP = MainPage.mainPage.mainpagecontext.TxtIPAddress;
                 RecdevID.Text = StSettings.RECORDING_DEVICE_ID;
                 string msg =  "IP" + ":" + StSettings.IP + Environment.NewLine +
                              "PORT" + ":" + StSettings.PORT + Environment.NewLine +
