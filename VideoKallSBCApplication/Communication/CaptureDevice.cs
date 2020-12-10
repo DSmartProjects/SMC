@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 using Windows.Devices.Enumeration;
 using Windows.Media.Capture;
 using Windows.Media.MediaProperties;
-
+using Windows.Storage;
 
 namespace VideoKallSBCApplication.Communication
 {
@@ -70,6 +70,22 @@ namespace VideoKallSBCApplication.Communication
             CleanupSink();
         }
 
+        public async void LogDevice(string msg)
+        {
+            try
+            {
+                // msg = DateTime.Now.ToString() + ":" + Environment.NewLine + msg + Environment.NewLine;
+                msg = Environment.NewLine + msg + Environment.NewLine;
+                string filename = "CameraAndAudio.txt";
+                var localFolder = Windows.Storage.ApplicationData.Current.LocalFolder;
+                Windows.Storage.StorageFile pinfofile = await localFolder.CreateFileAsync(filename, CreationCollisionOption.ReplaceExisting);
+                //  await Windows.Storage.FileIO.AppendTextAsync(pinfofile, msg, Windows.Storage.Streams.UnicodeEncoding.Utf8);
+                await Windows.Storage.FileIO.WriteTextAsync(pinfofile, msg, Windows.Storage.Streams.UnicodeEncoding.Utf8);
+            }
+            catch (Exception)
+            { }
+        }
+
         public async Task InitializeAsync()
         {
             try
@@ -84,7 +100,48 @@ namespace VideoKallSBCApplication.Communication
                 mediaCapture = new MediaCapture();
                 mediaCapture.Failed += mediaCapture_Failed;
 
-                await mediaCapture.InitializeAsync();
+                DeviceInformationCollection cameraDevice = await DeviceInformation.FindAllAsync(DeviceClass.VideoCapture );
+                DeviceInformationCollection coll = await DeviceInformation.FindAllAsync(DeviceClass.AudioCapture);
+
+                string cameraID = string.Empty;
+                string cameraList = "";
+                for (int i = 0; i < cameraDevice.Count(); i++)
+                {
+                    DeviceInformation dinfo = cameraDevice[i];
+                    string name = dinfo.Name;
+                    string id = dinfo.Id;
+                    string type = dinfo.Kind.ToString();
+                    cameraID = id;
+                    EnclosureLocation panel= dinfo.EnclosureLocation;
+                    cameraList += ":" + name+" : location: "+panel.Panel.ToString();
+                    if (panel.Panel == Panel.Front)
+                    {
+                        cameraList += " : camera used:  " + name;
+                        break;
+                    }
+                }
+
+                cameraList += " : Audio->";
+                string micID = string.Empty;
+                for (int i = 0; i < coll.Count(); i++)
+                {
+                    DeviceInformation dinfo = coll[i];
+                    string name = dinfo.Name;
+                    string id = dinfo.Id;
+                    string type = dinfo.Kind.ToString();
+                    cameraList += ":" + name;
+                    
+                    if (name.Contains("Microphone Array"))
+                    {
+                        micID = dinfo.Id;
+                        string msg = name;
+                        cameraList += " : audio used:  " + name;
+                        break;
+                    }
+                }
+                LogDevice(cameraList);
+                var settings = new MediaCaptureInitializationSettings { AudioDeviceId = micID, VideoDeviceId = cameraID };
+                await mediaCapture.InitializeAsync(settings); 
             }
             catch (Exception e)
             {
