@@ -127,7 +127,64 @@ namespace VideoKallSMC.ViewModel
 
         private string _npt_IPAddress = null;
         public string NPT_IPAddress { get { return _npt_IPAddress; } set { _npt_IPAddress = value; OnPropertyChanged("NPT_IPAddress"); } }
-
+        string StConfigFile = "ST_sbcConfig.txt";
+        public async Task<bool> ReadSMCConfig()
+        {
+            try
+            {
+                var localFolder = Windows.Storage.ApplicationData.Current.LocalFolder;
+                Windows.Storage.StorageFile IpAddressFile = await localFolder.GetFileAsync(StConfigFile);
+                var alltext = await Windows.Storage.FileIO.ReadLinesAsync(IpAddressFile);
+                foreach (var line in alltext)
+                {
+                    string[] data = line.Split(':');
+                    switch (data[0])
+                    {
+                        //case "IP":
+                        //    StSettings.IP = data[1];
+                        //    break;
+                        //case "PORT":// 8445
+                        //    StSettings.PORT = data[1];
+                        //    break;
+                        //case "USERNAME":
+                        //    StSettings.USERNAME = data[1];
+                        //    break;
+                        //case "PASSWORD":
+                        //    StSettings.PASSWORD = data[1];
+                        //    break;
+                        //case "CUTOFFFILTER":
+                        //    StSettings.CUTOFFFILTER = data[1];
+                        //    break;
+                        //case "CUTOFFFILTERLUNGS":
+                        //    StSettings.CUTOFFFILTERLUNGS = data[1];
+                        //    break;
+                        //case "FREQUENCYHEART":
+                        //    StSettings.FREQUENCYHEART = data[1];
+                        //    break;
+                        //case "FREQUENCYLUNGS":
+                        //    StSettings.FREQUENCYLUNGS = data[1];
+                        //    break;
+                        //case "GAIN":
+                        //    StSettings.GAIN = data[1];
+                        //    break;
+                        //case "CODEC":
+                        //    StSettings.CODEC = data[1];
+                        //    break;
+                        //case "RECORDING-DEVICE-ID":
+                        //    StSettings.RECORDING_DEVICE_ID = data[1];
+                        //    break;
+                        case "NPT-IP-Address":
+                            MainPage.mainPage.mainpagecontext.NPT_IPAddress = data[1];
+                            break;
+                    }
+                }
+            }
+            catch (Exception)
+            {
+                return false;
+            }
+            return true;
+        }
 
 
         public void UpdateIPaddress (string ip,string port)
