@@ -50,7 +50,7 @@ namespace VideoKallSMC.ViewModel
         }
         public void ExecuteLogOffCommand()
         {
-             MainPage.mainPage.pagePlaceHolder.Navigate(typeof(LogoPage));
+             MainPage.mainPage.pagePlaceHolder.Navigate(typeof(Videocallpage));
              MainPage.mainPage.RightPanelHolder.Navigate(typeof(LoginPage));
         }
         //Settings
@@ -97,7 +97,7 @@ namespace VideoKallSMC.ViewModel
         }
         public  void ExecuteDoneCommand()
         {
-             MainPage.mainPage.pagePlaceHolder.Navigate(typeof(LogoPage));
+             MainPage.mainPage.pagePlaceHolder.Navigate(typeof(Videocallpage));
         }
 
         private ICommand _DeviceListCommand = null;

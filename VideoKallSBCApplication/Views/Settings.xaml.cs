@@ -274,7 +274,7 @@ namespace VideoKallSMC.Views
         private void BtnSave_Click(object sender, RoutedEventArgs e)
         {
             WriteConfigFile();
-            MainPage.mainPage.pagePlaceHolder.Navigate(typeof(LogoPage));
+            MainPage.mainPage.pagePlaceHolder.Navigate(typeof(Videocallpage));
         }
 
         private void Page_Loaded(object sender, RoutedEventArgs e)

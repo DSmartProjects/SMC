@@ -36,7 +36,7 @@ namespace VideoKallSBCApplication.Views
 
         private void GoHome_Click(object sender, RoutedEventArgs e)
         {
-            this.Frame.Navigate(typeof(LogoPage));
+            this.Frame.Navigate(typeof(Videocallpage));
         }
 
         //public void setTimeout(Action TheAction, int Timeout)

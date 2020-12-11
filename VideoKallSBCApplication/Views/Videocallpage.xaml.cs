@@ -56,6 +56,13 @@ namespace VideoKallSMC.Views
             {
                 PreviewVideo.Source = device.CaptureSource;
                 await device.CaptureSource.StartPreviewAsync();
+
+                if (device == null)
+                {
+                    //Debug.WriteLine("No camera device found!");
+                    return;
+                }
+
             }
             catch (Exception)
             {
@@ -65,7 +72,8 @@ namespace VideoKallSMC.Views
 
         protected override void OnNavigatedTo(NavigationEventArgs e)
         {
-            ipAddress = (string)e.Parameter;
+            //ipAddress = (string)e.Parameter;
+            ipAddress = MainPage.mainPage.mainpagecontext.NPT_IPAddress;
             InitializePreviewVideo();
         }
 
@@ -73,7 +81,8 @@ namespace VideoKallSMC.Views
         {
             try
             {
-                if (MainPage.mainPage.mainpagecontext.NPT_IPAddress!= "")
+                var data = await MainPage.mainPage.mainpagecontext.ReadSMCConfig();
+                if (!string.IsNullOrEmpty(MainPage.mainPage.mainpagecontext.NPT_IPAddress))
                 {
                     var address = MainPage.mainPage.mainpagecontext.NPT_IPAddress; //VideoVM!=null&&!string.IsNullOrEmpty(VideoVM.IpAddress)?VideoVM.IpAddress:string.Empty;
                     roleIsActive = true;
@@ -255,6 +264,7 @@ namespace VideoKallSMC.Views
 
         private async Task EndCallAsync()
         {
+
             await device.CleanUpAsync();
             // end the CallButton. session
             await Dispatcher.RunAsync(CoreDispatcherPriority.Normal, (() =>
@@ -264,7 +274,7 @@ namespace VideoKallSMC.Views
             }));
             // Start waiting for a new CallButton.
             await InitializeAsync();
-            this.Frame.Navigate(typeof(LogoPage));
+            this.Frame.Navigate(typeof(CallSummary));
         }
 
     }

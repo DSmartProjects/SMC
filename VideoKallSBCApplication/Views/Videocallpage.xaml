@@ -35,14 +35,17 @@
 
         <StackPanel Grid.Column="0" Grid.Row="2" Height="Auto" Orientation="Vertical" VerticalAlignment="Bottom" HorizontalAlignment="Center" Margin="320,0,30,60">
 
-            <StackPanel  Orientation="Horizontal" Grid.Row="2" HorizontalAlignment="Center" VerticalAlignment="Bottom" Margin="0,0,30,20">
+            <Button x:Name="btnInitConsult" FontSize="30" Background="#3FA7FF" CornerRadius="20" Click="CallButton_Click"  Width="297">
+                <StackPanel Orientation="Horizontal"  HorizontalAlignment="Center" VerticalAlignment="Center">
+                    <TextBlock Text="Initiate Consultation" Foreground="#fff" FontSize="24" HorizontalAlignment="Stretch" Margin="0,0,1,0" VerticalAlignment="Stretch"/>
+                    <Image Source="..\Assets\tap.png" Height="36" Margin="16,0,9,0" RenderTransformOrigin="0.439,0.538" />
+                </StackPanel>
+            </Button>
+            <!--<TextBox x:Name="HostNameTextbox" HorizontalAlignment="Center" CornerRadius="5" Padding="10,9,10,10" TextAlignment="Left" PlaceholderText="Enter an IP Address..." Height="40" Width="155" VerticalAlignment="Stretch"/>-->
+            <!--<Button  x:Name="btnInitConsult" CornerRadius="5"  HorizontalAlignment="Center" Background="LightSeaGreen" Foreground="White"  Margin="8,0,0,0"  Height="40" Content="Initiate Consultation"  Click="CallButton_Click"/>-->
 
-                <!--<TextBox x:Name="HostNameTextbox" HorizontalAlignment="Center" CornerRadius="5" Padding="10,9,10,10" TextAlignment="Left" PlaceholderText="Enter an IP Address..." Height="40" Width="155" VerticalAlignment="Stretch"/>-->
-
-                <Button Grid.Row="2" x:Name="btnInitConsult" CornerRadius="5"  HorizontalAlignment="Center" Background="LightSeaGreen" Foreground="White"  Margin="8,0,0,0"  Height="40" Content="Initiate Consultation"  Click="CallButton_Click"/>
-            </StackPanel>
         </StackPanel>
-        
+
         <StackPanel Grid.Column="0" Grid.Row="2" Orientation="Vertical" HorizontalAlignment="Center" VerticalAlignment="Top" Margin="300,50,0,0" >
 
             <Button Grid.Row="2" x:Name="btnEndConsult" Height="50" Width="50" CornerRadius="35" Background="Transparent" Margin="0,0,30,0" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Padding="0" BorderThickness="0" Click="EndCallButton_Click">
