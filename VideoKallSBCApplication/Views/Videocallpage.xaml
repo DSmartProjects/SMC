@@ -46,7 +46,7 @@
 
         </StackPanel>
 
-        <StackPanel Grid.Column="0" Grid.Row="2" Orientation="Vertical" HorizontalAlignment="Center" VerticalAlignment="Top" Margin="300,50,0,0" >
+        <StackPanel Grid.Column="0" Grid.Row="2" Orientation="Vertical" HorizontalAlignment="Center" VerticalAlignment="Top" Margin="300,65,0,0" >
 
             <Button Grid.Row="2" x:Name="btnEndConsult" Height="50" Width="50" CornerRadius="35" Background="Transparent" Margin="0,0,30,0" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Padding="0" BorderThickness="0" Click="EndCallButton_Click">
 

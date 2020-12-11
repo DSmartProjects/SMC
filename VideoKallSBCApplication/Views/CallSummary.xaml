@@ -34,7 +34,7 @@
                 <TextBlock Text="Your session has ended." TextAlignment="Center" Foreground="#666" IsColorFontEnabled="True" VerticalAlignment="Center" FontSize="18" IsTextSelectionEnabled="False" TextWrapping="NoWrap" HorizontalAlignment="Stretch" />
 
             </StackPanel>
-            <Button x:Name="GoHome" Content="Home" HorizontalAlignment="Center" VerticalAlignment="Top" CornerRadius="10" Background="#3FA7FF" Foreground="White" Click="GoHome_Click" Width="60" Margin="0,325,0,0"/>
+            <Button x:Name="GoHome" Content="Home" HorizontalAlignment="Center" VerticalAlignment="Top" CornerRadius="10" Background="#3FA7FF" Foreground="White" Click="GoHome_Click" Width="60" Margin="0,450,0,0"/>
 
             <TextBlock Text="© Copyright 2020 VideoKall Inc. All rights reserved." Foreground="#666" IsColorFontEnabled="True" VerticalAlignment="Bottom" TextAlignment="Center" FontSize="12" IsTextSelectionEnabled="False" TextWrapping="NoWrap" Margin="0, 0, 0, 10" />
         </Grid>
