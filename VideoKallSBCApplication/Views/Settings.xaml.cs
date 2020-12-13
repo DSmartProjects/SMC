@@ -30,6 +30,7 @@ namespace VideoKallSMC.Views
         StConfig Dfaultsettings;
         StConfig StSettings;
         string StConfigFile = "ST_sbcConfig.txt";
+        string NPT_ConfigFile = "NPTConfig.txt";
         public Settings()
         {
             this.InitializeComponent();
@@ -157,7 +158,7 @@ namespace VideoKallSMC.Views
                 StSettings.FREQUENCYLUNGS = TxtFrequencylungs.Text;
 
                 RecdevID.Text = StSettings.RECORDING_DEVICE_ID;
-                StSettings.IP = MainPage.mainPage.mainpagecontext.TxtIPAddress;
+                StSettings.IP = MainPage.mainPage.mainpagecontext.TxtIPAddress;				
                 string msg =  "IP" + ":" + StSettings.IP + Environment.NewLine +
                              "PORT" + ":" + StSettings.PORT + Environment.NewLine +
                              "USERNAME" + ":" + StSettings.USERNAME + Environment.NewLine +
@@ -168,16 +169,22 @@ namespace VideoKallSMC.Views
                              "FREQUENCYLUNGS" + ":" + StSettings.FREQUENCYLUNGS + Environment.NewLine +
                              "GAIN" + ":" + StSettings.GAIN + Environment.NewLine +
                              "CODEC" + ":" + StSettings.CODEC + Environment.NewLine +
-                             "RECORDING-DEVICE-ID" + ":" + StSettings.RECORDING_DEVICE_ID + Environment.NewLine +
-                             "NPT-IP-Address" + ":" + MainPage.mainPage.mainpagecontext.NPT_IPAddress +
-                             Environment.NewLine;
-
+                             "RECORDING-DEVICE-ID" + ":" + StSettings.RECORDING_DEVICE_ID + Environment.NewLine;
                 var localFolder = Windows.Storage.ApplicationData.Current.LocalFolder;
                 Windows.Storage.StorageFile pinfofile = await localFolder.CreateFileAsync(StConfigFile, CreationCollisionOption.OpenIfExists);
                 await Windows.Storage.FileIO.WriteTextAsync(pinfofile, msg, Windows.Storage.Streams.UnicodeEncoding.Utf8);
+                NPTConfig();
             }
             catch (Exception)
             { }
+        }
+        public async void NPTConfig()
+        {
+            string msg = "NPT-IP-Address" + ":" + MainPage.mainPage.mainpagecontext.NPT_IPAddress +
+                        Environment.NewLine;
+            var localFolder = Windows.Storage.ApplicationData.Current.LocalFolder;
+            Windows.Storage.StorageFile pinfofile = await localFolder.CreateFileAsync(NPT_ConfigFile, CreationCollisionOption.OpenIfExists);
+            await Windows.Storage.FileIO.WriteTextAsync(pinfofile, msg, Windows.Storage.Streams.UnicodeEncoding.Utf8);
         }
        void DeviceListDisplay()
         {
@@ -277,10 +284,18 @@ namespace VideoKallSMC.Views
             MainPage.mainPage.pagePlaceHolder.Navigate(typeof(Videocallpage));
         }
 
-        private void Page_Loaded(object sender, RoutedEventArgs e)
+        private async void Page_Loaded(object sender, RoutedEventArgs e)
         {
-            
-            ReadSTConfigFile();
+            try
+            {
+                ReadSTConfigFile();
+                var data = await MainPage.mainPage.mainpagecontext.ReadNPTConfig();
+            }
+            catch (Exception)
+            {
+                throw;
+            }
+       
         }
 
        
