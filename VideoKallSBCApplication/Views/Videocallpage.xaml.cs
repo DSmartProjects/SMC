@@ -81,7 +81,7 @@ namespace VideoKallSMC.Views
         {
             try
             {
-                var data = await MainPage.mainPage.mainpagecontext.ReadSMCConfig();
+                var data = await MainPage.mainPage.mainpagecontext.ReadNPTConfig();
                 if (!string.IsNullOrEmpty(MainPage.mainPage.mainpagecontext.NPT_IPAddress))
                 {
                     var address = MainPage.mainPage.mainpagecontext.NPT_IPAddress; //VideoVM!=null&&!string.IsNullOrEmpty(VideoVM.IpAddress)?VideoVM.IpAddress:string.Empty;
