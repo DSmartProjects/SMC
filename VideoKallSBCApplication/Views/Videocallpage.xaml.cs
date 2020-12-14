@@ -171,8 +171,14 @@ namespace VideoKallSMC.Views
         {
             if (Interlocked.CompareExchange(ref isTerminator, 1, 0) == 0)
             {
-                MessageDialog errorMessage = new MessageDialog("Nurse currently unavailable!");
-                await errorMessage.ShowAsync();
+                ContentDialog errorMessage = new ContentDialog
+                {
+                    Content = "Nurse currently unavailable!",
+                    ContentTemplate = (DataTemplate)this.Resources["ContentTemplateStyle"],
+                    PrimaryButtonText = "OK",
+                };
+                errorMessage.PrimaryButtonStyle = (Style)this.Resources["PurpleStyle"];
+                var nurseShowMSG= errorMessage.ShowAsync();
                 await EndCallAsync();
             }
         }
