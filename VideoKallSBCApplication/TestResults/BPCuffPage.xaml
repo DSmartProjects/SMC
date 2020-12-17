@@ -5,13 +5,13 @@
     xmlns:local="using:VideoKallSBCApplication.TestResults"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-    xmlns:conv="using:VideoKallSBCApplication.Helpers"
+
     mc:Ignorable="d"
     Background="{ThemeResource ApplicationPageBackgroundThemeBrush}" Loaded="Page_Loaded">
 
-    <Page.Resources>
+    <!--<Page.Resources>
         <conv:DateFormatConverter x:Name="DateToStringFormatConverter"/>
-    </Page.Resources>
+    </Page.Resources>-->
 
     <Grid x:Name="Resultgrid" VerticalAlignment="Center" HorizontalAlignment="Center" Margin="10,10,10,10" BorderBrush="#ECECEC" BorderThickness="0,1,0,0">
         <Grid.RowDefinitions>
@@ -32,7 +32,8 @@
             <ColumnDefinition Width="auto"></ColumnDefinition>
         </Grid.ColumnDefinitions>
         <TextBlock Grid.Row="1" Grid.Column="1" Padding="5,5,5,5"  Text="Test Time            :" FontFamily="Open Sans"  FontSize="12" FontWeight="SemiBold" Foreground="#26639B" VerticalAlignment="Center" HorizontalAlignment="Center"/>
-        <TextBlock Grid.Row="1" Margin="20,0,0,0" Grid.Column="2" Grid.ColumnSpan="2" Text="{Binding TestDateTime,Converter={StaticResource DateToStringFormatConverter} }" FontSize="12" FontWeight="SemiBold" Foreground="#26639B" FontFamily="Open Sans" VerticalAlignment="Center" HorizontalAlignment="Left"></TextBlock>
+        <TextBlock Grid.Row="1" Margin="20,0,0,0" Grid.Column="2" Grid.ColumnSpan="2" Text="{Binding TestDateTime }" FontSize="12" FontWeight="SemiBold" Foreground="#26639B" FontFamily="Open Sans" VerticalAlignment="Center" HorizontalAlignment="Left"></TextBlock>
+        <!--<TextBlock Grid.Row="1" Margin="20,0,0,0" Grid.Column="2" Grid.ColumnSpan="2" Text="{Binding TestDateTime,Converter={StaticResource DateToStringFormatConverter} }" FontSize="12" FontWeight="SemiBold" Foreground="#26639B" FontFamily="Open Sans" VerticalAlignment="Center" HorizontalAlignment="Left"></TextBlock>-->
         <TextBlock Grid.Row="2" Grid.Column="1"   Padding="5,5,5,5" Text="Systolic(mmHg)  :" Margin="0,5,0,0"  VerticalAlignment="Center" HorizontalAlignment="Center"  FontFamily="Open Sans"  FontSize="12" FontWeight="SemiBold" Foreground="#26639B"></TextBlock>
         <TextBox Grid.Row="2" Grid.Column="2" Width="100" BorderBrush="#BFBFBF" Margin="5,10,0,0" BorderThickness="1,1,1,1" CornerRadius="5,5,5,5"  Text="{Binding ResultSys, Mode=TwoWay   }" IsReadOnly="True"   HorizontalAlignment="Center"   FontFamily="Open Sans" FontSize="12" FontWeight="Normal" Foreground="#26639B"></TextBox>
         <TextBlock Grid.Row="3" Grid.Column="1" Padding="5,5,5,5" Margin="0,5,0,0" VerticalAlignment="Center" HorizontalAlignment="Center"  FontFamily="Open Sans"  FontSize="12" FontWeight="SemiBold" Foreground="#26639B" Text="Diastolic(mmHg)  :" ></TextBlock>
@@ -42,7 +43,7 @@
         <TextBox Grid.Row="4" Grid.Column="2" BorderBrush="#BFBFBF" Margin="5,10,0,0" Width="100" BorderThickness="1,1,1,1" CornerRadius="5,5,5,5"  Text="{Binding ResultPulse, Mode=OneWay  }" IsReadOnly="True"  FontFamily="Open Sans" FontSize="12" FontWeight="Normal" Foreground="#26639B" HorizontalAlignment="Center" VerticalAlignment="Center"></TextBox>
 
         <TextBlock x:Name="TxtConnecttime" Text="Connection Time  :" Grid.Row="5" Margin="0,10,0,0" Grid.Column="1"  HorizontalAlignment="Center"  FontFamily="Open Sans"  FontSize="12" FontWeight="SemiBold" Foreground="#26639B"></TextBlock>
-        <TextBlock   Text="{Binding ConnectionTime,Converter={StaticResource DateToStringFormatConverter}}" Grid.Row="5"  Grid.Column="2"  Margin="5,10,0,0"   HorizontalAlignment="Center"  FontFamily="Open Sans"  FontSize="12" FontWeight="SemiBold" Foreground="#26639B" ></TextBlock>
+        <TextBlock   Text="{Binding ConnectionTime}" Grid.Row="5"  Grid.Column="2"  Margin="5,10,0,0"   HorizontalAlignment="Center"  FontFamily="Open Sans"  FontSize="12" FontWeight="SemiBold" Foreground="#26639B" ></TextBlock>
 
         <Button  Grid.Row="6" Content="Manual Entry"  Grid.Column="1" Width="100" Margin="20,20,10,10" HorizontalAlignment="Left" VerticalAlignment="Center" FontFamily="Open Sans" FontSize="12" FontWeight="SemiBold" CornerRadius="5,5,5,5" Foreground="#FFF" Background="#26639B"></Button>
         <Button Content="Save"  Grid.Row="6" Grid.Column="2" Width="100" Margin="20,20,10,10" HorizontalAlignment="Center" VerticalAlignment="Center" FontFamily="Open Sans" FontWeight="SemiBold" FontSize="12" Foreground="#FFF" CornerRadius="5,5,5,5" Background="#34CBA8" ></Button>
