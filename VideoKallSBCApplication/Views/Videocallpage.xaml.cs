@@ -231,15 +231,24 @@ namespace VideoKallSMC.Views
 
         private async void CallAgainCommandCompletedAsync(ContentDialog sender, ContentDialogButtonClickEventArgs args)
         {
+            await device.CaptureSource.StopPreviewAsync();
             await device.CleanUpPreviewAsync();
+            //await device.CleanUpAsync();
             // end the CallButton. session
-            await Dispatcher.RunAsync(CoreDispatcherPriority.Normal, (() =>
+            await CoreApplication.MainView.CoreWindow.Dispatcher.RunAsync(CoreDispatcherPriority.Normal, (() =>
             {
                 RemoteVideo.Stop();
                 RemoteVideo.Source = null;
+                PreviewVideo.Source = null;
+                PreviewVideo.Visibility = Visibility.Collapsed;
+                // device.mediaSink.Dispose();
             }));
             // Start waiting for a new CallButton.
             await InitializeAsync();
+            ////await device.CleanUpAsync();
+            if (device!=null)
+                CallDevice(device);
+
             InitiateConsultation();
         }
 
@@ -285,18 +294,18 @@ namespace VideoKallSMC.Views
 
         async void Device_CaptureFailed(object sender, Windows.Media.Capture.MediaCaptureFailedEventArgs e)
         {
-            try
-            {
-                if (Interlocked.CompareExchange(ref isTerminator, 1, 0) == 0)
-                {
-                    await EndCallAsync();
-                  //  this.Frame.Navigate(typeof(LogoPage));
-                }
-            }
-            catch (Exception ex)
-            {
-                await EndCallAsync();
-            }
+            //try
+            //{
+            //    if (Interlocked.CompareExchange(ref isTerminator, 1, 0) == 0)
+            //    {
+            //        await EndCallAsync();
+            //      //  this.Frame.Navigate(typeof(LogoPage));
+            //    }
+            //}
+            //catch (Exception ex)
+            //{
+            //    await EndCallAsync();
+            //}
         }
 
         private async Task StartRecordToCustomSink()
@@ -338,7 +347,7 @@ namespace VideoKallSMC.Views
         private async Task EndCallAsync()
         {
 
-            //await device.CaptureSource.StopPreviewAsync();
+           // await device.CaptureSource.StopPreviewAsync();
             await device.CleanUpPreviewAsync();
             //await device.CleanUpAsync();
             // end the CallButton. session
