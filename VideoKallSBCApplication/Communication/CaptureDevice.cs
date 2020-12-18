@@ -16,7 +16,7 @@ namespace VideoKallSBCApplication.Communication
         // Media capture object
         private MediaCapture mediaCapture;
         // Custom media sink
-        private StspMediaSinkProxy mediaSink;
+        public StspMediaSinkProxy mediaSink;
         // Flag indicating if recording to custom sink has started
         private bool recordingStarted = false;
         private bool forwardEvents = false;
@@ -149,7 +149,6 @@ namespace VideoKallSBCApplication.Communication
                 throw e;
             }
         }
-
         /// <summary>
         /// Asynchronous method cleaning up resources and stopping recording if necessary.
         /// </summary>
@@ -165,6 +164,28 @@ namespace VideoKallSBCApplication.Communication
                 {
                     await mediaCapture.StopRecordAsync();
                 }
+
+                DoCleanup();
+            }
+            catch (Exception)
+            {
+                DoCleanup();
+            }
+        }
+        /// <summary>
+        /// Asynchronous method cleaning up resources and stopping recording if necessary.
+        /// </summary>
+        public async Task CleanUpPreviewAsync()
+        {
+            try
+            {
+                forwardEvents = true;
+
+                if (mediaCapture == null && mediaSink == null) return;
+
+                if (recordingStarted)
+                {
+                    await mediaCapture.StopPreviewAsync();                }
 
                 DoCleanup();
             }
@@ -268,6 +289,25 @@ namespace VideoKallSBCApplication.Communication
                 try
                 {
                     await mediaCapture.StopRecordAsync();
+                    CleanupSink();
+                }
+                catch (Exception)
+                {
+                    CleanupSink();
+                }
+            }
+        }
+
+        /// <summary>
+        /// Stops recording asynchronously
+        /// </summary>
+        public async Task StopPreviewAsync()
+        {
+            if (recordingStarted)
+            {
+                try
+                {
+                    await mediaCapture.StopPreviewAsync();
                     CleanupSink();
                 }
                 catch (Exception)

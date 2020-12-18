@@ -13,6 +13,8 @@ using Windows.UI.Xaml.Navigation;
 using Windows.UI.Popups;
 using System.Runtime.InteropServices;
 using VideoKallSBCApplication.Views;
+using Windows.ApplicationModel.Core;
+using System.ComponentModel;
 
 namespace VideoKallSMC.Views
 {
@@ -140,11 +142,14 @@ namespace VideoKallSMC.Views
 
             if (device != null)
             {
-                await device.CleanUpAsync();
+                await device.CleanUpPreviewAsync();
                 device = null;
             }
         }
 
+        const int ERROR_FILE_NOT_FOUND = 2;
+        const int ERROR_ACCESS_DENIED = 5;
+        const int ERROR_NO_APP_ASSOCIATED = 1155;
         private async Task InitializeAsync(CancellationToken cancel = default(CancellationToken))
         {
             try
@@ -160,9 +165,20 @@ namespace VideoKallSMC.Views
                 roleIsActive = false;
                 Interlocked.Exchange(ref isTerminator, 0);
             }
+            catch (Win32Exception e)
+            {
+                if (e.NativeErrorCode == ERROR_FILE_NOT_FOUND ||
+                    e.NativeErrorCode == ERROR_ACCESS_DENIED ||
+                    e.NativeErrorCode == ERROR_NO_APP_ASSOCIATED)
+                {
+                    MainPage.mainPage.pagePlaceHolder.Navigate(typeof(Videocallpage));
+                    // MainPage.mainPage.pagePlaceHolder.Navigate(typeof(LogoPage));
+                    //this.Frame.Navigate(typeof(CallSummary));
+                }
+            }
             catch (Exception)
             {
-                throw;
+                //rootPage.NotifyUser("Initialization error. Restart the sample to try again.", NotifyType.ErrorMessage);
             }
 
         }
@@ -173,15 +189,66 @@ namespace VideoKallSMC.Views
             {
                 ContentDialog errorMessage = new ContentDialog
                 {
-                    Content = "Nurse currently unavailable!",
+                    Content = "Nurse currently unavailable!",                   
                     ContentTemplate = (DataTemplate)this.Resources["ContentTemplateStyle"],
-                    PrimaryButtonText = "OK",
+                    PrimaryButtonText = "Call Again",
+                    CloseButtonText = "Cancel",
                 };
-                errorMessage.PrimaryButtonStyle = (Style)this.Resources["PurpleStyle"];
-                var nurseShowMSG= errorMessage.ShowAsync();
-                await EndCallAsync();
+                errorMessage.Opacity = 1;
+                errorMessage.CornerRadius = new CornerRadius(5,5,5,5);
+                errorMessage.PrimaryButtonStyle = (Style)this.Resources["PurpleButtonStyle"];
+                errorMessage.CloseButtonStyle = (Style)this.Resources["CancelButtonStyle"];                
+                errorMessage.PrimaryButtonClick -= CallAgainCommandCompletedAsync;
+                errorMessage.PrimaryButtonClick += CallAgainCommandCompletedAsync;
+                errorMessage.CloseButtonClick -= CancelCommandCompletedAsync;
+                errorMessage.CloseButtonClick += CancelCommandCompletedAsync;
+                var nurseShowMSG = errorMessage.ShowAsync();
+
+                //MessageDialog errorMessage = new MessageDialog("Nurse currently unavailable!");
+                //// Add commands and set their callbacks; both buttons use the same callback function instead of inline event handlers
+                //errorMessage.Commands.Add(new UICommand(
+                //    "Call Again",
+                //    new UICommandInvokedHandler(this.ProceedCommandInvokedHandlerAsync)));
+                //errorMessage.Commands.Add(new UICommand(
+                //    "Cancel",
+                //    new UICommandInvokedHandler(this.CancelCommandInvokedHandlerAsync)));
+                //// Setup Content
+
+                //// Set the command that will be invoked by default
+                //errorMessage.DefaultCommandIndex = 0;
+
+                //// Set the command to be invoked when escape is pressed
+                //errorMessage.CancelCommandIndex = 1;
+                //await errorMessage.ShowAsync();
+
             }
         }
+
+        private async void CancelCommandCompletedAsync(ContentDialog sender, ContentDialogButtonClickEventArgs args)
+        {
+            await EndCallAsync();
+        }
+
+        private async void CallAgainCommandCompletedAsync(ContentDialog sender, ContentDialogButtonClickEventArgs args)
+        {
+            await device.CleanUpPreviewAsync();
+            // end the CallButton. session
+            await Dispatcher.RunAsync(CoreDispatcherPriority.Normal, (() =>
+            {
+                RemoteVideo.Stop();
+                RemoteVideo.Source = null;
+            }));
+            // Start waiting for a new CallButton.
+            await InitializeAsync();
+            InitiateConsultation();
+        }
+
+        private async void CancelCommandInvokedHandlerAsync(IUICommand command)
+        {
+            await EndCallAsync();
+        }
+
+       
 
         async void Device_IncomingConnectionArrived(object sender, IncomingConnectionEventArgs e)
         {
@@ -228,7 +295,7 @@ namespace VideoKallSMC.Views
             }
             catch (Exception ex)
             {
-                throw ex;
+                await EndCallAsync();
             }
         }
 
@@ -271,16 +338,21 @@ namespace VideoKallSMC.Views
         private async Task EndCallAsync()
         {
 
-            await device.CleanUpAsync();
+            //await device.CaptureSource.StopPreviewAsync();
+            await device.CleanUpPreviewAsync();
+            //await device.CleanUpAsync();
             // end the CallButton. session
-            await Dispatcher.RunAsync(CoreDispatcherPriority.Normal, (() =>
+            await CoreApplication.MainView.CoreWindow.Dispatcher.RunAsync(CoreDispatcherPriority.Normal, (() =>
             {
                 RemoteVideo.Stop();
                 RemoteVideo.Source = null;
+                PreviewVideo.Source = null;
+                PreviewVideo.Visibility = Visibility.Collapsed;
+                // device.mediaSink.Dispose();
             }));
             // Start waiting for a new CallButton.
             await InitializeAsync();
-            this.Frame.Navigate(typeof(CallSummary));
+            MainPage.mainPage.pagePlaceHolder.Navigate(typeof(Videocallpage));
         }
 
     }
