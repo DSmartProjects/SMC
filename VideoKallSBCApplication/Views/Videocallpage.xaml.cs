@@ -320,8 +320,8 @@ namespace VideoKallSMC.Views
             mep.Video.FrameRate.Numerator = 15;
             mep.Video.FrameRate.Denominator = 1;
             mep.Container = null;
-
-            await device.StartRecordingAsync(mep);
+            if (device != null)
+                await device.StartRecordingAsync(mep);
         }
 
         /// <summary>
