@@ -56,11 +56,9 @@ namespace VideoKallSMC.Views
         {
             try
             {
-                if (device != null)
-                {
-                    PreviewVideo.Source = device.CaptureSource;
-                    await device.CaptureSource.StartPreviewAsync();
-                }
+                PreviewVideo.Source = device.CaptureSource;
+                await device.CaptureSource.StartPreviewAsync();
+
                 if (device == null)
                 {
                     //Debug.WriteLine("No camera device found!");
@@ -156,19 +154,17 @@ namespace VideoKallSMC.Views
         {
             try
             {
-                if (device != null)
-                {
-                    await device.InitializeAsync();
-                    await StartRecordToCustomSink();
 
-                    //HostNameTextbox.IsEnabled = btnInitConsult.IsEnabled = true;
-                    btnEndConsult.IsEnabled = true;
-                    RemoteVideo.Source = null;
+                await device.InitializeAsync();
+                await StartRecordToCustomSink();
 
-                    // Each client starts out as passive
-                    roleIsActive = false;
-                    Interlocked.Exchange(ref isTerminator, 0);
-                }
+                //HostNameTextbox.IsEnabled = btnInitConsult.IsEnabled = true;
+                btnEndConsult.IsEnabled = true;
+                RemoteVideo.Source = null;
+
+                // Each client starts out as passive
+                roleIsActive = false;
+                Interlocked.Exchange(ref isTerminator, 0);
             }
             catch (Win32Exception e)
             {
@@ -320,8 +316,7 @@ namespace VideoKallSMC.Views
             mep.Video.FrameRate.Numerator = 15;
             mep.Video.FrameRate.Denominator = 1;
             mep.Container = null;
-            if (device != null)
-                await device.StartRecordingAsync(mep);
+            await device.StartRecordingAsync(mep);
         }
 
         /// <summary>
