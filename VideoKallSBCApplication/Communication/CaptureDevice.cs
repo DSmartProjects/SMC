@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using VideoKallSBCApplication.Helpers;
 using Windows.Devices.Enumeration;
 using Windows.Media.Capture;
 using Windows.Media.MediaProperties;
@@ -115,6 +116,11 @@ namespace VideoKallSBCApplication.Communication
                     EnclosureLocation panel= dinfo.EnclosureLocation;
                     cameraList += ":" + name+" : location: "+panel?.Panel.ToString();
                     if (panel?.Panel == Panel.Front)
+                    {
+                        cameraList += " : camera used:  " + name;
+                        break;
+                    }
+                    if (dinfo.Name.Contains("Webcam"))
                     {
                         cameraList += " : camera used:  " + name;
                         break;
@@ -330,6 +336,10 @@ namespace VideoKallSBCApplication.Communication
                     if (panel?.Panel == Panel.Front)
                     {
                         cameraFound= true;
+                    }
+                    if (dinfo.Name.Equals(Constants.CameraDeviceName,StringComparison.InvariantCultureIgnoreCase) || dinfo.Name.Contains("Webcam"))
+                    {
+                        cameraFound = true;
                     }
                 }               
             }

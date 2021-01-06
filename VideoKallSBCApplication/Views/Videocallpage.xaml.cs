@@ -38,7 +38,21 @@ namespace VideoKallSMC.Views
         {
             this.InitializeComponent();
             rootPage.EnsureMediaExtensionManager();
+            Window.Current.VisibilityChanged += new WindowVisibilityChangedEventHandler(RenualCall);
             DefaultVisibilities();
+        }
+        private async void RenualCall(object sender, Windows.UI.Core.VisibilityChangedEventArgs e)
+        {
+            if (e.Visible)
+            {
+                if (device != null)
+                {
+                    await EndCallAsync();
+                }
+
+
+
+            }
         }
         public void DefaultVisibilities()
         {

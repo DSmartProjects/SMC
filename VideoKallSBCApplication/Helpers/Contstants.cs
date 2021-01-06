@@ -7,5 +7,7 @@ namespace VideoKallSBCApplication.Helpers
         public const string GUIDE_NOTE = "Note :- Please follow the proper guidelines, to connect.";
         public const string US_DATE_MM_DD_YYYY = "MM/dd/yyyy";
         public const string US_DATE_FORMATE = "en-us";
+        public const string CameraDeviceName = "Logitech HD Webcam C270";
+        
     }
 }
