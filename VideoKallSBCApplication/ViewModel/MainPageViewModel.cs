@@ -128,6 +128,10 @@ namespace VideoKallSMC.ViewModel
         private string _npt_IPAddress = null;
         public string NPT_IPAddress { get { return _npt_IPAddress; } set { _npt_IPAddress = value; OnPropertyChanged("NPT_IPAddress"); } }
         string NPT_ConfigFile = "NPTConfig.txt";
+
+        private Visibility _titleBarVisibility = Visibility.Collapsed;
+        public Visibility TitleBarVisibility { get { return _titleBarVisibility; } set { _titleBarVisibility = value; OnPropertyChanged("TitleBarVisibility"); } }
+        
         public async Task<bool> ReadNPTConfig()
         {
             try

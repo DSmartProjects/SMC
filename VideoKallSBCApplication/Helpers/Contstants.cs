@@ -8,6 +8,8 @@ namespace VideoKallSBCApplication.Helpers
         public const string US_DATE_MM_DD_YYYY = "MM/dd/yyyy";
         public const string US_DATE_FORMATE = "en-us";
         public const string CameraDeviceName = "Logitech HD Webcam C270";
-        
+        public const string Admin_UNAME = "Admin";
+        public const string Admin_PWD = "ClinicStop@2021";
+
     }
 }

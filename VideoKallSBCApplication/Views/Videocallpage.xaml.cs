@@ -15,19 +15,20 @@ using System.Runtime.InteropServices;
 using VideoKallSBCApplication.Views;
 using Windows.ApplicationModel.Core;
 using System.ComponentModel;
+using VideoKallSBCApplication.Helpers;
 
 namespace VideoKallSMC.Views
 {
     public sealed partial class Videocallpage : Page
     {
         // public VideoViewModel VideoVM { get; set; }
-        public MainPageViewModel MainPageVM { get; set; }
-        MainPage rootPage = MainPage.mainPage;
+        //public MainPageViewModel MainPageVM { get; set; }
+       // MainPage rootPage = MainPage.mainPage;
         CaptureDevice device = null;
         bool? roleIsActive = null;
         int isTerminator = 0;
         bool activated = false;
-        string ipAddress = string.Empty;
+      //  string ipAddress = string.Empty;
 
         private const int APPCOMMAND_VOLUME_MUTE = 0x80000;
         private const int WM_APPCOMMAND = 0x319;
@@ -37,9 +38,19 @@ namespace VideoKallSMC.Views
         public Videocallpage()
         {
             this.InitializeComponent();
-            rootPage.EnsureMediaExtensionManager();
+            DialScreenLogo.Visibility = Visibility.Collapsed;
+            EnsureMediaExtensionManager();
             //Window.Current.VisibilityChanged += new WindowVisibilityChangedEventHandler(RenualCall);
             DefaultVisibilities();
+        }
+        private static Windows.Media.MediaExtensionManager mediaExtensionMgr;
+        public void EnsureMediaExtensionManager()
+        {
+            if (mediaExtensionMgr == null)
+            {
+                mediaExtensionMgr = new Windows.Media.MediaExtensionManager();
+                mediaExtensionMgr.RegisterSchemeHandler("Microsoft.Samples.SimpleCommunication.StspSchemeHandler", "stsp:");
+            }
         }
         //private async void RenualCall(object sender, Windows.UI.Core.VisibilityChangedEventArgs e)
         //{
@@ -89,7 +100,7 @@ namespace VideoKallSMC.Views
         protected override void OnNavigatedTo(NavigationEventArgs e)
         {
             //ipAddress = (string)e.Parameter;
-            ipAddress = MainPage.mainPage.mainpagecontext.NPT_IPAddress;
+            //ipAddress = Home.HomePage.HomeVM.NPT_IPAddress;
             InitializePreviewVideo();
         }
 
@@ -97,8 +108,10 @@ namespace VideoKallSMC.Views
         {
             try
             {
-                var data = await MainPage.mainPage.mainpagecontext.ReadNPTConfig();
-                if (!string.IsNullOrEmpty(MainPage.mainPage.mainpagecontext.NPT_IPAddress))
+                Utility utility = new Utility();
+                //var data = await MainPage.mainPage.mainpagecontext.ReadNPTConfig();
+                var data = Task.Run(async () => { return await utility.ReadNPTConfig(); }).Result;
+                if (!string.IsNullOrEmpty(Home.HomePage.HomeVM.NPT_IPAddress))
                 {
                     var address = MainPage.mainPage.mainpagecontext.NPT_IPAddress; //VideoVM!=null&&!string.IsNullOrEmpty(VideoVM.IpAddress)?VideoVM.IpAddress:string.Empty;
                     roleIsActive = true;
@@ -113,6 +126,11 @@ namespace VideoKallSMC.Views
                     btnEndConsult.Visibility = Visibility.Visible;
                     btnInitConsult.Visibility = Visibility.Collapsed;
                    // HostNameTextbox.Visibility = Visibility.Collapsed;
+                }
+                else
+                {
+                    Toast.ShowToast("", "Please contact administrator");
+                    this.Frame.Navigate(typeof(Home));
                 }
             }
             catch (Exception)
@@ -378,5 +396,14 @@ namespace VideoKallSMC.Views
             MainPage.mainPage.pagePlaceHolder.Navigate(typeof(Videocallpage));
         }
 
+        private void TitleBarLeftLogo_Click(object sender, RoutedEventArgs e)
+        {
+            this.Frame.Navigate(typeof(Home));
+        }
+
+        private void TitleBarFrameLogo_Click(object sender, RoutedEventArgs e)
+        {
+            this.Frame.Navigate(typeof(Home));
+        }
     }
 }

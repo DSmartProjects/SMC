@@ -66,8 +66,10 @@ namespace VideoKallSBCApplication
             mainPage = this;
             TestPanelVM = new TestPanelViewModel();
             this.DataContext = mainpagecontext;
-            RightPanelHolder.Navigate(typeof(LoginPage));
-             pagePlaceHolder.Navigate(typeof(Videocallpage));
+            //RightPanelHolder.Navigate(typeof(LoginPage));
+            mainpagecontext.TitleBarVisibility = Visibility.Visible;
+            pagePlaceHolder.Navigate(typeof(TestPanel));
+            //pagePlaceHolder.Navigate(typeof(LoginPage));
             TestresultModel.NotifyStatusMessage = UpdateNotification;
             TestresultModel.StethoscopeTx.TXevents += Tx_TXevents;
             StartStethoscope += StartST;

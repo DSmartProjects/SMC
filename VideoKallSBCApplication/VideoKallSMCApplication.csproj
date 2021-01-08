@@ -145,6 +145,11 @@
     <Compile Include="Communication\socketComm.cs" />
     <Compile Include="Helpers\Contstants.cs" />
     <Compile Include="Helpers\DateFormatConverter.cs" />
+    <Compile Include="Helpers\Toast.cs" />
+    <Compile Include="Helpers\Utility.cs" />
+    <Compile Include="Home.xaml.cs">
+      <DependentUpon>Home.xaml</DependentUpon>
+    </Compile>
     <Compile Include="MainPage.xaml.cs">
       <DependentUpon>MainPage.xaml</DependentUpon>
     </Compile>
@@ -171,6 +176,7 @@
       <DependentUpon>ThermoMeter.xaml</DependentUpon>
     </Compile>
     <Compile Include="ViewModel\DeviceListPageViewModel.cs" />
+    <Compile Include="ViewModel\HomeViewModel.cs" />
     <Compile Include="ViewModel\loginPageViewModel.cs" />
     <Compile Include="ViewModel\LogoPageViewModel.cs" />
     <Compile Include="ViewModel\MainPageViewModel.cs" />
@@ -204,6 +210,7 @@
     </AppxManifest>
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Assets\admin.png" />
     <Content Include="Assets\Application.ico" />
     <Content Include="Assets\Application.png" />
     <Content Include="Assets\Call-Connecting-bg.png" />
@@ -214,6 +221,8 @@
     <Content Include="Assets\doctor-1.png" />
     <Content Include="Assets\doctor.png" />
     <Content Include="Assets\end-call.png" />
+    <Content Include="Assets\Group.png" />
+    <Content Include="Assets\home.png" />
     <Content Include="Assets\Logo Assets\BadgeLogo.scale-100.png" />
     <Content Include="Assets\Logo Assets\BadgeLogo.scale-125.png" />
     <Content Include="Assets\Logo Assets\BadgeLogo.scale-150.png" />
@@ -256,6 +265,7 @@
     <Content Include="Assets\lungs.png" />
     <Content Include="Assets\microphone-mute.png" />
     <Content Include="Assets\microphone-unmute.png" />
+    <Content Include="Assets\patient-icon.png" />
     <Content Include="Assets\patient.png" />
     <Content Include="Assets\sbcimg.PNG" />
     <Content Include="Assets\SBC_Ring_Tone.mp4" />
@@ -304,6 +314,10 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Page Include="Home.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
     <Page Include="MainPage.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
@@ -416,7 +430,7 @@
       <Name>SBCDBModule</Name>
     </ProjectReference>
   </ItemGroup>
- <ItemGroup>
+  <ItemGroup>
     <ProjectReference Include="..\SBCDBModule\SBCDBModule\SBCDBModule\SBCDBModule.csproj">
       <Project>{8124fe77-ea75-47c9-b7b6-0988d4f4167b}</Project>
       <Name>SBCDBModule</Name>

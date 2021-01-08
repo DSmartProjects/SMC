@@ -14,11 +14,15 @@ namespace VideoKallSMC
     /// </summary>
     public sealed partial class LoginPage : Page
     {
-        LoginPageViewModel dbcontext = new LoginPageViewModel();
+        internal LoginPageViewModel _loginVM = null;
+  
+        // LoginPageViewModel dbcontext = new LoginPageViewModel();
         public LoginPage()
         {
             this.InitializeComponent();
-            this.DataContext = dbcontext;
-        }  
+            _loginVM= new LoginPageViewModel();
+            this.DataContext = _loginVM;
+        }
+
     }
 }
