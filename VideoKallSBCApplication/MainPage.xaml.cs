@@ -399,6 +399,10 @@ namespace VideoKallSBCApplication
         {
             commChannel.SendMessageToMCC(CommunicationCommands.SBCShutdown);
         }
-         
+
+        private void AppBarButton_Click(object sender, RoutedEventArgs e)
+        {
+            this.Frame.Navigate(typeof(LoginPage));
+        }
     } 
 }

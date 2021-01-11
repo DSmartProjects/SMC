@@ -49,6 +49,12 @@
             <AppBarSeparator/>-->
             <AppBarButton Icon="Setting" ToolTipService.ToolTip="Settings" Command="{Binding SettingsCommand}"></AppBarButton>
             <AppBarSeparator/>
+            <AppBarButton  Click="AppBarButton_Click">
+                <AppBarButton.Icon>
+                    <BitmapIcon UriSource="ms-appx:///Assets/logout.png"/>
+                </AppBarButton.Icon>
+            </AppBarButton>
+            <AppBarSeparator/>
             <CommandBar.Content>
                 <TextBlock Text="" Margin="12,14"/>
             </CommandBar.Content>

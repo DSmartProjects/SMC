@@ -262,6 +262,7 @@
     <Content Include="Assets\Logo Assets\StoreLogo.scale-200.png" />
     <Content Include="Assets\Logo Assets\StoreLogo.scale-400.png" />
     <Content Include="Assets\logo-icon.png" />
+    <Content Include="Assets\logout.png" />
     <Content Include="Assets\lungs.png" />
     <Content Include="Assets\microphone-mute.png" />
     <Content Include="Assets\microphone-unmute.png" />

@@ -47,21 +47,24 @@
                     <RowDefinition Height="auto"/>
                     <RowDefinition Height="10"/>
                 </Grid.RowDefinitions>
-                <TextBlock HorizontalAlignment="Center" FontSize="28" Grid.Row="1" Grid.Column="1">Who are you?</TextBlock>
+                <TextBlock FontWeight="Bold"  HorizontalAlignment="Center" FontSize="40" Grid.Row="1" Grid.Column="1">Who are you?</TextBlock>
                 <StackPanel Orientation="Horizontal" Grid.Row="2" Grid.Column="1">
-                    <StackPanel Orientation="Vertical"  Width="150" Padding="5,5,5,5" >
+                    <StackPanel Orientation="Vertical"   Padding="5,5,5,5" >
                         <Button Name="BtnPatient" Background="#F2F2F2" CornerRadius="5,5,0,0" Click="BtnPatient_Click">
                             <StackPanel Orientation="Vertical" Width="150" Padding="5,5,5,5" HorizontalAlignment="Center" VerticalAlignment="Center">
-                                <Image Source="..\Assets\patient-icon.png"  Height="50" Width="50" Stretch="UniformToFill"/>
+                                <Image Source="..\Assets\patient-icon.png"  MinHeight="70" MinWidth="70" Stretch="UniformToFill"/>
                                 <TextBlock Text="Patient" FontSize="12"  Margin="5,10,0,0" FontFamily="Open Sans" TextAlignment="Center"/>
                             </StackPanel>
                         </Button>
 
                     </StackPanel>
-                    <StackPanel Orientation="Vertical"  Width="150" Padding="5,5,5,5" >
+                    <StackPanel Width="100">
+                        
+                    </StackPanel>
+                    <StackPanel Orientation="Vertical"   Padding="5,5,5,5" >
                         <Button Name="BtnAdmin" Background="#F2F2F2" CornerRadius="5,5,0,0" Click="BtnAdmin_Click">
                             <StackPanel Orientation="Vertical" Width="150" Padding="5,5,5,5" HorizontalAlignment="Center" VerticalAlignment="Center">
-                                <Image Source="..\Assets\admin.png"  Height="50" Width="50" Stretch="UniformToFill"/>
+                                <Image Source="..\Assets\admin.png"  MinHeight="70" MinWidth="70" Stretch="UniformToFill"/>
                                 <TextBlock Text="Admin" FontSize="12"  Margin="5,10,0,0" FontFamily="Open Sans" TextAlignment="Center"/>
                             </StackPanel>
                         </Button>

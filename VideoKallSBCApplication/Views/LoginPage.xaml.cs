@@ -5,6 +5,7 @@ using VideoKallSMC.Views;
 using VideoKallSMC.ViewModel;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
+using VideoKallSBCApplication;
 // The Blank Page item template is documented at https://go.microsoft.com/fwlink/?LinkId=234238
 
 namespace VideoKallSMC
@@ -24,5 +25,14 @@ namespace VideoKallSMC
             this.DataContext = _loginVM;
         }
 
+        private void TitleBarLeftLogo_Click(object sender, RoutedEventArgs e)
+        {
+            this.Frame.Navigate(typeof(Home));
+        }
+
+        private void TitleBarFrameLogo_Click(object sender, RoutedEventArgs e)
+        {
+            this.Frame.Navigate(typeof(Home));
+        }
     }
 }
