@@ -39,7 +39,7 @@ namespace VideoKallSMC.Views
         {
             this.InitializeComponent();
             DialScreenLogo.Visibility = Visibility.Collapsed;
-            TitleBarGrid.Visibility = Visibility.Collapsed;
+            TitleBarGrid.Visibility = Visibility.Visible;
             EnsureMediaExtensionManager();
             //Window.Current.VisibilityChanged += new WindowVisibilityChangedEventHandler(RenualCall);
             DefaultVisibilities();
@@ -109,6 +109,7 @@ namespace VideoKallSMC.Views
         {
             try
             {
+                TitleBarGrid.Visibility = Visibility.Collapsed;
                 Utility utility = new Utility();
                 //var data = await MainPage.mainPage.mainpagecontext.ReadNPTConfig();
                 var data = Task.Run(async () => { return await utility.ReadNPTConfig(); }).Result;
@@ -394,9 +395,10 @@ namespace VideoKallSMC.Views
                 device?.mediaSink?.Dispose();
             }));
             // Start waiting for a new CallButton.
+            TitleBarGrid.Visibility = Visibility.Visible;
             await InitializeAsync();
             //MainPage.mainPage.pagePlaceHolder.Navigate(typeof(Videocallpage));
-          //  this.Frame.Navigate(typeof(Videocallpage));
+            this.Frame.Navigate(typeof(Videocallpage));
 
         }
 
