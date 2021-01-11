@@ -19,12 +19,13 @@ namespace VideoKallSBCApplication.Helpers
                     switch (data[0])
                     {
                         case "NPT-IP-Address":
-                            MainPage.mainPage.mainpagecontext.NPT_IPAddress = data[1];
+                            //MainPage.mainPage.mainpagecontext.NPT_IPAddress = data[1];
+                            Home.HomePage.HomeVM.NPT_IPAddress= data[1];
                             break;
                     }
                 }
             }
-            catch (Exception)
+            catch (Exception ex)
             {
                 try
                 {

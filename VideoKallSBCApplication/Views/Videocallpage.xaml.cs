@@ -39,6 +39,7 @@ namespace VideoKallSMC.Views
         {
             this.InitializeComponent();
             DialScreenLogo.Visibility = Visibility.Collapsed;
+            TitleBarGrid.Visibility = Visibility.Collapsed;
             EnsureMediaExtensionManager();
             //Window.Current.VisibilityChanged += new WindowVisibilityChangedEventHandler(RenualCall);
             DefaultVisibilities();
@@ -91,7 +92,7 @@ namespace VideoKallSMC.Views
                 }
 
             }
-            catch (Exception)
+            catch (Exception ex)
             {
                 throw;
             }
@@ -113,7 +114,7 @@ namespace VideoKallSMC.Views
                 var data = Task.Run(async () => { return await utility.ReadNPTConfig(); }).Result;
                 if (!string.IsNullOrEmpty(Home.HomePage.HomeVM.NPT_IPAddress))
                 {
-                    var address = MainPage.mainPage.mainpagecontext.NPT_IPAddress; //VideoVM!=null&&!string.IsNullOrEmpty(VideoVM.IpAddress)?VideoVM.IpAddress:string.Empty;
+                    var address = Home.HomePage.HomeVM.NPT_IPAddress; //VideoVM!=null&&!string.IsNullOrEmpty(VideoVM.IpAddress)?VideoVM.IpAddress:string.Empty;
                     roleIsActive = true;
                     RemoteVideo.Source = new Uri("stsp://" + address);
                     PreviewVideo.Visibility = Visibility.Visible;
@@ -133,7 +134,7 @@ namespace VideoKallSMC.Views
                     this.Frame.Navigate(typeof(Home));
                 }
             }
-            catch (Exception)
+            catch (Exception ex)
             {
                 throw;
             }
@@ -204,13 +205,14 @@ namespace VideoKallSMC.Views
                     e.NativeErrorCode == ERROR_ACCESS_DENIED ||
                     e.NativeErrorCode == ERROR_NO_APP_ASSOCIATED)
                 {
-                    MainPage.mainPage.pagePlaceHolder.Navigate(typeof(Videocallpage));
+                   this.Frame.Navigate(typeof(Videocallpage));
                     // MainPage.mainPage.pagePlaceHolder.Navigate(typeof(LogoPage));
                     //this.Frame.Navigate(typeof(CallSummary));
                 }
             }
-            catch (Exception)
+            catch (Exception ex)
             {
+                this.Frame.Navigate(typeof(Videocallpage));
                 //rootPage.NotifyUser("Initialization error. Restart the sample to try again.", NotifyType.ErrorMessage);
             }
 
@@ -383,17 +385,19 @@ namespace VideoKallSMC.Views
             await device.CleanUpPreviewAsync();
             //await device.CleanUpAsync();
             // end the CallButton. session
-            await CoreApplication.MainView.CoreWindow.Dispatcher.RunAsync(CoreDispatcherPriority.Normal, (() =>
+            await Dispatcher.RunAsync(CoreDispatcherPriority.Normal, (() =>
             {
                 RemoteVideo.Stop();
                 RemoteVideo.Source = null;
                 PreviewVideo.Source = null;
                 PreviewVideo.Visibility = Visibility.Collapsed;
-                // device.mediaSink.Dispose();
+                device?.mediaSink?.Dispose();
             }));
             // Start waiting for a new CallButton.
             await InitializeAsync();
-            MainPage.mainPage.pagePlaceHolder.Navigate(typeof(Videocallpage));
+            //MainPage.mainPage.pagePlaceHolder.Navigate(typeof(Videocallpage));
+          //  this.Frame.Navigate(typeof(Videocallpage));
+
         }
 
         private void TitleBarLeftLogo_Click(object sender, RoutedEventArgs e)
