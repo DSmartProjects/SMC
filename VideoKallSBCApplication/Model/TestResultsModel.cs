@@ -8,6 +8,7 @@ using System.Numerics;
 using System.Text;
 using System.Threading.Tasks;
 using VideoKallSBCApplication.BLEDevices;
+using VideoKallSBCApplication.Helpers;
 using VideoKallSBCApplication.Model;
 using VideoKallSBCApplication.Stethosope;
 using VideoKallSBCApplication.TestResults;
@@ -122,13 +123,21 @@ namespace VideoKallSBCApplication
         { 
             get
             {
-                if(devtypelist == null)
+              if(devtypelist == null)
                 devtypelist = dbmodule.DeviceTypeList();
                 List<string> dvl = new List<string>();
-               foreach(var dv in devtypelist)
+                if (devtypelist != null)
                 {
-                    dvl.Add(dv.DeviceTypeName);
+                    foreach (var dv in devtypelist)
+                    {
+                        dvl.Add(dv.DeviceTypeName);
+                    }
                 }
+                else
+                {
+                    Toast.ShowToast("",Constants.Need_DataBase_MSG);
+                }
+              
                 return dvl;
             }
         }

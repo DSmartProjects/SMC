@@ -20,13 +20,13 @@
         <!--<Button x:Name="TitleBarLeftLogo"  Grid.Row="0" Grid.Column="1" BorderBrush="#ECECEC"  Background="Transparent"  HorizontalAlignment="Left">
             <Image Source="..\Assets\home.png" />
         </Button>-->
-        <StackPanel Grid.Row="0" HorizontalAlignment="Center"  Orientation="Horizontal">
+        <StackPanel x:Name="TitleBarFrameLogo"  Grid.Row="0" HorizontalAlignment="Center"  Orientation="Horizontal">
       
-            <Button x:Name="TitleBarFrameLogo"  Grid.Row="0"  BorderBrush="#ECECEC"  Background="Transparent"  HorizontalAlignment="Center">
+            <!--<Button x:Name="TitleBarFrameLogo"  Grid.Row="0"  BorderBrush="#ECECEC"  Background="Transparent"  HorizontalAlignment="Center">-->
 
                 <Image Source="..\Assets\Group.png" />
 
-            </Button>
+            <!--</Button>-->
         </StackPanel>
        
         <!--<Grid x:Name="grImage" Grid.Row="0" HorizontalAlignment="Center" BorderBrush="#ECECEC" BorderThickness="1">

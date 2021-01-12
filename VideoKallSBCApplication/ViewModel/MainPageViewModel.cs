@@ -50,8 +50,8 @@ namespace VideoKallSMC.ViewModel
         }
         public void ExecuteLogOffCommand()
         {
-             MainPage.mainPage.pagePlaceHolder.Navigate(typeof(Videocallpage));
-             MainPage.mainPage.RightPanelHolder.Navigate(typeof(LoginPage));
+             MainPage.mainPage.Frame.Navigate(typeof(LoginPage));
+             //MainPage.mainPage.RightPanelHolder.Navigate(typeof(LoginPage));
         }
         //Settings
         private ICommand _settingsCommand = null;

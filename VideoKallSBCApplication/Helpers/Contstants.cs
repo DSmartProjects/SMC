@@ -10,6 +10,7 @@ namespace VideoKallSBCApplication.Helpers
         public const string CameraDeviceName = "Logitech HD Webcam C270";
         public const string Admin_UNAME = "Admin";
         public const string Admin_PWD = "ClinicStop@2021";
+        public const string Need_DataBase_MSG = "Please provide SBCDB database file to connect with devices";
 
     }
 }
