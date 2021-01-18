@@ -145,6 +145,7 @@
     <Compile Include="Communication\socketComm.cs" />
     <Compile Include="Helpers\Contstants.cs" />
     <Compile Include="Helpers\DateFormatConverter.cs" />
+    <Compile Include="Helpers\Toast.cs" />
     <Compile Include="MainPage.xaml.cs">
       <DependentUpon>MainPage.xaml</DependentUpon>
     </Compile>
@@ -416,7 +417,7 @@
       <Name>SBCDBModule</Name>
     </ProjectReference>
   </ItemGroup>
- <ItemGroup>
+  <ItemGroup>
     <ProjectReference Include="..\SBCDBModule\SBCDBModule\SBCDBModule\SBCDBModule.csproj">
       <Project>{8124fe77-ea75-47c9-b7b6-0988d4f4167b}</Project>
       <Name>SBCDBModule</Name>
