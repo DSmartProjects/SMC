@@ -80,7 +80,7 @@ namespace VideoKallSMC.Views
                     _testPanelVM.IsMsgConnected = Visibility.Collapsed;
                     TestResultDisplay.Navigate(typeof(DefaultTest));
                     break;
-                case "Otoscope":
+                case "otoscope":
                     _testPanelVM.IsMsgConnected = Visibility.Collapsed;
                     TestResultDisplay.Navigate(typeof(DefaultTest));
                     break;
