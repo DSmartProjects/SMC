@@ -203,19 +203,28 @@ namespace VideoKallSMC.Views
             MainPage.mainPage.SerialPortCommchannel.SelectDevice = MainPage.mainPage.SerialPortCommchannel.DeviceList.ElementAt(serialPortCmb.SelectedIndex).Value;
          }
 
-        private void Chkdiagnostic_Checked(object sender, RoutedEventArgs e)
-        {
-            CheckBox c = (CheckBox)e.OriginalSource;
+        //private void Chkdiagnostic_Checked(object sender, RoutedEventArgs e)
+        //{
+        //    CheckBox c = (CheckBox)e.OriginalSource;
 
-            //MainPage.mainPage.RightPanelHolder.Visibility = (bool)c.IsChecked ? Visibility : Visibility.Collapsed;
-            MainPage.mainPage.pagePlaceHolder.Navigate(typeof(LoginPage));
-        }
+        //    //MainPage.mainPage.RightPanelHolder.Visibility = (bool)c.IsChecked ? Visibility : Visibility.Collapsed;
+        //    MainPage.mainPage.pagePlaceHolder.Navigate(typeof(LoginPage));
+        //}
 
         private void BtnRec_Click(object sender, RoutedEventArgs e)
         {
-             Stethoscope tx = new Stethoscope();
-             tx.GenerateRecordingDevices();
-            ReadRecordingDevices();
+            try
+            {
+
+                Stethoscope tx = new Stethoscope();
+                tx.GenerateRecordingDevices();
+                ReadRecordingDevices();
+
+            }
+            catch (Exception ex)
+            {
+                return;
+            }
         }
 
        async void ReadRecordingDevices()
@@ -281,7 +290,7 @@ namespace VideoKallSMC.Views
         private void BtnSave_Click(object sender, RoutedEventArgs e)
         {
             WriteConfigFile();
-            MainPage.mainPage.pagePlaceHolder.Navigate(typeof(Videocallpage));
+            MainPage.mainPage.pagePlaceHolder.Navigate(typeof(TestPanel));
         }
 
         private async void Page_Loaded(object sender, RoutedEventArgs e)

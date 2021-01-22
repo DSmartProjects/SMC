@@ -11,12 +11,7 @@
     <Page.Resources>
         <BitmapImage x:Name="Menuicon1" CreateOptions="IgnoreImageCache"   UriSource="Assets/Application.ico"/>
     </Page.Resources>
-
     <Grid>
-        <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="2*"></ColumnDefinition>
-            <ColumnDefinition Width="*"></ColumnDefinition>
-        </Grid.ColumnDefinitions>
         <Grid.RowDefinitions>
             <RowDefinition Height="auto"></RowDefinition>
 
@@ -28,33 +23,66 @@
             <!-- For Bottom -->
             <!--<RowDefinition Height="30"></RowDefinition>-->
         </Grid.RowDefinitions>
-        <!--Border-->
-        <Border Grid.Column="0" Grid.Row="2"   BorderThickness="1" BorderBrush="Gray"></Border>
+        <Grid Grid.Row="1">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="2*"></ColumnDefinition>
+                <ColumnDefinition Width="*"></ColumnDefinition>
+            </Grid.ColumnDefinitions>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="auto"></RowDefinition>
+                <RowDefinition Height="*"></RowDefinition>
 
-        <!--Page Container-->
-        <Frame x:FieldModifier="public" Background="White" Grid.Row="2" Grid.Column="0" Grid.ColumnSpan="2" x:Name="pagePlaceHolder"></Frame>
-        <Frame x:Name="RightPanelHolder" Visibility="Collapsed" x:FieldModifier="public"  Background="WhiteSmoke" Grid.Row="2" Grid.RowSpan="3" Grid.Column="1"></Frame>
-        <!--status bar-->
-        <!--<Border Background="WhiteSmoke" Grid.Row="3" Grid.Column="0" BorderBrush="Gray" BorderThickness="1"></Border>-->
-        <!--<TextBlock x:FieldModifier="public" x:Name="StatusTxt" Text="{Binding Path=StatusText, Mode=OneWay}" Grid.Row="3">Status</TextBlock>-->
-        <!--Right pane Menus-->
+              
+            </Grid.RowDefinitions>
+            <!--Border-->
+            <Border Grid.Column="0" Grid.Row="2"   BorderThickness="1" BorderBrush="Gray"></Border>
 
-        <!--Patient information: lastname,firstname,dob,gender-->
+            <!--Page Container-->
+            <Frame x:FieldModifier="public"  Grid.Row="2" Grid.Column="0" Grid.ColumnSpan="2" x:Name="pagePlaceHolder"></Frame>
+            <Frame x:Name="RightPanelHolder" Visibility="Collapsed" x:FieldModifier="public"  Background="WhiteSmoke" Grid.Row="2" Grid.RowSpan="3" Grid.Column="1"></Frame>
+            <!--status bar-->
+            <!--<Border Background="WhiteSmoke" Grid.Row="3" Grid.Column="0" BorderBrush="Gray" BorderThickness="1"></Border>-->
+            <!--<TextBlock x:FieldModifier="public" x:Name="StatusTxt" Text="{Binding Path=StatusText, Mode=OneWay}" Grid.Row="3">Status</TextBlock>-->
+            <!--Right pane Menus-->
 
-        <!--Menu bar-->
-        <CommandBar   Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="3" Background="LightGray" IsOpen="False" DefaultLabelPosition="Right">
-            <AppBarButton Icon="CellPhone"  ToolTipService.ToolTip="Devices List" Command="{Binding DeviceListCommand}"></AppBarButton>
-            <AppBarSeparator/>
-            <!--<AppBarButton Icon="Setting" Label="Settings" Command="{Binding SettingsCommand}"></AppBarButton>
-            <AppBarSeparator/>-->
-            <AppBarButton Icon="Setting" ToolTipService.ToolTip="Settings" Command="{Binding SettingsCommand}"></AppBarButton>
-            <AppBarSeparator/>
-            <CommandBar.Content>
-                <TextBlock Text="" Margin="12,14"/>
-            </CommandBar.Content>
-        </CommandBar>
-        <!--/Menu bar-->
-        <!--<AppBarButton x:Name="AppBarHome" Label="Home" Click="AppBarHome_Click"></AppBarButton>
+            <!--Patient information: lastname,firstname,dob,gender-->
+
+            <!--Menu bar-->
+
+
+            <!--/Menu bar-->
+            <!--<AppBarButton x:Name="AppBarHome" Label="Home" Click="AppBarHome_Click"></AppBarButton>
         <AppBarSeparator/>-->
+        </Grid>
+
+        <Grid  Grid.Row="0" x:Name="TitleBarFrameLogo" BorderBrush="WhiteSmoke"  BorderThickness="0,0,0,1">
+            <StackPanel  HorizontalAlignment="Center"  Orientation="Horizontal">
+                <!--<Button   Grid.Row="0"  BorderBrush="#ECECEC"  Background="Transparent"  HorizontalAlignment="Center" Click="TitleBarFrameLogo_Click">-->
+                <Image Source="..\Assets\Group.png" />
+                <!--</Button>-->
+            </StackPanel>
+            <CommandBar OverflowButtonVisibility="Collapsed"   x:Name="titleBar" Visibility="{Binding TitleBarVisibility,Mode=TwoWay}" Background="White"  Grid.Row="0"  IsOpen="False" HorizontalAlignment="Right" VerticalAlignment="Center" DefaultLabelPosition="Right">
+
+                    <AppBarButton Icon="CellPhone"  ToolTipService.ToolTip="Devices List" Command="{Binding DeviceListCommand}"></AppBarButton>
+                    <AppBarSeparator/>
+                    <!--<AppBarButton Icon="Setting" Label="Settings" Command="{Binding SettingsCommand}"></AppBarButton>
+            <AppBarSeparator/>-->
+                    <AppBarButton Icon="Setting" ToolTipService.ToolTip="Settings" Command="{Binding SettingsCommand}"></AppBarButton>
+                    <AppBarSeparator/>
+                    <AppBarButton  Click="AppBarButton_Click">
+                        <AppBarButton.Icon>
+                            <BitmapIcon UriSource="ms-appx:///Assets/logout.png"/>
+                        </AppBarButton.Icon>
+                    </AppBarButton>
+
+                    <!--<AppBarSeparator/>-->
+                    <CommandBar.Content>
+                        <TextBlock Text="" Margin="12,14"/>
+                    </CommandBar.Content>
+                </CommandBar>
+            </Grid>
+        
+        
     </Grid>
+    
 </Page>

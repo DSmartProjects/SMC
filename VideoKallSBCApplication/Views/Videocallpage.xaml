@@ -26,7 +26,25 @@
             </StackPanel>
         </DataTemplate>
     </Page.Resources>
-    <Grid Background="Gray">
+    <Grid> 
+        <Grid Height="auto">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="auto"/>
+                <RowDefinition Height="2*"/>
+                <RowDefinition Height="auto"/>
+            </Grid.RowDefinitions>
+            <Grid x:Name="TitleBarGrid" Grid.Row="0">
+                <Button  x:Name="TitleBarLeftLogo"   BorderBrush="#ECECEC"  Background="Transparent"  HorizontalAlignment="Left" Click="TitleBarLeftLogo_Click">
+                    <Image Source="..\Assets\home.png" MinHeight="30" MaxHeight="30" />
+                </Button>
+                <StackPanel x:Name="TitleBarFrameLogo" HorizontalAlignment="Center"  Orientation="Horizontal">
+                    <!--<Button   Grid.Row="0"  BorderBrush="#ECECEC"  Background="Transparent"  HorizontalAlignment="Center" Click="TitleBarFrameLogo_Click">-->
+                        <Image Source="..\Assets\Group.png" />
+                    <!--</Button>-->
+                </StackPanel>
+            </Grid>
+           
+            <Grid Grid.Row="1" Background="Gray">
         <Grid.RowDefinitions>
             <RowDefinition Height="150"></RowDefinition>
             <RowDefinition Height="450*"></RowDefinition>
@@ -72,5 +90,8 @@
 
             </Button>
         </StackPanel>
+    </Grid>
+        </Grid>
+       
     </Grid>
 </Page>
