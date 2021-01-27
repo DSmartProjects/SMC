@@ -90,8 +90,14 @@ namespace VideoKallSMC.ViewModel
             if (IsAdmin)
             {
                 // testPanel = new TestPanel();
-                // MainPage.mainPage.RightPanelHolder.Navigate(typeof(TestPanel), testPanel);             
+                // MainPage.mainPage.RightPanelHolder.Navigate(typeof(TestPanel), testPanel);   
+                Toast.ShowToast("", Constants.Login_Success_MSG);
                 Home.HomePage.Frame.Navigate(typeof(MainPage));
+            }
+            else
+            {
+                Toast.ShowToast("",Constants.InValid_UNAME_PWD);
+                return;
             }
 
             //if (videocallPage == null)

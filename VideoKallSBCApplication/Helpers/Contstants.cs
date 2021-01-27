@@ -12,5 +12,8 @@ namespace VideoKallSBCApplication.Helpers
         public const string Admin_PWD = "ClinicStop@2021";
         public const string Need_DataBase_MSG = "Please provide SBCDB database file to connect with devices";
 
+        public const string InValid_UNAME_PWD = @"Please provide valid username and password";
+        public const string Login_Success_MSG = "Login Successfull";
+
     }
 }
