@@ -47,7 +47,9 @@ namespace VideoKallSMC.Views
             TestTypes.Add("Spirometer");
             TestTypes.Add("Glucose Monitor");
             TestTypes.Add("Chest Stethoscope");
-            TestTypes.Add("Seat Back Stethoscope");  
+            TestTypes.Add("Seat Back Stethoscope");
+            TestTypes.Add("spirobankIIadv");
+            
            // TestTypes.Add("EKG");
             TestTypesList.ItemsSource = TestTypes;
         }
@@ -99,7 +101,11 @@ namespace VideoKallSMC.Views
                 case "seat back stethoscope":
                     _testPanelVM.IsMsgConnected = Visibility.Collapsed;
                     TestResultDisplay.Navigate(typeof(StethoscopeChest));
-                    break;                
+                    break;
+                case "spirobankiiadv":
+                    _testPanelVM.IsMsgConnected = Visibility.Visible;
+                    TestResultDisplay.Navigate(typeof(SpiroBankIIadvResult));
+                    break;
             }
         }
     }

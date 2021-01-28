@@ -148,11 +148,66 @@ namespace VideoKallSBCApplication
             }
         }
 
+       
+
         void Done()
         {
             StopDeviceSearch();
             MainPage.mainPage.pagePlaceHolder.GoBack();
         }
+
+        
+        ICommand _SpirobankCmd;
+        public ICommand SpirobankCmd
+        {
+            get
+            {
+                if (_SpirobankCmd == null)
+                    _SpirobankCmd = new RelayCommand(SpiroBankII);
+                return _SpirobankCmd;
+            }
+        }
+
+        public string TxtPairedSpirobank { get; set; } = " SpiroBankII adv ";
+       async void   SpiroBankII()
+        {
+            string strdev = await MainPage.mainPage.Spirobanadv.GetPairedDevices();
+           
+            if (strdev.Length == 0)
+                TxtPairedSpirobank = "Spirobank device not found.";
+            else
+                TxtPairedSpirobank = strdev;
+            OnPropertyChanged("TxtPairedSpirobank");
+
+            IsSpiroBankAdvVisible = true;
+            OnPropertyChanged("IsSpiroBankAdvVisible");
+        }
+
+        ICommand _SpirobankConnectCmd;
+        public ICommand SpirobankConnectCmd
+        {
+            get
+            {
+                if (_SpirobankConnectCmd == null)
+                    _SpirobankConnectCmd = new RelayCommand(ConnectSpiroBankII);
+                return _SpirobankConnectCmd;
+            }
+        }
+
+        public string TxtPairedSpirobankConnectionStatus { get; set; }
+        async void ConnectSpiroBankII()
+        {
+            IsSpirobankConnectEnabled = false;
+            OnPropertyChanged("IsSpirobankConnectEnabled");
+            TxtPairedSpirobankConnectionStatus = await MainPage.mainPage.Spirobanadv.ConnectSpiroBankII();
+            IsSpirobankConnectEnabled = ! MainPage.mainPage.Spirobanadv.IsDeviceConnected;
+
+            OnPropertyChanged("TxtPairedSpirobankConnectionStatus");
+            OnPropertyChanged("IsSpirobankConnectEnabled");
+        }
+
+        public bool IsSpiroBankAdvVisible { get; set; } = false;
+        public bool IsSpirobankConnectEnabled { get; set; } = true;
 
         public string DeviceTypeSelected { get; set; } ="";
         public List<string> DeviceTypeList { get; set; }

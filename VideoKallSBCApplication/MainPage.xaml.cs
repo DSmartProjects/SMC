@@ -60,6 +60,8 @@ namespace VideoKallSBCApplication
         public delegate void StethoscopeEvents(bool islungs);
         StethoscopeEvents StartStethoscope;
         bool isMCCConnectedFirstTime = true;
+        public SpiroBankIIadv Spirobanadv = new SpiroBankIIadv();
+        public CommwithChartApp commwithChartapp = new CommwithChartApp();
         public MainPage()
         {
             this.InitializeComponent();
@@ -241,14 +243,9 @@ namespace VideoKallSBCApplication
                         SaveImage(true);
                     }
                     break;
-                case "<startspirofvc>":
-                case "<startspirovc>":
-                case "<stopspiro>":
-                    {
-                        MainPage.mainPage.DataacqAppComm.SendMessageToDataacquistionapp(msg.Msg);
-                    }
+                default:
+                    SpiroBankCommand(msg.Msg);
                     break;
-
             }
 
             if(msg.Msg.ToLower().Contains("stpic>") || 
@@ -262,6 +259,37 @@ namespace VideoKallSBCApplication
 
         }
 
+        void SpiroBankCommand(string msg)
+        {
+            if (!msg.ToLower().Contains("spiro"))
+                return;
+            string[] cmdmsg = msg.Split('>');
+            try {
+                switch (cmdmsg[0])
+                {
+                    case "<startspirofvc":
+                        {
+                            commwithChartapp.ConnectwithChartApp();
+                           commwithChartapp.SendMsg(string.Format(CommunicationCommands.StartSpiroFVC, msg));
+                            Spirobanadv.StartFVCTestcmd();
+                        }
+                        break;
+                    case "<startspirovc":
+                        commwithChartapp.ConnectwithChartApp();
+                         commwithChartapp.SendMsg(string.Format(CommunicationCommands.StartSpiroVC, msg));
+                        Spirobanadv.StartVCTestcmd();
+                        break;
+                    case "<stopspiro":
+                        commwithChartapp.SendMsg(string.Format(CommunicationCommands.StopSpiro));
+                        Spirobanadv.StopTestAndCalculateResultcmd();
+                        
+                        break;
+                }
+
+            } catch(Exception ex) { }
+          
+              
+        }
         int PatientID = 1;
          void SaveImage(bool isDermascope = false)
         {

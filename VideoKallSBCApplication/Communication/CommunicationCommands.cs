@@ -68,5 +68,19 @@ namespace VideoKallSMC.Communication
         public static readonly string SBCShutdown = "<sbcshutdown>";
         public static readonly string SBCStart = "<sbcstart>";
 
+     //   public static readonly string SpirometerFVCdata = "SPIROFVC>{0}>";
+
+        public static readonly string SpirometerFVCvtdata = "SPIROFVCvt>{0}>";
+        public static readonly string SpirometerVC = "SPIROVC>{0}>";
+ 
+
+        public static readonly string Spirostatussuccess = "spirostatussucess> ";
+        public static readonly string SpirostatusFailed = "spirostatusfailed>{0}> ";
+        public static readonly string StoppedSpiroMeter = "stoppedspirometer>";
+
+        public static readonly string SpiroVCResults = "spirovcresult>{0}>{1}>";
+
+        public static readonly string SpiroFVCResults = "spirofvcresult>{0}>{1}>";
+
     }
 }

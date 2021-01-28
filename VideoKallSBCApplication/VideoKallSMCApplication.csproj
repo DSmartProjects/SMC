@@ -139,10 +139,13 @@
     <Compile Include="BLEDevices\Thermometer.cs" />
     <Compile Include="BLEDevices\Utilities.cs" />
     <Compile Include="Communication\CaptureDevice.cs" />
+    <Compile Include="Communication\CommCommands.cs" />
     <Compile Include="Communication\CommunicationChannel.cs" />
     <Compile Include="Communication\CommunicationCommands.cs" />
+    <Compile Include="Communication\CommwithChartApp.cs" />
     <Compile Include="Communication\DataacquistionappComm.cs" />
     <Compile Include="Communication\socketComm.cs" />
+    <Compile Include="Communication\SpiroBankIIadv.cs" />
     <Compile Include="Helpers\Contstants.cs" />
     <Compile Include="Helpers\DateFormatConverter.cs" />
     <Compile Include="Helpers\Toast.cs" />
@@ -171,6 +174,9 @@
     <Compile Include="TestResults\GlucoUtility.cs" />
     <Compile Include="TestResults\OxymeterResults.xaml.cs">
       <DependentUpon>OxymeterResults.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="TestResults\SpiroBankIIadvResult.xaml.cs">
+      <DependentUpon>SpiroBankIIadvResult.xaml</DependentUpon>
     </Compile>
     <Compile Include="TestResults\ThermoMeter.xaml.cs">
       <DependentUpon>ThermoMeter.xaml</DependentUpon>
@@ -336,6 +342,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="TestResults\OxymeterResults.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="TestResults\SpiroBankIIadvResult.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

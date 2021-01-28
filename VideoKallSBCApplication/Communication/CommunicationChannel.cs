@@ -15,7 +15,7 @@ namespace VideoKallSMC.Communication
         DatagramSocket _socketUdp = new DatagramSocket();
         public event EventHandler<CommunicationMsg> MessageReceived;
         public event EventHandler<CommunicationMsg> ErrorMessage;
-       private ConnectionInfo MCCConnection { get; set; } = null;
+       public ConnectionInfo MCCConnection { get; set; } = null;
     
         public void Initialize()
         {
@@ -114,10 +114,10 @@ namespace VideoKallSMC.Communication
         public string PortNo { get; set; }
     }
 
-    class ConnectionInfo
+  public  class ConnectionInfo
     {
-        string ipaddress = string.Empty;
-        string portNo = string.Empty;
+      public  string ipaddress = string.Empty;
+       public string portNo = string.Empty;
         IOutputStream outputstream = null;
         DataWriter writer = null;
         public ConnectionInfo(string ip, string port, IOutputStream io)
