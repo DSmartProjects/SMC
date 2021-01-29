@@ -32,6 +32,15 @@ namespace VideoKallSBCApplication
     /// </summary>
     public sealed partial class Home : Page
     {
+
+        #region properties 
+        public CommunicationChannel commChannel { get; set; }
+        public DataacquistionappComm DataacqAppComm { get; set; }
+        public SerialPortComm SerialPortCommchannel { get; set; }
+        public GlucoUtility GlucoCMDUtitlity { get; } = new GlucoUtility();
+        public static TestResultsModel _testResult = new TestResultsModel();
+        public static TestResultsModel TestresultModel { get { return _testResult; } }
+        #endregion
         bool isMCCConnectedFirstTime = true;
         bool IsDatacquistionappconnected { get; set; } = false;
         DispatcherTimer Watchdog = null;
@@ -43,16 +52,9 @@ namespace VideoKallSBCApplication
         public HomeViewModel HomeVM = null;
  
 
-        #region properties 
-        public CommunicationChannel commChannel { get; set; }
-        public DataacquistionappComm DataacqAppComm { get; set; }
-        public SerialPortComm SerialPortCommchannel { get; set; }
-        public GlucoUtility GlucoCMDUtitlity { get; } = new GlucoUtility();
-        public static TestResultsModel _testResult = new TestResultsModel();
-        public static TestResultsModel TestresultModel { get { return _testResult; } }
-        #endregion
 
-        public Home()
+
+        public   Home()
         {
             HomePage = this;
             this.InitializeComponent();
@@ -61,6 +63,13 @@ namespace VideoKallSBCApplication
             TestresultModel.NotifyStatusMessage = UpdateNotification;
             TestresultModel.StethoscopeTx.TXevents += Tx_TXevents;
             StartStethoscope += StartST;
+            commChannel = new CommunicationChannel();
+            commChannel.MessageReceived += CommChannel_MessageReceived;
+            commChannel.ErrorMessage += CommChannel_ErrorMessage;
+            commChannel.Initialize();
+            commChannel.Listen();
+            HomeVM.UpdateIPaddress(commChannel.IPAddress, commChannel.PortNo);
+      
         }
 
         async void UpdateNotification(string s, int code)
@@ -183,38 +192,44 @@ namespace VideoKallSBCApplication
         }
 
         private async void Page_Loaded(object sender, RoutedEventArgs e) {
-            commChannel = new CommunicationChannel();
-            commChannel.MessageReceived += CommChannel_MessageReceived;
-            commChannel.ErrorMessage += CommChannel_ErrorMessage;
-            commChannel.Initialize();
-            commChannel.Listen();
-            HomeVM.UpdateIPaddress(commChannel.IPAddress, commChannel.PortNo);
-
+            //   scokcomm.Initialize();
+            //   scokcomm.Connect();
             SerialPortCommchannel = new SerialPortComm();
-
             Watchdog = new DispatcherTimer();
             Watchdog.Tick += Watchdog_Tick;
             Watchdog.Interval = new TimeSpan(0, 0, 0, 0, 500);
+
+            Watchdog.Start();
             DataacqAppComm = new DataacquistionappComm();
             DataacqAppComm.MessageReceived += CommChannel_MessageReceived;
             //  DataacqAppComm.Initialize();
-            // await DataacqAppComm.Connect();
-            await DataacqAppComm.ResetCommFiles();
+            // await DataacqAppComm.Connect();    
+
+
+
             DataacqAppComm.SendMessageToDataacquistionapp(CommunicationCommands.DATAACQUISTIONAPPCONNECTION);
-            Watchdog.Start();
-
-            //   scokcomm.Initialize();
-            //   scokcomm.Connect();
+            await DataacqAppComm?.ResetCommFiles();
         }
-
+        int watchdogcount = 0;
         private void Watchdog_Tick(object sender, object e)
         {
-            throw new NotImplementedException();
+            Watchdog.Stop();
+
+            watchdogcount++;
+            if (watchdogcount > 2)
+                DataacqAppComm.ReadCommFile();
+
+            if (watchdogcount > 3)
+            {
+                watchdogcount = 0;
+            }
+
+            Watchdog.Start();
         }
 
         private void CommChannel_ErrorMessage(object sender, CommunicationMsg e)
         {
-            throw new NotImplementedException();
+            
         }
 
         private void CommChannel_MessageReceived(object sender, CommunicationMsg msg)

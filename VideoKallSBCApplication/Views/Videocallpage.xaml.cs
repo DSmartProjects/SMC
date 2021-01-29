@@ -82,8 +82,11 @@ namespace VideoKallSMC.Views
         {
             try
             {
-                PreviewVideo.Source = device.CaptureSource;
-                await device.CaptureSource.StartPreviewAsync();
+                if (device!=null)
+                {
+                    PreviewVideo.Source = device.CaptureSource;
+                    await device.CaptureSource.StartPreviewAsync();
+                }              
 
                 if (device == null)
                 {
