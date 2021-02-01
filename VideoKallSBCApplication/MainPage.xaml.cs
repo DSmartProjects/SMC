@@ -32,6 +32,7 @@ using VideoKallSBCApplication.Communication;
 using Windows.ApplicationModel.Core;
 using Windows.Storage;
 using VideoKallSBCApplication.ViewModel;
+using VideoKallSBCApplication.Helpers;
 
 // The Blank Page item template is documented at https://go.microsoft.com/fwlink/?LinkId=402352&clcid=0x409
 
@@ -60,15 +61,19 @@ namespace VideoKallSBCApplication
         public delegate void StethoscopeEvents(bool islungs);
         StethoscopeEvents StartStethoscope;
         bool isMCCConnectedFirstTime = true;
+        public delegate void BoolDelegate(bool isReset);
+        public BoolDelegate VideoCallReset;
         public MainPage()
         {
             this.InitializeComponent();
             mainPage = this;
             TestPanelVM = new TestPanelViewModel();
             this.DataContext = mainpagecontext;
-            //RightPanelHolder.Navigate(typeof(LoginPage));
+            //RightPanelHolder.Navigate(typeof(LoginPage));            
             mainpagecontext.TitleBarVisibility = Visibility.Visible;
-            pagePlaceHolder.Navigate(typeof(TestPanel));
+            mainpagecontext.TitleBarRightMenuVisibility = Visibility.Collapsed;
+            TitleBarLeftLogo.Visibility = Visibility.Collapsed;
+            pagePlaceHolder.Navigate(typeof(Home));
             //pagePlaceHolder.Navigate(typeof(LoginPage));
             TestresultModel.NotifyStatusMessage = UpdateNotification;
             TestresultModel.StethoscopeTx.TXevents += Tx_TXevents;
@@ -402,7 +407,17 @@ namespace VideoKallSBCApplication
 
         private void AppBarButton_Click(object sender, RoutedEventArgs e)
         {
-            this.Frame.Navigate(typeof(LoginPage));
+            MainPage.mainPage.mainpagecontext.TitleBarLeftMenuVisibility = Visibility.Visible;
+            MainPage.mainPage.mainpagecontext.TitleBarVisibility = Visibility.Visible;
+            pagePlaceHolder.Navigate(typeof(LoginPage));
+            //this.Frame.Navigate(typeof(LoginPage));
+        }
+
+        private void TitleBarLeftLogo_Click(object sender, RoutedEventArgs e)
+        {
+            mainpagecontext.TitleBarLeftMenuVisibility = Visibility.Visible;
+            mainpagecontext.TitleBarVisibility = Visibility.Visible;
+            pagePlaceHolder.Navigate(typeof(Home));
         }
     } 
 }

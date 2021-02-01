@@ -23,16 +23,20 @@ namespace VideoKallSMC
             this.InitializeComponent();
             _loginVM= new LoginPageViewModel();
             this.DataContext = _loginVM;
+            MainPage.mainPage.mainpagecontext.TitleBarVisibility = Visibility.Visible;
+            MainPage.mainPage.mainpagecontext.TitleBarLeftMenuVisibility = Visibility.Visible;
+            MainPage.mainPage.mainpagecontext.TitleBarRightMenuVisibility = Visibility.Collapsed;
         }
 
         private void TitleBarLeftLogo_Click(object sender, RoutedEventArgs e)
         {
-            this.Frame.Navigate(typeof(Home));
+           
+            //this.Frame.Navigate(typeof(Home));
         }
 
         private void TitleBarFrameLogo_Click(object sender, RoutedEventArgs e)
         {
-            this.Frame.Navigate(typeof(Home));
+            //this.Frame.Navigate(typeof(Home));
         }
     }
 }

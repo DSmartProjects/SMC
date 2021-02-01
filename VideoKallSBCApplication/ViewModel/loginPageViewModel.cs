@@ -88,11 +88,14 @@ namespace VideoKallSMC.ViewModel
         {
             IsAdmin = !string.IsNullOrEmpty(Userid) && !string.IsNullOrEmpty(Constants.Admin_PWD) && Userid.Equals(Constants.Admin_UNAME, StringComparison.InvariantCultureIgnoreCase) && PasswordTxt.Equals(Constants.Admin_PWD, StringComparison.InvariantCultureIgnoreCase) ? true : false;
             if (IsAdmin)
-            {
-                // testPanel = new TestPanel();
-                // MainPage.mainPage.RightPanelHolder.Navigate(typeof(TestPanel), testPanel);   
+            {                 
                 Toast.ShowToast("", Constants.Login_Success_MSG);
-                Home.HomePage.Frame.Navigate(typeof(MainPage));
+                testPanel = null;
+                testPanel = new TestPanel();
+                MainPage.mainPage.mainpagecontext.TitleBarVisibility = Visibility.Visible;
+                MainPage.mainPage.mainpagecontext.TitleBarLeftMenuVisibility = Visibility.Collapsed;
+                MainPage.mainPage.mainpagecontext.TitleBarRightMenuVisibility = Visibility.Visible;
+                MainPage.mainPage.pagePlaceHolder.Navigate(typeof(TestPanel), testPanel);
             }
             else
             {

@@ -14,21 +14,21 @@
     <Grid>
         <Grid Height="auto">
             <Grid.RowDefinitions>
-                <RowDefinition Height="auto"/>
+                <!--<RowDefinition Height="auto"/>-->
                 <RowDefinition Height="2*"/>
                 <RowDefinition Height="auto"/>
             </Grid.RowDefinitions>
-            <Grid Grid.Row="0">
-                <Button  x:Name="TitleBarLeftLogo"   BorderBrush="#ECECEC"  Background="Transparent"  HorizontalAlignment="Left" Click="TitleBarLeftLogo_Click">
+            <!--<Grid Grid.Row="0">
+                --><!--<Button  x:Name="TitleBarLeftLogo"   BorderBrush="#ECECEC"  Background="Transparent"  HorizontalAlignment="Left" Click="TitleBarLeftLogo_Click">
                     <Image Source="..\Assets\home.png" MinHeight="30" MaxHeight="30" />
-                </Button>
+                </Button>--><!--
                 <StackPanel x:Name="TitleBarFrameLogo" HorizontalAlignment="Center"  Orientation="Horizontal">
-                    <!--<Button x:Name="TitleBarFrameLogo"  Grid.Row="0"  BorderBrush="#ECECEC"  Background="Transparent"  HorizontalAlignment="Center" Click="TitleBarFrameLogo_Click">-->
+                    --><!--<Button x:Name="TitleBarFrameLogo"  Grid.Row="0"  BorderBrush="#ECECEC"  Background="Transparent"  HorizontalAlignment="Center" Click="TitleBarFrameLogo_Click">--><!--
                         <Image Source="..\Assets\Group.png" />
-                    <!--</Button>-->
+                    --><!--</Button>--><!--
                 </StackPanel>
-            </Grid>
-            <Grid Grid.Row="1" HorizontalAlignment="Center" VerticalAlignment="Center">
+            </Grid>-->
+            <Grid Grid.Row="0" HorizontalAlignment="Center" VerticalAlignment="Center">
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="auto"/>
                     <ColumnDefinition Width="*"/>

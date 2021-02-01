@@ -39,7 +39,9 @@ namespace VideoKallSMC.Views
         {
             this.InitializeComponent();
             DialScreenLogo.Visibility = Visibility.Collapsed;
-            TitleBarGrid.Visibility = Visibility.Visible;
+            MainPage.mainPage.mainpagecontext.TitleBarVisibility = Visibility.Visible;
+            MainPage.mainPage.mainpagecontext.TitleBarLeftMenuVisibility = Visibility.Visible;
+            // TitleBarGrid.Visibility = Visibility.Visible;
             EnsureMediaExtensionManager();
             //Window.Current.VisibilityChanged += new WindowVisibilityChangedEventHandler(RenualCall);
             DefaultVisibilities();
@@ -66,6 +68,14 @@ namespace VideoKallSMC.Views
 
         //    }
         //}
+
+        private void VideoCallReset(bool isCameFromLogout)
+        {
+            if (device != null && device.mediaSink != null)
+            {
+                device.mediaSink.Dispose();
+            }
+        }
         public void DefaultVisibilities()
         {
             //HostNameTextbox.Visibility = Visibility.Visible;
@@ -112,7 +122,9 @@ namespace VideoKallSMC.Views
         {
             try
             {
-                TitleBarGrid.Visibility = Visibility.Collapsed;
+                MainPage.mainPage.mainpagecontext.TitleBarVisibility = Visibility.Collapsed;
+
+                //TitleBarGrid.Visibility = Visibility.Collapsed;
                 Utility utility = new Utility();
                 //var data = await MainPage.mainPage.mainpagecontext.ReadNPTConfig();
                 var data = Task.Run(async () => { return await utility.ReadNPTConfig(); }).Result;
@@ -398,7 +410,10 @@ namespace VideoKallSMC.Views
                 device?.mediaSink?.Dispose();
             }));
             // Start waiting for a new CallButton.
-            TitleBarGrid.Visibility = Visibility.Visible;
+            //TitleBarGrid.Visibility = Visibility.Visible;
+            MainPage.mainPage.mainpagecontext.TitleBarVisibility = Visibility.Visible;
+            MainPage.mainPage.mainpagecontext.TitleBarLeftMenuVisibility = Visibility.Visible;
+
             await InitializeAsync();
             //MainPage.mainPage.pagePlaceHolder.Navigate(typeof(Videocallpage));
             this.Frame.Navigate(typeof(Videocallpage));

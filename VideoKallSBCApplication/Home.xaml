@@ -13,21 +13,21 @@
             <ColumnDefinition Width="*"/>
         </Grid.ColumnDefinitions>-->
         <Grid.RowDefinitions> 
-            <RowDefinition MinHeight="60" MaxHeight="60"/>
+            <!--<RowDefinition MinHeight="60" MaxHeight="60"/>-->
             <RowDefinition Height="1*"/>
             <RowDefinition Height="auto"/>
         </Grid.RowDefinitions>
         <!--<Button x:Name="TitleBarLeftLogo"  Grid.Row="0" Grid.Column="1" BorderBrush="#ECECEC"  Background="Transparent"  HorizontalAlignment="Left">
             <Image Source="..\Assets\home.png" />
         </Button>-->
-        <StackPanel x:Name="TitleBarFrameLogo"  Grid.Row="0" HorizontalAlignment="Center"  Orientation="Horizontal">
+        <!--<StackPanel x:Name="TitleBarFrameLogo"  Grid.Row="0" HorizontalAlignment="Center"  Orientation="Horizontal">
       
-            <!--<Button x:Name="TitleBarFrameLogo"  Grid.Row="0"  BorderBrush="#ECECEC"  Background="Transparent"  HorizontalAlignment="Center">-->
+            --><!--<Button x:Name="TitleBarFrameLogo"  Grid.Row="0"  BorderBrush="#ECECEC"  Background="Transparent"  HorizontalAlignment="Center">--><!--
 
                 <Image Source="..\Assets\Group.png" />
 
-            <!--</Button>-->
-        </StackPanel>
+            --><!--</Button>--><!--
+        </StackPanel>-->
        
         <!--<Grid x:Name="grImage" Grid.Row="0" HorizontalAlignment="Center" BorderBrush="#ECECEC" BorderThickness="1">
             --><!--<Image x:Name="logo"  HorizontalAlignment="Stretch" VerticalAlignment="Stretch"  Source="..\Assets\Group.png"/>--><!--
@@ -35,7 +35,7 @@
         <!--<Grid x:Name="grTextBlock" Grid.Row="0" HorizontalAlignment="Center" Grid.Column="1"  BorderBrush="#ECECEC" BorderThickness="0">
             <Image x:Name="logoheader" Width="200"   Source="..\Assets\Group.png"/>
         </Grid>-->
-        <Grid Grid.Row="1"  Grid.ColumnSpan="2"  Background="#F9F9F9">
+        <Grid Grid.Row="0"  Grid.ColumnSpan="2"  Background="#F9F9F9">
             <Grid HorizontalAlignment="Center" VerticalAlignment="Center">
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="auto"/>

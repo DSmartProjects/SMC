@@ -50,7 +50,10 @@ namespace VideoKallSMC.ViewModel
         }
         public void ExecuteLogOffCommand()
         {
-             MainPage.mainPage.Frame.Navigate(typeof(LoginPage));
+            MainPage.mainPage.mainpagecontext.TitleBarLeftMenuVisibility = Visibility.Collapsed;
+            MainPage.mainPage.mainpagecontext.TitleBarVisibility = Visibility.Visible;
+            MainPage.mainPage.mainpagecontext.TitleBarRightMenuVisibility = Visibility.Collapsed;
+            MainPage.mainPage.pagePlaceHolder.Navigate(typeof(LoginPage));
              //MainPage.mainPage.RightPanelHolder.Navigate(typeof(LoginPage));
         }
         //Settings
@@ -129,9 +132,13 @@ namespace VideoKallSMC.ViewModel
         public string NPT_IPAddress { get { return _npt_IPAddress; } set { _npt_IPAddress = value; OnPropertyChanged("NPT_IPAddress"); } }
         string NPT_ConfigFile = "NPTConfig.txt";
 
-        private Visibility _titleBarVisibility = Visibility.Collapsed;
+        private Visibility _titleBarVisibility = Visibility.Visible;
         public Visibility TitleBarVisibility { get { return _titleBarVisibility; } set { _titleBarVisibility = value; OnPropertyChanged("TitleBarVisibility"); } }
-        
+        private Visibility _titleBarLeftMenuVisibility = Visibility.Collapsed;
+        public Visibility TitleBarLeftMenuVisibility { get { return _titleBarLeftMenuVisibility; } set { _titleBarLeftMenuVisibility = value; OnPropertyChanged("TitleBarLeftMenuVisibility"); } }
+        private Visibility _titleBarRightMenuVisibility = Visibility.Collapsed;
+        public Visibility TitleBarRightMenuVisibility { get { return _titleBarRightMenuVisibility; } set { _titleBarRightMenuVisibility = value; OnPropertyChanged("TitleBarRightMenuVisibility"); } }       
+
         public async Task<bool> ReadNPTConfig()
         {
             try

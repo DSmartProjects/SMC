@@ -55,13 +55,16 @@
         <AppBarSeparator/>-->
         </Grid>
 
-        <Grid  Grid.Row="0" x:Name="TitleBarFrameLogo" BorderBrush="WhiteSmoke"  BorderThickness="0,0,0,1">
+        <Grid  Grid.Row="0" x:Name="TitleBarFrameLogo" Visibility="{Binding TitleBarVisibility,Mode=TwoWay}" BorderBrush="WhiteSmoke"  BorderThickness="0,0,0,1">
+            <Button  x:Name="TitleBarLeftLogo" Visibility="{Binding TitleBarLeftMenuVisibility,Mode=TwoWay}"  BorderBrush="#ECECEC"  Background="Transparent"  HorizontalAlignment="Left" Click="TitleBarLeftLogo_Click">
+                <Image Source="..\Assets\home.png" MinHeight="30" MaxHeight="30" />
+            </Button>
             <StackPanel  HorizontalAlignment="Center"  Orientation="Horizontal">
                 <!--<Button   Grid.Row="0"  BorderBrush="#ECECEC"  Background="Transparent"  HorizontalAlignment="Center" Click="TitleBarFrameLogo_Click">-->
                 <Image Source="..\Assets\Group.png" />
                 <!--</Button>-->
             </StackPanel>
-            <CommandBar OverflowButtonVisibility="Collapsed"   x:Name="titleBar" Visibility="{Binding TitleBarVisibility,Mode=TwoWay}" Background="White"  Grid.Row="0"  IsOpen="False" HorizontalAlignment="Right" VerticalAlignment="Center" DefaultLabelPosition="Right">
+            <CommandBar OverflowButtonVisibility="Collapsed"   x:Name="titleBarRightMenu" Visibility="{Binding TitleBarRightMenuVisibility,Mode=TwoWay}" Background="White"  Grid.Row="0"  IsOpen="False" HorizontalAlignment="Right" VerticalAlignment="Center" DefaultLabelPosition="Right">
 
                     <AppBarButton Icon="CellPhone"  ToolTipService.ToolTip="Devices List" Command="{Binding DeviceListCommand}"></AppBarButton>
                     <AppBarSeparator/>
